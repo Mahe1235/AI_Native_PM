@@ -1,0 +1,493 @@
+{
+  "modules": [
+    {
+      "number": 1,
+      "slug": "01-how-llms-work",
+      "title": "How LLMs Actually Work",
+      "subtitle": "The mental models that change how you use AI — not ML theory, just what you need to get better results, spot limitations, build safer products, and stop being surprised by the weird stuff.",
+      "tier": 1,
+      "tierName": "Foundations",
+      "color": "blue",
+      "estimatedTime": "4–5 hours",
+      "conceptCount": 12,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "tokens",
+          "title": "Tokens, Not Words"
+        },
+        {
+          "id": "context-windows",
+          "title": "Context Windows"
+        },
+        {
+          "id": "temperature",
+          "title": "Temperature & Sampling"
+        },
+        {
+          "id": "few-shot",
+          "title": "Few-Shot Learning"
+        },
+        {
+          "id": "extended-thinking",
+          "title": "Extended Thinking",
+          "isNew": true
+        },
+        {
+          "id": "hallucination",
+          "title": "Hallucination"
+        },
+        {
+          "id": "structured-outputs",
+          "title": "Structured Outputs"
+        },
+        {
+          "id": "prompt-caching",
+          "title": "Prompt Caching",
+          "isNew": true
+        },
+        {
+          "id": "prompt-injection",
+          "title": "Prompt Injection"
+        },
+        {
+          "id": "knowledge-cutoffs",
+          "title": "Knowledge Cutoffs"
+        },
+        {
+          "id": "model-selection",
+          "title": "Model Selection"
+        },
+        {
+          "id": "four-levers",
+          "title": "Four Levers"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 2,
+      "slug": "02-ai-native-mindset",
+      "title": "The AI-Native Mindset",
+      "subtitle": "How to think about AI as a PM — not as a tool to use occasionally, but as infrastructure to build your work around.",
+      "tier": 1,
+      "tierName": "Foundations",
+      "color": "blue",
+      "estimatedTime": "3–4 hours",
+      "conceptCount": 8,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "pm-work-audit",
+          "title": "PM Work Audit"
+        },
+        {
+          "id": "leverage-spectrum",
+          "title": "Leverage Spectrum"
+        },
+        {
+          "id": "ai-native-vs-assisted",
+          "title": "AI-Native vs AI-Assisted"
+        },
+        {
+          "id": "review-over-create",
+          "title": "Review Over Create"
+        },
+        {
+          "id": "where-ai-fails",
+          "title": "Where AI Fails"
+        },
+        {
+          "id": "roi-curve",
+          "title": "ROI Curve"
+        },
+        {
+          "id": "team-adoption",
+          "title": "Team Adoption"
+        },
+        {
+          "id": "audit-to-action",
+          "title": "Audit to Action"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 3,
+      "slug": "03-building-your-ai-toolkit",
+      "title": "Building Your AI Toolkit",
+      "subtitle": "Skills, system prompts, MCP connectors, and the building blocks of a real AI workflow.",
+      "tier": 2,
+      "tierName": "Build Your Workflow",
+      "color": "green",
+      "estimatedTime": "6–8 hours",
+      "conceptCount": 12,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "context-engineering",
+          "title": "Context Engineering"
+        },
+        {
+          "id": "system-prompts",
+          "title": "System Prompts"
+        },
+        {
+          "id": "claude-4x-needs",
+          "title": "What Claude 4.x Needs",
+          "isNew": true
+        },
+        {
+          "id": "projects-as-skills",
+          "title": "Projects as Skills"
+        },
+        {
+          "id": "mcp-integration",
+          "title": "MCP Integration",
+          "isNew": true
+        },
+        {
+          "id": "few-shot-examples",
+          "title": "Few-Shot Examples"
+        },
+        {
+          "id": "mcp-workflows",
+          "title": "MCP Workflows",
+          "isNew": true
+        },
+        {
+          "id": "prompt-chaining",
+          "title": "Prompt Chaining"
+        },
+        {
+          "id": "claude-skills",
+          "title": "Claude Skills",
+          "isNew": true
+        },
+        {
+          "id": "mcp-apps",
+          "title": "MCP Apps",
+          "isNew": true
+        },
+        {
+          "id": "structured-outputs",
+          "title": "Structured Outputs"
+        },
+        {
+          "id": "mcp-product-thinking",
+          "title": "MCP Product Thinking",
+          "isNew": true
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 4,
+      "slug": "04-evaluating-your-ai-work",
+      "title": "Evaluating Your AI Work",
+      "subtitle": "How to know if your AI outputs are actually good — and build the infrastructure to measure it systematically.",
+      "tier": 2,
+      "tierName": "Build Your Workflow",
+      "color": "green",
+      "estimatedTime": "5–6 hours",
+      "conceptCount": 8,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "eval-mindset",
+          "title": "The Eval Mindset"
+        },
+        {
+          "id": "binary-pass-fail",
+          "title": "Binary Pass/Fail"
+        },
+        {
+          "id": "error-analysis",
+          "title": "4-Step Error Analysis"
+        },
+        {
+          "id": "test-dataset",
+          "title": "Build Your Test Dataset"
+        },
+        {
+          "id": "open-coding",
+          "title": "Open Coding"
+        },
+        {
+          "id": "axial-coding",
+          "title": "Axial Coding"
+        },
+        {
+          "id": "fix-re-eval",
+          "title": "Fix & Re-Eval"
+        },
+        {
+          "id": "eval-harness",
+          "title": "The Eval Harness"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 5,
+      "slug": "05-from-skills-to-agents",
+      "title": "From Skills to Agents",
+      "subtitle": "When a skill isn't enough — how to add tools, chain decisions, and build agents that act in the world.",
+      "tier": 3,
+      "tierName": "Scale Your Impact",
+      "color": "orange",
+      "estimatedTime": "6–7 hours",
+      "conceptCount": 14,
+      "codeRequired": true,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "agency-spectrum",
+          "title": "The Agency Spectrum"
+        },
+        {
+          "id": "tools-tool-use",
+          "title": "Tools & Tool Use"
+        },
+        {
+          "id": "react-pattern",
+          "title": "The ReAct Pattern"
+        },
+        {
+          "id": "when-agent-beats-skill",
+          "title": "When Agent Beats Skill"
+        },
+        {
+          "id": "claude-api-tool-use",
+          "title": "Claude API Tool Use"
+        },
+        {
+          "id": "claude-code",
+          "title": "Claude Code"
+        },
+        {
+          "id": "computer-use",
+          "title": "Computer Use",
+          "isNew": true
+        },
+        {
+          "id": "hooks",
+          "title": "Hooks",
+          "isNew": true
+        },
+        {
+          "id": "agent-harness",
+          "title": "The Agent Harness"
+        },
+        {
+          "id": "agent-teams",
+          "title": "Agent Teams",
+          "isNew": true
+        },
+        {
+          "id": "subagents",
+          "title": "Subagents",
+          "isNew": true
+        },
+        {
+          "id": "agent-evaluation",
+          "title": "Agent Evaluation"
+        },
+        {
+          "id": "agent-safety",
+          "title": "Agent Safety"
+        },
+        {
+          "id": "indirect-prompt-injection",
+          "title": "Indirect Prompt Injection"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 6,
+      "slug": "06-data-and-feedback-loops",
+      "title": "Data & Feedback Loops",
+      "subtitle": "How to build systems that improve over time — prompt versioning, automated logging, and the compounding effect.",
+      "tier": 3,
+      "tierName": "Scale Your Impact",
+      "color": "orange",
+      "estimatedTime": "3–4 hours",
+      "conceptCount": 8,
+      "codeRequired": true,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "eval-dataset-as-asset",
+          "title": "Eval Dataset as Asset"
+        },
+        {
+          "id": "prompt-versioning",
+          "title": "Prompt Versioning"
+        },
+        {
+          "id": "skill-splitting",
+          "title": "Skill Splitting"
+        },
+        {
+          "id": "feedback-in-workflow",
+          "title": "Building Feedback In"
+        },
+        {
+          "id": "hooks-logging",
+          "title": "Hooks for Automated Logging"
+        },
+        {
+          "id": "prompt-caching-evals",
+          "title": "Prompt Caching for Evals"
+        },
+        {
+          "id": "context-compaction",
+          "title": "Context Compaction"
+        },
+        {
+          "id": "compounding-effect",
+          "title": "The Compounding Effect"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 7,
+      "slug": "07-ai-product-thinking",
+      "title": "AI Product Thinking",
+      "subtitle": "How to spec, measure, and ship AI features — the product decisions that separate good AI products from great ones.",
+      "tier": 4,
+      "tierName": "Lead with AI",
+      "color": "purple",
+      "estimatedTime": "5–6 hours",
+      "conceptCount": 7,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "should-this-use-ai",
+          "title": "Should This Feature Use AI?"
+        },
+        {
+          "id": "ai-ux-patterns",
+          "title": "AI UX Patterns"
+        },
+        {
+          "id": "speccing-nondeterministic",
+          "title": "Speccing Non-Deterministic Features"
+        },
+        {
+          "id": "measuring-ai-features",
+          "title": "Measuring AI Features"
+        },
+        {
+          "id": "build-buy-wrap",
+          "title": "Build vs Buy vs Wrap"
+        },
+        {
+          "id": "mcp-server-strategy",
+          "title": "MCP Server Strategy",
+          "isNew": true
+        },
+        {
+          "id": "production-harness",
+          "title": "The Production Harness"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    },
+    {
+      "number": 8,
+      "slug": "08-shipping-ai-products",
+      "title": "Shipping AI Products",
+      "subtitle": "Guardrails, trust, feedback loops, and responsible AI — what it takes to ship AI features that users actually trust.",
+      "tier": 4,
+      "tierName": "Lead with AI",
+      "color": "purple",
+      "estimatedTime": "5–6 hours",
+      "conceptCount": 10,
+      "codeRequired": false,
+      "status": "complete",
+      "concepts": [
+        {
+          "id": "infinite-edge-cases",
+          "title": "Infinite Edge Cases"
+        },
+        {
+          "id": "guardrails-vs-evaluators",
+          "title": "Guardrails vs Evaluators"
+        },
+        {
+          "id": "building-user-trust",
+          "title": "Building User Trust"
+        },
+        {
+          "id": "feedback-loops-signals",
+          "title": "Feedback Loops as Signals"
+        },
+        {
+          "id": "responsible-ai",
+          "title": "Responsible AI as Product Quality"
+        },
+        {
+          "id": "autonomy-roadmap",
+          "title": "Autonomy Roadmap"
+        },
+        {
+          "id": "data-privacy",
+          "title": "Data Retention & Privacy"
+        },
+        {
+          "id": "launch-strategy",
+          "title": "Launch Strategy"
+        },
+        {
+          "id": "monitoring-observability",
+          "title": "Monitoring & Observability"
+        },
+        {
+          "id": "capstone",
+          "title": "Capstone Project"
+        }
+      ],
+      "access": {
+        "level": "free",
+        "previewConcepts": 3,
+        "gatedFrom": null
+      }
+    }
+  ]
+}

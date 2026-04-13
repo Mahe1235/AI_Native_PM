@@ -1,0 +1,49 @@
+{
+  "number": 7,
+  "slug": "07-ai-product-thinking",
+  "title": "AI Product Thinking",
+  "subtitle": "How to spec, measure, and ship AI features — the product decisions that separate good AI products from great ones.",
+  "tier": 4,
+  "tierName": "Lead with AI",
+  "color": "purple",
+  "estimatedTime": "5–6 hours",
+  "conceptCount": 7,
+  "codeRequired": false,
+  "status": "complete",
+  "concepts": [
+    {
+      "id": "should-this-use-ai",
+      "title": "Should This Feature Use AI?"
+    },
+    {
+      "id": "ai-ux-patterns",
+      "title": "AI UX Patterns"
+    },
+    {
+      "id": "speccing-nondeterministic",
+      "title": "Speccing Non-Deterministic Features"
+    },
+    {
+      "id": "measuring-ai-features",
+      "title": "Measuring AI Features"
+    },
+    {
+      "id": "build-buy-wrap",
+      "title": "Build vs Buy vs Wrap"
+    },
+    {
+      "id": "mcp-server-strategy",
+      "title": "MCP Server Strategy",
+      "isNew": true
+    },
+    {
+      "id": "production-harness",
+      "title": "The Production Harness"
+    }
+  ],
+  "access": {
+    "level": "free",
+    "previewConcepts": 3,
+    "gatedFrom": null
+  }
+}

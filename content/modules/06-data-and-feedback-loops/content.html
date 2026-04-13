@@ -1,0 +1,583 @@
+<!-- Breadcrumb -->
+<div class="bc">
+  <a href="#">The AI-Native PM</a><span class="sep">→</span>
+  <a href="#">Tier 3: Scale Your Impact</a><span class="sep">→</span>
+  <span class="cur">Module 06</span>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="mod-badge">
+    <span class="mod-num">MODULE 06</span>
+    <span class="mod-tier">Tier 3 · Scale Your Impact</span>
+  </div>
+  <h1>Data &amp;<br><em>Feedback Loops</em></h1>
+  <p class="hero-sub">You've built and evaluated AI tools. Now you'll build the system that makes them compound — getting measurably better every week without heroic effort.</p>
+  <div class="hero-meta">
+    <span class="hero-mi"><span class="dot"></span>3–4 hours</span>
+    <span class="hero-mi"><span class="dot"></span>Concepts + Builder</span>
+    <span class="hero-mi"><span class="dot"></span>9 concepts</span>
+  </div>
+</div>
+
+<!-- Concept nav -->
+<div class="cnav">
+  <a href="#c1" class="cp">The Compounding Effect</a>
+  <a href="#c2" class="cp">Eval Dataset as Asset</a>
+  <a href="#c3" class="cp">Prompt Versioning</a>
+  <a href="#c4" class="cp">Examples > Instructions</a>
+  <a href="#c5" class="cp">When to Split a Skill</a>
+  <a href="#c6" class="cp">The Edit-as-Signal Loop</a>
+  <a href="#c7" class="cp">Monthly Eval Sprint</a>
+  <a href="#c8" class="cp new">Model Updates &amp; Regressions</a>
+  <a href="#c9" class="cp">Context Compaction</a>
+</div>
+
+
+<!-- ══════════ CONCEPT 01 ══════════ -->
+<section id="c1" class="cs">
+  <span class="ct">Concept 01</span>
+  <h2 class="ctitle">The Compounding Effect — Why This Module Exists</h2>
+  <p class="csub">A 65% skill used weekly for six months vs. the same skill improved 5% per month. The gap isn't incremental — it's a different category of productivity.</p>
+
+  <p>Most PMs who complete Module 05 have a working agent and a handful of evaluated skills. They're producing better output, faster. And then — they stop improving. Not because they lack ambition, but because they lack the <strong>system</strong>. The skill that was 65% good in week one is still 65% good in month three. Every output still requires the same amount of editing. The time savings plateau.</p>
+
+  <p>Now picture the alternative. You run a structured improvement cycle once a month. Your 65% skill hits 70% after the first sprint, 76% after the second, 83% by month four. By month six, you're at 89% — nearly nine out of ten outputs need zero editing. That's not twice as good. It's a <strong>qualitatively different way of working</strong>.</p>
+
+  <div class="compound-viz">
+    <div class="compound-track stale">
+      <span class="cv-lbl">No Improvement System</span>
+      <div class="cv-title">The Plateau PM</div>
+      <div class="cv-desc">Built a good skill. Uses it weekly. Never re-evaluates. Same quality 6 months later. Still edits 35% of outputs manually.</div>
+      <div class="cv-stat">65%</div>
+      <div class="cv-stat-label">Pass rate · Month 1 and Month 6</div>
+    </div>
+    <div class="compound-track growing">
+      <span class="cv-lbl">Monthly Improvement Cycle</span>
+      <div class="cv-title">The Compounding PM</div>
+      <div class="cv-desc">Same starting skill. 2 hours/month of structured eval + targeted fix. Compounds to near-autonomous quality.</div>
+      <div class="cv-stat">65% → 89%</div>
+      <div class="cv-stat-label">Pass rate · Month 1 → Month 6</div>
+    </div>
+  </div>
+
+  <p>The math is even more dramatic when you account for <strong>volume</strong>. A weekly task at 65% pass rate means ~18 manual edits per year. At 89%, it's ~6. That's 12 hours of editing work that simply disappears — and that's for one skill. Multiply by the three skill targets from your Module 02 audit and you start to see why the compounding PM operates in a fundamentally different mode.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Counterintuitive Part</span>
+    <p><strong>The hardest month is month two, not month one.</strong> Month one improvements are easy — you have a fresh failure taxonomy from Module 04, obvious patterns, low-hanging fixes. Month two is where most people quit. The easy wins are gone. The remaining failures are subtle and harder to diagnose. This is the valley that separates PMs who plateau from PMs who compound. The rest of this module gives you the system to cross it.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 04 Connection</span>
+    <p><strong>Module 04 taught you how to evaluate.</strong> This module teaches you how to make evaluation a sustainable system — one you actually follow month after month. The 4-step error analysis protocol still applies. You're adding infrastructure around it: versioning, feedback capture, scheduling, and regression testing.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 02 ══════════ -->
+<section id="c2" class="cs">
+  <span class="ct">Concept 02</span>
+  <h2 class="ctitle">Your Eval Dataset Is a Personal Asset</h2>
+  <p class="csub">Every test case from real work — every input that caused a failure, every edge case that surprised you — is a permanent asset that no one else has.</p>
+
+  <p>In Module 04, you built a test dataset of 15 inputs. By now, if you've been following the curriculum's advice to save every input that causes a manual edit, you might have 20–25 cases. That collection is more valuable than it looks.</p>
+
+  <p>Here's why: each test case encodes <strong>implicit knowledge about what "good" looks like for your specific workflows</strong>. The messy sprint export that breaks your update skill. The stakeholder who needs both technical and business framing. The competitive query for a niche market segment. No generic benchmark captures these. They're yours — sourced from your real work, your real edge cases, your real quality standards.</p>
+
+  <h3>The Dataset Compounds</h3>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Timeline</th><th>Test Cases</th><th>What You Know</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Month 1</strong></td>
+          <td>15 cases</td>
+          <td>Basic coverage. You know the obvious failures.</td>
+        </tr>
+        <tr>
+          <td><strong>Month 3</strong></td>
+          <td>30–40 cases</td>
+          <td>Edge cases and failure modes specific to your work. Starting to catch subtle quality issues.</td>
+        </tr>
+        <tr>
+          <td><strong>Month 6</strong></td>
+          <td>50–70 cases</td>
+          <td>Your dataset is a comprehensive regression suite. New team member could use it to understand your quality standards. Model updates get tested in hours, not weeks.</td>
+        </tr>
+        <tr>
+          <td><strong>Month 12</strong></td>
+          <td>80–100+ cases</td>
+          <td>Genuine competitive advantage. No one in your org has this level of systematic quality assurance for AI-assisted PM work.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>For PMs Who Build AI Products</h3>
+  <p>If you move into Module 07 (AI Product Thinking), this concept scales dramatically. Your personal eval dataset teaches you how product-level eval datasets work — but at a company level, the eval dataset becomes a <strong>competitive moat</strong>. The company with 10,000 labeled examples of "good customer support response" can test, iterate, and ship AI features faster than any competitor starting from zero. The eval dataset compounds at the company level exactly the way it compounds at the personal level.</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p><strong>Keep your eval dataset in one place.</strong> A spreadsheet works fine: columns for input, expected output (or quality criteria), actual output, pass/fail label, failure category, and date added. Don't overcomplicate the format — the value is in the content, not the tooling. If it's in three different files, you'll stop maintaining it.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 03 ══════════ -->
+<section id="c3" class="cs">
+  <span class="ct">Concept 03</span>
+  <h2 class="ctitle">Prompt Versioning — Git for Your Prompts</h2>
+  <p class="csub">A single prompt change can silently degrade output quality. Without version history, you're debugging blind.</p>
+
+  <p>You've been editing your system prompts since Module 03, improving them through Module 04's eval cycles and Module 05's agent work. But unless you've been tracking changes, you probably can't answer basic questions: What did your prompt look like two versions ago? Which change caused your pass rate to jump from 60% to 78%? Did last week's "small fix" introduce a regression somewhere else?</p>
+
+  <p>Prompt versioning solves this. For your personal workflow, it doesn't require specialized tooling — it requires a <strong>changelog</strong>.</p>
+
+  <h3>A Prompt Changelog in Practice</h3>
+
+  <div class="vlog">
+    <div class="vlog-row hdr">
+      <span>Version</span>
+      <span>What Changed &amp; Why</span>
+      <span>Pass Rate</span>
+    </div>
+    <div class="vlog-row">
+      <span class="vlog-ver">v1</span>
+      <span class="vlog-change">Initial system prompt. Basic role definition and output format.</span>
+      <span class="vlog-rate rate-same">53%</span>
+    </div>
+    <div class="vlog-row">
+      <span class="vlog-ver">v2</span>
+      <span class="vlog-change">Added "never invent data points" constraint. Top failure was hallucinated metrics.</span>
+      <span class="vlog-rate rate-up">60% ↑</span>
+    </div>
+    <div class="vlog-row">
+      <span class="vlog-ver">v3</span>
+      <span class="vlog-change">Added non-goals section example (few-shot). Outputs were skipping the problem framing.</span>
+      <span class="vlog-rate rate-up">78% ↑</span>
+    </div>
+    <div class="vlog-row">
+      <span class="vlog-ver">v4</span>
+      <span class="vlog-change">Reworded output structure to be more concise. Accidentally broke audience adaptation.</span>
+      <span class="vlog-rate rate-down">71% ↓</span>
+    </div>
+    <div class="vlog-row">
+      <span class="vlog-ver">v5</span>
+      <span class="vlog-change">Reverted v4 structure change, kept conciseness instruction separately. Audience adaptation restored.</span>
+      <span class="vlog-rate rate-up">80% ↑</span>
+    </div>
+  </div>
+
+  <p>Notice what happened at v4: a "small improvement" caused a regression. Without the changelog and the eval dataset, the PM would never have caught it — they'd just notice the output felt worse and not know why. With versioning, the fix was immediate: revert the structural change, keep the useful part, re-run the tests.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The most useful prompt versions are the ones that made things worse.</strong> Failed experiments are as valuable as successes — they tell you which directions are dead ends. If you only track the "current best," you'll try the same failed approach again in three months because you forgot you already tested it.</p>
+  </div>
+
+  <h3>What This Looks Like at Scale</h3>
+  <p>For personal PM workflows, a changelog file is sufficient. But if you move into building AI features (Module 07), prompt versioning becomes production infrastructure. Enterprise teams use specialized platforms that connect prompt versions to deployment environments, evaluation metrics, and rollback capabilities. The mental model is the same — track what changed, why, and what it did to quality — but the tooling scales to support multiple prompts, multiple team members, and production traffic.</p>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 01 Connection</span>
+    <p><strong>Remember from Module 01: LLM outputs are non-deterministic.</strong> Even without changing your prompt, outputs can vary. This is why versioning needs to be paired with evaluation — you can't tell whether a change helped just by reading one output. You need to re-run your test dataset and compare pass rates across versions. One output can lie. Fifteen outputs tell the truth.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 04 ══════════ -->
+<section id="c4" class="cs">
+  <span class="ct">Concept 04</span>
+  <h2 class="ctitle">Examples &gt; Instructions — The #1 Improvement Lever</h2>
+  <p class="csub">When a skill fails, most PMs add more instructions. The higher-leverage move is almost always changing the examples.</p>
+
+  <p>This is the single most counterintuitive finding in prompt improvement, and it's the one that saves the most time once you internalize it.</p>
+
+  <p>Here's the pattern: your stakeholder update skill keeps producing overly technical outputs for non-technical audiences. Your instinct is to add instructions: <em>"When the audience is non-technical, avoid jargon, use plain language, focus on business impact."</em> This helps a little. So you add more: <em>"Define any technical terms. Lead with the business outcome. Use no more than one technical detail per paragraph."</em> Better. Then you add more constraints. And more. Eventually, your system prompt is 2,000 tokens of increasingly contradictory rules, and the model is trying to satisfy all of them simultaneously.</p>
+
+  <p>The alternative: <strong>replace or add one example</strong> that demonstrates exactly what a non-technical stakeholder update looks like. One good few-shot example often does more than 500 tokens of instructions.</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Instruction Bloat</span>
+      <div class="ba-task">400 tokens of rules added</div>
+      <div class="ba-desc">
+        "Avoid jargon. Use plain language. Define technical terms on first use. Lead with business impact. Limit technical details to one per section. Use the active voice. Keep sentences under 20 words..."
+        <br><br>
+        Pass rate: 53% → 64%. Some rules contradict others. Model tries to satisfy all simultaneously. Outputs feel stilted and formulaic.
+      </div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">Example Replacement</span>
+      <div class="ba-task">One few-shot example swapped</div>
+      <div class="ba-desc">
+        Replaced the technical-audience example with a CEO-audience example showing the exact output format, tone, and level of detail expected.
+        <br><br>
+        Pass rate: 53% → 79%. Model learns the pattern holistically — tone, structure, detail level, and emphasis — from seeing it done right once.
+      </div>
+    </div>
+  </div>
+
+  <h3>Why Examples Work Better</h3>
+  <p>Instructions tell the model what to do in the abstract. Examples show the model what "done right" looks like in the concrete. An LLM is a pattern-matching system (Module 01) — it's fundamentally better at reproducing demonstrated patterns than interpreting and simultaneously satisfying a list of abstract constraints.</p>
+
+  <p>This doesn't mean instructions are useless. The optimal system prompt usually has <strong>both</strong>: clear structural instructions (output format, required sections) plus 1–3 examples that demonstrate the quality standard. But when you're diagnosing a failure and deciding where to invest your improvement effort, try changing the examples first.</p>
+
+  <h3>The Decision Framework</h3>
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Failure Type</th><th>Try First</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Wrong tone or style</strong></td>
+          <td>Replace or add an example</td>
+          <td>Tone is holistic — hard to specify in rules, easy to demonstrate</td>
+        </tr>
+        <tr>
+          <td><strong>Missing section</strong></td>
+          <td>Add an instruction</td>
+          <td>Structural requirements are explicit — "always include a Risks section"</td>
+        </tr>
+        <tr>
+          <td><strong>Hallucinated data</strong></td>
+          <td>Add a constraint</td>
+          <td>"Never invent statistics" is a clear boundary</td>
+        </tr>
+        <tr>
+          <td><strong>Wrong level of detail</strong></td>
+          <td>Replace the example</td>
+          <td>Calibrating detail is about demonstrated standards, not word counts</td>
+        </tr>
+        <tr>
+          <td><strong>Inconsistent formatting</strong></td>
+          <td>Add structured output spec</td>
+          <td>Format is a structural concern — JSON schema or explicit template works best</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-watch">
+    <span class="cl">Warning Sign: Instruction Bloat</span>
+    <p><strong>If your system prompt is over 1,500 tokens of instructions with zero examples, it's almost certainly underperforming.</strong> The model is spending its attention budget parsing your rules instead of producing quality output. Cut 30% of your instructions and add one concrete example. Re-run your eval. You'll likely see improvement.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 05 ══════════ -->
+<section id="c5" class="cs">
+  <span class="ct">Concept 05</span>
+  <h2 class="ctitle">When to Split a Skill</h2>
+  <p class="csub">If your failure taxonomy shows 3+ failure modes that can't be fixed without contradicting each other, the skill is doing too much.</p>
+
+  <p>You've been improving your skills through Module 04's fix-one-thing cycle. Usually, this works: fix the top failure, re-run, measure, repeat. But sometimes you hit a wall. Fixing failure A makes failure B worse. Adding the constraint that prevents hallucination makes the output too cautious. The example that nails the CEO audience breaks the engineering audience.</p>
+
+  <p>This is the signal that your skill is doing too much — like a PRD that tries to serve three different audiences in one document. The fix isn't a longer PRD. It's three focused PRDs.</p>
+
+  <h3>The Split Decision</h3>
+
+  <div class="decision-grid">
+    <div class="dec-card add">
+      <span class="dec-lbl">Add Constraints</span>
+      <div class="dec-title">When failures are compatible</div>
+      <div class="dec-desc">Your failures share a root cause. Fixing one doesn't break another. You're at 2 or fewer failure categories, and improvements compound.</div>
+    </div>
+    <div class="dec-card split">
+      <span class="dec-lbl">Split the Skill</span>
+      <div class="dec-title">When failures contradict</div>
+      <div class="dec-desc">3+ failure modes that pull in opposite directions. Fixing one reliably worsens another. Your prompt has become a negotiation between competing requirements.</div>
+    </div>
+  </div>
+
+  <h3>A Worked Example</h3>
+  <p>Imagine a "stakeholder update" skill with three persistent failure modes:</p>
+  <ul>
+    <li><strong>Failure A:</strong> Too technical for CEO audience (need simpler language)</li>
+    <li><strong>Failure B:</strong> Not technical enough for VP of Engineering (need more detail)</li>
+    <li><strong>Failure C:</strong> Misses the "so what" for cross-functional stakeholders (need business context)</li>
+  </ul>
+
+  <p>These three failures are fundamentally incompatible in a single prompt. Making language simpler (fix A) worsens engineering detail (fail B). Adding technical depth (fix B) worsens CEO clarity (fail A). Adding business context (fix C) competes for space with both.</p>
+
+  <p>The split: three skills — <code>stakeholder-update-exec</code>, <code>stakeholder-update-eng</code>, and <code>stakeholder-update-xfn</code> — each with its own examples, constraints, and evaluation criteria. Each one can now improve independently. The exec version gets to 90% pass rate without worrying about engineering detail. The engineering version can go deep without dumbing things down.</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">How to Split Efficiently</span>
+    <p><strong>Don't rewrite from scratch.</strong> Copy your current system prompt three times. For each copy, remove the constraints and examples that serve the other audiences, then add one example that perfectly represents the target audience. You'll get three focused skills in less time than you spent trying to make one skill serve all three.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 04 Connection</span>
+    <p><strong>Your failure taxonomy tells you when to split.</strong> If your taxonomy from Module 04's error analysis has 3+ categories and you've done 2–3 fix cycles without convergence, that's the split signal. The taxonomy isn't just a diagnostic tool — it's also an architectural decision tool.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 06 ══════════ -->
+<section id="c6" class="cs">
+  <span class="ct">Concept 06</span>
+  <h2 class="ctitle">The Edit-as-Signal Loop — Turning Daily Work Into Improvement Data</h2>
+  <p class="csub">Every time you edit Claude's output before using it, that's an evaluation data point. The question is whether you capture it or lose it.</p>
+
+  <p>This is the behavior change that makes everything else in this module work. It takes 7 seconds.</p>
+
+  <p>The current workflow for most PMs: Claude produces output → you read it → you notice something off → you fix it manually → you send the result → you move on. The edit disappears. The same failure will happen next time. And the time after that.</p>
+
+  <p>The improved workflow adds one step: <strong>note why you edited</strong>. Not a detailed analysis — just a quick annotation. "Tone too formal for Slack." "Missed the dependency on Team B." "Invented a metric that doesn't exist." That note, plus the original input, becomes your next test case and your next improvement signal.</p>
+
+  <div class="flow">
+    <div class="flow-step edit">
+      <div>
+        <span class="fs-label">You Edit</span>
+        <div class="fs-content">Claude's stakeholder update used internal jargon the CEO wouldn't know. You rewrite two sentences.</div>
+      </div>
+    </div>
+    <div class="flow-step note">
+      <div>
+        <span class="fs-label">Note Why (7 seconds)</span>
+        <div class="fs-content">Quick annotation in your eval spreadsheet: "CEO update — used 'sprint velocity' and 'story points' without context. Audience adaptation failure."</div>
+      </div>
+    </div>
+    <div class="flow-step save">
+      <div>
+        <span class="fs-label">Save the Input</span>
+        <div class="fs-content">Copy the original input (the sprint data + audience = CEO) into your test dataset. Label: FAIL. Category: audience-adaptation.</div>
+      </div>
+    </div>
+    <div class="flow-step improve">
+      <div>
+        <span class="fs-label">Fix During Next Sprint</span>
+        <div class="fs-content">Monthly eval sprint: you see 4 "audience-adaptation" failures. Add a CEO-audience example to the system prompt. Re-run. Pass rate: 71% → 82%.</div>
+      </div>
+    </div>
+  </div>
+
+  <p>The key insight: <strong>you're already doing the evaluation when you edit</strong>. You're already identifying the failure. The only missing step is capturing it instead of letting it evaporate. Over weeks, your daily edits become the most valuable eval dataset possible — sourced from real failures in your real workflow.</p>
+
+  <h3>Automating the Capture</h3>
+  <p>If you built hooks in Module 05, you can automate parts of this loop. A <code>PostToolUse</code> hook can log every agent output to a review folder, timestamped and tagged with the input that generated it. You still need to add the "why I edited" annotation manually — that requires your judgment — but the raw output capture can be automatic.</p>
+
+  <div class="callout callout-watch">
+    <span class="cl">The Habit That Matters Most</span>
+    <p><strong>If you take one thing from this module, make it this: every edit gets a note.</strong> Everything else — versioning, eval sprints, compounding — depends on this habit. Without it, you're improving based on memory and instinct. With it, you're improving based on data. The difference shows up in month three.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 07 ══════════ -->
+<section id="c7" class="cs">
+  <span class="ct">Concept 07</span>
+  <h2 class="ctitle">The Monthly Eval Sprint — The Ritual That Makes Improvement Sustainable</h2>
+  <p class="csub">2 hours per month. One skill. Measurable improvement. Put it on your calendar.</p>
+
+  <p>Ad-hoc improvement doesn't work. "I'll improve this when I have time" means "I'll improve this never." The monthly eval sprint is a structured ritual that turns improvement from good intention into consistent practice.</p>
+
+  <p>Here's the full protocol:</p>
+
+  <div class="sprint-box">
+    <div class="sprint-item">
+      <span class="sprint-num">1</span>
+      <div>
+        <div class="sprint-detail"><strong>Pick one skill or agent.</strong> Your highest-frequency tool, or whichever one has been causing the most manual edits since last sprint. Don't try to improve everything at once.</div>
+        <div class="sprint-time">5 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">2</span>
+      <div>
+        <div class="sprint-detail"><strong>Add new test cases from your failure collection.</strong> Every input you noted during daily work goes into the eval dataset. Aim for 3–5 new cases per month. These are sourced from the edit-as-signal loop (Concept 06).</div>
+        <div class="sprint-time">10 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">3</span>
+      <div>
+        <div class="sprint-detail"><strong>Re-run the full test dataset.</strong> All existing cases plus the new ones. Run them through the current prompt version. If you're using Claude's conversation interface, keep everything in one conversation to benefit from prompt caching — the system prompt processes once and reuses for subsequent inputs.</div>
+        <div class="sprint-time">20 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">4</span>
+      <div>
+        <div class="sprint-detail"><strong>Label and categorize.</strong> Mark each output pass/fail against your quality criteria. Update your failure taxonomy. Look for new patterns — especially from the recently added test cases.</div>
+        <div class="sprint-time">25 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">5</span>
+      <div>
+        <div class="sprint-detail"><strong>Fix the #1 failure category.</strong> One targeted change — add an example, refine a constraint, or (if needed) split the skill. Use the decision framework from Concept 04 to choose: example change vs. instruction change.</div>
+        <div class="sprint-time">20 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">6</span>
+      <div>
+        <div class="sprint-detail"><strong>Re-run and measure.</strong> Run the full dataset again through the updated prompt. Record the new pass rate. Update your prompt changelog (Concept 03). If pass rate dropped, revert and try a different approach.</div>
+        <div class="sprint-time">25 minutes</div>
+      </div>
+    </div>
+    <div class="sprint-item">
+      <span class="sprint-num">7</span>
+      <div>
+        <div class="sprint-detail"><strong>Document and schedule.</strong> Log what you changed, the before/after pass rate, and any observations. Set next month's eval sprint on your calendar.</div>
+        <div class="sprint-time">10 minutes</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Total: roughly 2 hours. That investment improves your tool for the next 30 days — every output, every use, measurably better. The ROI compounds because each sprint builds on the last.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The sprint should feel boring by month three.</strong> If it still feels like discovery, you're not doing it consistently enough. The goal is a routine that produces reliable, incremental improvement — not dramatic breakthroughs. The drama comes from the compounding effect over time (Concept 01), not from any single sprint.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 04 Connection</span>
+    <p><strong>The eval sprint is Module 04's 4-step protocol on a schedule.</strong> Build test dataset → open coding → axial coding → fix and re-eval. You already know the method. The only new thing is the recurring calendar event and the growth of your dataset over time. The protocol is the same; the system is what's new.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 08 ══════════ -->
+<section id="c8" class="cs">
+  <span class="ct">Concept 08 <span class="ntag">New</span></span>
+  <h2 class="ctitle">Model Updates &amp; Regression Testing — When the Ground Shifts</h2>
+  <p class="csub">Model updates can silently change how your prompts perform. Your eval dataset is your regression test suite — the insurance policy that catches problems before you do.</p>
+
+  <p>This is something that catches even experienced AI practitioners off guard: <strong>the model can change underneath you</strong>. Anthropic improves Claude regularly. OpenAI updates GPT models. These improvements are real — better reasoning, more accurate outputs, improved instruction following. But they can also change behavior in ways that interact unexpectedly with your specific prompts.</p>
+
+  <div class="inc warn">
+    <span class="incb">Real-World Example · April 2026</span>
+    <div class="inct">The Claude Code Quality Regression</div>
+    <div class="incbody">In early April 2026, developers using Claude Code reported measurable quality drops after a model update. The community response was significant — hundreds of developers posting concrete before-and-after comparisons with identical prompts. The model had improved on benchmarks but regressed on specific coding patterns that developers relied on daily. Developers without eval datasets spent weeks trying to figure out whether the problem was their prompts, their code, or the model. Developers with eval datasets identified the regression within hours.</div>
+    <div class="incl">The pattern: benchmarks improved overall, but specific task patterns regressed. Your eval dataset catches the specific patterns you care about.</div>
+  </div>
+
+  <p>The PM mental model: <strong>model updates are like dependency upgrades in software</strong>. When you update a library, you run your test suite to catch regressions. When the model updates, you run your eval dataset. Same principle, same discipline.</p>
+
+  <h3>When to Run Regression Tests</h3>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Trigger</th><th>Urgency</th><th>What to Do</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Major model release</strong><br>(e.g., new model family)</td>
+          <td>High — within 48 hours</td>
+          <td>Full eval sprint on your highest-frequency skill. Compare pass rates to previous version. Don't assume "newer = better for your use case."</td>
+        </tr>
+        <tr>
+          <td><strong>Minor model update</strong><br>(same model, improved version)</td>
+          <td>Medium — within a week</td>
+          <td>Run your test dataset against the updated model. Spot-check the outputs you use most. Look for subtle tone or format shifts.</td>
+        </tr>
+        <tr>
+          <td><strong>You notice something feels off</strong></td>
+          <td>Immediate</td>
+          <td>Save the input that triggered the feeling. Run 5 recent test cases. Compare to your last recorded pass rate. Trust your instinct — then verify with data.</td>
+        </tr>
+        <tr>
+          <td><strong>Scheduled monthly sprint</strong></td>
+          <td>Standard</td>
+          <td>Your regular eval sprint (Concept 07) automatically catches slow drift. No model update needed — natural variation over time is worth monitoring.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Model updates can make your prompts worse even though the model is objectively better.</strong> A smarter model might interpret your instructions differently, follow your examples more literally, or handle ambiguity in new ways. Your eval dataset is the only reliable way to tell whether "better model" means "better for your specific workflows." The developers who reported the Claude Code regression weren't wrong — the model was stronger on benchmarks but weaker on their specific patterns.</p>
+  </div>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Approach</span>
+    <p><strong>Don't run your full eval dataset on every minor update.</strong> Instead, keep a "canary set" of 5 test cases — your most important, highest-frequency inputs. Run those first. If pass rates hold, you're probably fine. If any canary fails, escalate to a full eval sprint. This keeps regression testing lightweight enough to actually do.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 09 ══════════ -->
+<section id="c9" class="cs">
+  <span class="ct">Concept 09</span>
+  <h2 class="ctitle">Context Compaction — Keeping Long Workflows Productive</h2>
+  <p class="csub">Context windows fill up. When they do, the model loses access to early instructions and your output quality degrades silently. Context compaction is how you prevent this.</p>
+
+  <p>If you've run extended agent sessions (Module 05) or conducted long multi-turn research conversations, you've probably noticed a pattern: output quality degrades as the conversation gets longer. Instructions from early in the session get pushed out of the model's active attention. Examples you provided at the start have less influence. The model starts "forgetting" your quality standards.</p>
+
+  <p>This isn't a bug — it's a consequence of how context windows work (Module 01). Even with 200K+ token context windows, the model's attention isn't uniform across all tokens. Material at the beginning and end of the context gets the most attention; material in the middle gets less.</p>
+
+  <h3>Context Compaction: The Checkpoint Summary Pattern</h3>
+  <p>The fix is periodic compaction — summarizing accumulated context into a condensed checkpoint, then continuing with the checkpoint as the new starting point. This is how you maintain quality across long sessions:</p>
+
+  <ul>
+    <li><strong>Set a checkpoint cadence.</strong> Every 5–10 turns in a long conversation, or when you notice quality starting to drift. For agents, this can be automatic — a compaction step built into the workflow.</li>
+    <li><strong>Summarize, don't truncate.</strong> A good checkpoint captures: key decisions made so far, open questions, quality criteria still in effect, and any accumulated data. It's a condensed version of the conversation state — not just the last few messages.</li>
+    <li><strong>Start a fresh context with the checkpoint.</strong> Begin a new conversation (or agent loop) with the checkpoint summary as the starting context. Your system prompt and examples are now back at full attention strength.</li>
+  </ul>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 05 Connection</span>
+    <p><strong>For agents built in Module 05, context compaction is an architectural consideration.</strong> Long-running agents that accumulate tool results across many iterations will hit context limits. Building compaction into the agent loop — summarizing tool results every N steps rather than appending raw results indefinitely — keeps the agent effective across extended workflows. If you built a research agent that runs 15+ iterations, compaction is likely already relevant.</p>
+  </div>
+
+  <h3>When Context Compaction Matters Most for PMs</h3>
+  <ul>
+    <li><strong>Multi-session document refinement.</strong> You're iterating on a PRD over three conversations. Each conversation starts with the previous version plus accumulated feedback. Without compaction, the third conversation has so much context that your system prompt's influence is diluted.</li>
+    <li><strong>Extended research sessions.</strong> A competitive analysis that runs through 10+ sources, accumulating findings. By source 8, early findings are getting less attention in the synthesis.</li>
+    <li><strong>Agent workflows with many tool calls.</strong> Each tool result adds to context. After 15 tool calls, the context is dominated by raw tool outputs, and the agent's original instructions have less influence on quality.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Rule of Thumb</span>
+    <p><strong>If your conversation is longer than ~50 turns or your agent has made 10+ tool calls, assume quality is degrading.</strong> Create a checkpoint summary and continue in a fresh context. The 2 minutes spent compacting will save you from editing degraded outputs for the remainder of the session.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ PROJECT ══════════ -->
+<div class="proj">
+  <span class="plbl">Module 06 Project</span>
+  <h4>Run a Full Improvement Cycle on Your Best Skill or Agent</h4>
+  <p>This project takes the skill or agent you built in Module 05 — the one with evaluation data, a failure taxonomy, and documented results — and runs it through a complete improvement cycle. The output is a versioned, measurably-improved tool with the infrastructure for ongoing improvement.</p>
+  <ol class="steps">
+    <li>
+      <strong>Set up prompt versioning.</strong> Create a changelog for your skill or agent's system prompt. Record the current prompt as v1 with today's date and the pass rate from Module 05's evaluation. This is your baseline. A simple markdown file or spreadsheet column works perfectly.
+    </li>
+    <li>
+      <strong>Expand your eval dataset.</strong> Add at least 5 new test cases sourced from real work since you built the skill. If you've been noting edits (Concept 06), those inputs are your first additions. If not, run the skill 10 times with real inputs this week and save every case where you manually edited the output. Target: 20+ total test cases.
+    </li>
+    <li>
+      <strong>Run the full eval.</strong> All 20+ test cases through the current prompt version. Label every output pass/fail. Categorize every failure. Update your failure taxonomy from Module 04. Note: if you're running this in one conversation, prompt caching means your system prompt processes once — the rest of the runs are significantly faster.
+    </li>
+    <li>
+      <strong>Apply the Examples &gt; Instructions principle.</strong> Look at your #1 failure category. Before adding any new instructions, ask: could a better example fix this? If the failure is about tone, style, or level of detail — try an example first. If it's about missing content or hallucination — try a constraint. Make one change.
+    </li>
+    <li>
+      <strong>Re-run and measure.</strong> Full dataset again. Record the new pass rate in your changelog as v2. Did it improve? If yes, move on. If not, revert and try a different approach. If you have time, do one more improvement cycle targeting the new #1 failure category.
+    </li>
+    <li>
+      <strong>Set up your ongoing system.</strong> Schedule a recurring monthly eval sprint on your calendar (first Thursday of the month, or whatever works). Document your eval process: where your test dataset lives, where your changelog is, which 5 test cases are your "canary set" for model-update regression testing. This documentation is the deliverable that proves you have a system, not just a skill.
+    </li>
+  </ol>
+  <span class="deliv">Deliverable → Versioned prompt with changelog (v1 → v2+), expanded eval dataset (20+ cases), before/after pass rates, documented eval process, and a recurring improvement sprint on your calendar. This becomes the foundation for Module 07 — you now have lived experience with the exact feedback loop you'll design into AI products.</span>
+</div>
+
+
+<!-- Module Nav -->
+<div class="mnav">
+  <a href="#" class="nbtn nbtn-prev">
+    <span class="nba">←</span>
+    <div><div class="nbl">Previous</div><div class="nbt">Module 05: From Skills to Agents</div></div>
+  </a>
+  <a href="#" class="nbtn">
+    <div><div class="nbl">Up Next</div><div class="nbt">Module 07: AI Product Thinking</div></div>
+    <span class="nba">→</span>
+  </a>
+</div>
+
+<footer>The AI-Native PM · Module 06 of 08 · Updated April 2026</footer>

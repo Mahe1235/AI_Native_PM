@@ -1,0 +1,700 @@
+<!-- ─── Breadcrumb ─── -->
+<div class="bc">
+  <a href="#">The AI-Native PM</a>
+  <span class="sep">→</span>
+  <a href="#">Tier 2: Build Your Workflow</a>
+  <span class="sep">→</span>
+  <span class="cur">Module 04</span>
+</div>
+
+<!-- ─── Hero ─── -->
+<header class="hero">
+  <div class="mod-badge">
+    <span class="mod-num">MODULE 04</span>
+    <span class="mod-tier">Tier 2 · Build Your Workflow</span>
+  </div>
+  <h1>Evaluating Your<br><em>AI Work</em></h1>
+  <p class="hero-sub">You built AI skills in Module 03. But how do you know they're actually good? This module teaches you the systematic evaluation protocol that separates "I use Claude" from "I use Claude well" — and makes your skills reliably better.</p>
+  <div class="hero-meta">
+    <div class="hero-mi"><span class="dot"></span> 5–6 hours</div>
+    <div class="hero-mi"><span class="dot"></span> No code required</div>
+    <div class="hero-mi"><span class="dot"></span> 11 concepts</div>
+  </div>
+</header>
+
+<!-- ─── Concept Nav ─── -->
+<nav class="cnav">
+  <a href="#vibe-check" class="cp">The Vibe Check Trap</a>
+  <a href="#eval-mindset" class="cp">Eval-Driven Development</a>
+  <a href="#rubrics" class="cp">Writing Pass/Fail Rubrics</a>
+  <a href="#test-data" class="cp">Building Test Datasets</a>
+  <a href="#error-analysis" class="cp">The 4-Step Error Analysis</a>
+  <a href="#taxonomy" class="cp">Failure Taxonomies</a>
+  <a href="#fix-cycle" class="cp">The Fix-One-Thing Cycle</a>
+  <a href="#grader-types" class="cp">Grader Types</a>
+  <a href="#llm-judge" class="cp">LLM-as-Judge for PMs</a>
+  <a href="#caching" class="cp">Prompt Caching for Evals</a>
+  <a href="#bridge" class="cp">From Eval to Improvement</a>
+</nav>
+
+
+<!-- ══════════ 01 THE VIBE CHECK TRAP ══════════ -->
+<section id="vibe-check" class="cs">
+  <span class="ct">Concept 01</span>
+  <h2 class="ctitle">The Vibe Check Trap — Why Your AI Output Is Worse Than You Think</h2>
+  <p class="csub">You've been reading Claude's output, thinking "yeah, that looks good," and shipping it. That instinct is costing you more than you realize.</p>
+
+  <p>Most PMs evaluate AI output the same way: read it once, check if it feels right, maybe fix a sentence, ship it. This is the <strong>vibe check</strong> — and it is the single most common reason AI skills stay mediocre instead of becoming genuinely reliable.</p>
+
+  <p>The vibe check feels efficient. You're a smart PM. You can tell good output from bad output. Except you can't — at least not consistently, and not at scale. Here's why:</p>
+
+  <ul>
+    <li><strong>You're unconsciously editing.</strong> When you read Claude's output, your brain automatically fills gaps, smooths transitions, and overlooks missing sections. You're not evaluating the raw output — you're evaluating the output plus your mental corrections. This means you think the skill is better than it actually is.</li>
+    <li><strong>You don't remember failures.</strong> Last Tuesday's output was great. Friday's had a weird hallucinated metric. Monday's was fine. You remember the good ones. Cognitive bias gives you an inflated quality assessment.</li>
+    <li><strong>One input hides structural problems.</strong> You keep testing with the same type of input — your weekly sprint data, your usual stakeholder format. The skill might fail catastrophically on edge cases you've never tried: a sprint with no completed stories, a stakeholder who needs technical depth instead of executive summary.</li>
+  </ul>
+
+  <h3>The Real Numbers</h3>
+
+  <p>When PMs run structured evaluations on skills they thought were "working great," they typically find <strong>40–60% pass rates</strong>. Not 90%. Not 80%. Roughly half the outputs have issues the PM had been unconsciously fixing every time. The vibe check didn't catch those problems — it hid them.</p>
+
+  <p>This isn't a hypothetical. The pattern shows up everywhere AI output meets informal evaluation:</p>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num red">33%</div>
+      <div class="stat-label">of gen AI users encountered incorrect answers in a 2025 Deloitte survey</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num red">CNET</div>
+      <div class="stat-label">published AI-written articles riddled with errors — nobody caught them before publication</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num red">Apple</div>
+      <div class="stat-label">suspended its AI news summary feature in Jan 2025 after generating fabricated alerts</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num red">Air Canada</div>
+      <div class="stat-label">was held legally liable in 2024 after its chatbot gave false refund information</div>
+    </div>
+  </div>
+
+  <p>Every one of these was a vibe check failure. Someone looked at the output, thought it seemed fine, and shipped it. The Air Canada case is especially instructive — the company argued in court that the chatbot was "a separate legal entity" responsible for its own accuracy. The tribunal rejected this. <strong>You are responsible for your AI's output.</strong></p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The vibe check feels like the fastest path. It's actually the most expensive one.</strong> Every hour you skip on structured evaluation, you spend two hours later — fixing errors in shipped work, rebuilding stakeholder trust, or manually correcting output that a better prompt would have gotten right automatically. Systematic evaluation isn't extra work. It's the work that reduces all your other work.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 02 Connection</span>
+    <p>In Module 02 you learned "Review Over Create" — the mindset shift from writing to reviewing AI output. This module teaches you <em>how</em> to review. The review instinct you built becomes a structured protocol that produces measurable improvement, not just a gut feeling.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 02 EVAL-DRIVEN DEVELOPMENT ══════════ -->
+<section id="eval-mindset" class="cs">
+  <span class="ct">Concept 02</span>
+  <h2 class="ctitle">Eval-Driven Development — Evals Are How You Build, Not How You Check</h2>
+  <p class="csub">The biggest mistake isn't skipping evals. It's treating them as a final step instead of the primary development method.</p>
+
+  <p>Here's how most PMs develop an AI skill: write a system prompt, run it once, tweak the prompt, run it again, tweak some more, decide it's good enough, ship it. Evaluation — if it happens at all — comes at the end.</p>
+
+  <p><strong>Flip that.</strong> Evaluation should consume 60–80% of your AI development time. Not the prompt tweaking. Not the system prompt architecture. The systematic review of what's working and what isn't.</p>
+
+  <p>This is eval-driven development, and it works the same way test-driven development works in software engineering: <strong>write the test first, then build until it passes.</strong></p>
+
+  <h3>The Reactive Loop vs. The Eval Loop</h3>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">The Reactive Loop</span>
+      <div class="ba-task">How most PMs work</div>
+      <div class="ba-desc">Write prompt → run it → read output → "looks fine" → ship → discover problem in production → panic-fix the prompt → repeat. You're always one step behind your problems. Each fix might create a new issue somewhere else, but you won't know until it surfaces.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">The Eval Loop</span>
+      <div class="ba-task">Eval-driven development</div>
+      <div class="ba-desc">Define what "good" looks like → build test dataset → run skill on all inputs → label pass/fail → identify top failure → fix it → re-run all inputs → measure improvement → repeat until quality target is met. You see problems before they reach anyone else.</div>
+    </div>
+  </div>
+
+  <p>Anthropic published a guide on evaluating AI agents that crystallized this insight: <strong>teams without evals get stuck in reactive loops — catching issues only in production, where fixing one failure creates others.</strong> Teams with evals can upgrade models, change prompts, and ship improvements with confidence because they have measurable baselines.</p>
+
+  <h3>What an Eval Actually Is</h3>
+
+  <p>Strip away the jargon and an eval is just a <strong>software test for AI output.</strong> Instead of testing "does this function return 42?", you're testing "did Claude write a PRD that actually covers the right things?" The components are simple:</p>
+
+  <ul>
+    <li><strong>Input:</strong> A specific task you give to your skill (e.g., "Write a stakeholder update for this sprint data")</li>
+    <li><strong>Output:</strong> What the skill produces</li>
+    <li><strong>Grading logic:</strong> How you decide if the output passes or fails</li>
+  </ul>
+
+  <p>That's it. You already do this instinctively when you read Claude's output and think "that's not quite right." The difference is doing it <em>systematically</em> — with multiple inputs, clear criteria, and a record of the results.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Evals get harder to build the longer you wait.</strong> Early on, your product requirements naturally translate into test cases. "The PRD must include a metrics section" is both a requirement and an eval criterion. Wait until you've shipped and now you're reverse-engineering what "good" means from production failures. Start with evals from day one, even rough ones.</p>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>20 test cases beats 200 when you start.</strong> Anthropic recommends 20–50 simple tasks drawn from real failures. Early changes have large effect sizes — a prompt improvement might jump your pass rate from 40% to 70%. You don't need statistical power for that. You need enough variety to surface different failure modes. Start with 15, expand as your skill matures.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 03 WRITING PASS/FAIL RUBRICS ══════════ -->
+<section id="rubrics" class="cs">
+  <span class="ct">Concept 03</span>
+  <h2 class="ctitle">Writing Pass/Fail Rubrics — The Skill Behind the Skill</h2>
+  <p class="csub">Defining "good" in 2–3 sentences is the hardest and most important part of evaluation. Get this wrong and everything downstream is noise.</p>
+
+  <p>Before you can evaluate anything, you need to answer the question: <strong>what does "pass" mean?</strong> This sounds simple. It's deceptively hard — and it's where most evaluation efforts go wrong.</p>
+
+  <h3>Why Binary, Not Scales</h3>
+
+  <p>Use pass/fail. Not 1–5 scales. Not "good/okay/bad." Binary.</p>
+
+  <p>Likert scales feel more sophisticated, but they introduce two problems. First, your 3 and my 3 aren't the same 3 — even when you're the only rater, your standards drift between sessions. Tuesday at 9am you're strict; Friday at 4pm you're generous. Second, scales obscure the signal. If an output scores 3/5, what do you do with that? Is it shippable? The binary question — "would I send this to a stakeholder as-is?" — forces clarity.</p>
+
+  <p>Define "pass" in 2–3 sentences. No more. If your rubric needs a paragraph, it's measuring too many things at once — split it into separate criteria.</p>
+
+  <h3>The PM Skill Transfer</h3>
+
+  <p>Here's the good news: <strong>you already know how to do this.</strong> A pass/fail rubric is an acceptance criterion. Every PM who's written a user story has written something like "the dashboard must load in under 3 seconds and display all active campaigns." That's a rubric — clear, binary, testable.</p>
+
+  <p>Apply the same discipline to your AI output:</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Vague Rubric</span>
+      <div class="ba-task">"Output should be good and comprehensive"</div>
+      <div class="ba-desc">What does "good" mean? What counts as "comprehensive"? Two people reading this rubric will label the same output differently. Your own labels will be inconsistent across sessions. Results: meaningless.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">Specific Rubric</span>
+      <div class="ba-task">"Output must include: (1) the user problem in the first paragraph, (2) a proposed solution with at least one alternative considered, and (3) at least one measurable success metric. Fail if any of the three is missing or fabricated."</div>
+      <div class="ba-desc">Three checkable conditions. Binary pass/fail. Two people would label the same output the same way. Your labels stay consistent across sessions. Results: actionable.</div>
+    </div>
+  </div>
+
+  <h3>The Rubric Design Checklist</h3>
+
+  <p>Every good rubric passes four tests:</p>
+
+  <ul>
+    <li><strong>Is each condition independently verifiable?</strong> Can you point to a specific part of the output and say "this condition is met" or "this condition is missing"? If a condition requires subjective interpretation ("is the tone appropriate?"), make it concrete ("uses no more than 3 technical terms without definitions").</li>
+    <li><strong>Is failure unambiguous?</strong> If someone fails an output, could the writer of the rubric tell <em>which condition</em> wasn't met? If the rubric is "must be accurate and well-structured," and an evaluator marks "fail," you don't know if accuracy or structure was the issue. Split them.</li>
+    <li><strong>Does it match the actual use case?</strong> A rubric for an executive summary should care about brevity and top-line clarity. A rubric for a technical spec should care about edge case coverage. The same skill used for different audiences might need different rubrics.</li>
+    <li><strong>Can you apply it in under 30 seconds per output?</strong> If evaluation takes five minutes per output, you won't do it consistently. Good rubrics are fast to apply — scan for the required elements, check, move on.</li>
+  </ul>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Separate rubrics per dimension beat one combined rubric.</strong> Research on LLM evaluation consistently finds that evaluating one criterion at a time produces more reliable results than evaluating multiple criteria simultaneously. "Is this factually accurate?" and "Is this well-structured?" are different questions. Rate them separately. When you later identify that 80% of failures are accuracy-related and only 10% are structure-related, you'll know exactly where to invest your prompt improvement effort.</p>
+  </div>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p>Write your rubric <em>before</em> you look at any outputs. If you write it after, you'll unconsciously tailor it to match what your skill already produces — which defeats the purpose. Think of it as writing the acceptance criteria before the sprint starts, not after the feature ships.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 04 BUILDING TEST DATASETS ══════════ -->
+<section id="test-data" class="cs">
+  <span class="ct">Concept 04</span>
+  <h2 class="ctitle">Building Your Test Dataset — 15 Inputs That Reveal the Truth</h2>
+  <p class="csub">Your eval is only as good as the inputs you test with. Here's how to design a test dataset that surfaces real failures instead of confirming your assumptions.</p>
+
+  <p>You need at least 15 test inputs for your first eval. Not 3 (too few to see patterns), not 50 (overkill for initial evaluation — save that for Module 06). Fifteen inputs give you enough variety to surface different failure modes while staying manageable enough to label by hand in under an hour.</p>
+
+  <p>The critical mistake: <strong>don't just use 15 copies of your typical input.</strong> If all 15 are clean, well-structured sprint data from your best-performing team, your eval will tell you the skill works for easy cases. You already knew that. You need inputs that stress-test the edges.</p>
+
+  <h3>Dimension-Based Synthetic Generation</h3>
+
+  <p>When you don't have 15 real test cases ready, generate them systematically by combining dimensions. For a PM stakeholder update skill, the dimensions might be:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Dimension</th><th>Variation A</th><th>Variation B</th><th>Variation C</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Complexity</strong></td><td>Simple sprint (5 stories, all green)</td><td>Medium sprint (12 stories, 2 blockers)</td><td>Messy sprint (20 stories, scope change, team conflict)</td></tr>
+        <tr><td><strong>Audience</strong></td><td>VP of Engineering (wants technical detail)</td><td>CEO (wants business impact only)</td><td>Cross-functional stakeholders (mixed technical fluency)</td></tr>
+        <tr><td><strong>Data quality</strong></td><td>Clean, complete JIRA export</td><td>Missing velocity data, some stories unlabeled</td><td>Partially in a different format (migrated from Linear mid-sprint)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Three dimensions × three variations = 27 possible combinations. Pick 15 that cover the most important intersections, prioritizing combinations your real work actually encounters. One high-complexity test case with missing data for a CEO audience reveals more than five easy cases ever will.</p>
+
+  <h3>Real Data vs. Synthetic Data</h3>
+
+  <p>Use real data whenever possible. Your actual sprint exports, real stakeholder emails, genuine feedback tickets. Real data has the messiness, inconsistency, and edge cases that synthetic data often misses. Save synthetic generation for combinations your real data doesn't cover — the messy sprint you haven't had yet, the stakeholder audience you haven't written for.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Your "hardest" test cases produce the most valuable learning.</strong> PMs instinctively build test datasets that look like their typical work — clean inputs, clear requirements, standard audiences. But the messy cases — the sprint with a scope change mid-week, the stakeholder who needs both technical and business framing, the feedback dataset with contradictory user quotes — are where you learn what your skill actually can't do. Build your dataset to be 40% typical, 40% edge cases, 20% deliberately adversarial.</p>
+  </div>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p>Keep a running "failure collection." Every time your skill produces something you manually fix, save the input that caused it. Over weeks, you'll build a test dataset sourced from real failures — far more valuable than any synthetically generated set. By Module 06, this collection becomes one of your most important assets.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 05 THE 4-STEP ERROR ANALYSIS ══════════ -->
+<section id="error-analysis" class="cs">
+  <span class="ct">Concept 05</span>
+  <h2 class="ctitle">The 4-Step Error Analysis Protocol</h2>
+  <p class="csub">A systematic method borrowed from qualitative research that transforms "this output seems off" into "here is the exact failure pattern and here is how to fix it."</p>
+
+  <p>This is the core of the module — the protocol you'll use for every eval you run from now on. It borrows from qualitative research methods (open coding and axial coding) and applies them to AI output evaluation. You don't need to know the academic theory. You just need the four steps.</p>
+
+  <div class="step-flow">
+    <div class="step-box">
+      <div class="step-num">01</div>
+      <div class="step-name">Build Test Dataset</div>
+      <div class="step-desc">15 inputs covering typical cases, edge cases, and adversarial cases. Run all through your skill.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">02</div>
+      <div class="step-name">Open Coding</div>
+      <div class="step-desc">Read each output. For every failure, journal the <em>first thing</em> you notice is wrong. Don't fix — just note.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">03</div>
+      <div class="step-name">Axial Coding</div>
+      <div class="step-desc">Group your failure notes into categories. Name each category. Count how many outputs hit each one.</div>
+    </div>
+    <div class="step-box">
+      <div class="step-num">04</div>
+      <div class="step-name">Fix &amp; Re-eval</div>
+      <div class="step-desc">Fix the #1 failure category only. Re-run all 15 inputs. Measure: did pass rate improve? Repeat.</div>
+    </div>
+  </div>
+
+  <h3>Step 1: Build Your Test Dataset</h3>
+
+  <p>You learned how in Concept 04. Gather your 15 inputs, run all of them through your skill, and save every output. Don't read them yet — just collect them. You want the full set before you start evaluating, so your standards don't drift mid-assessment.</p>
+
+  <h3>Step 2: Open Coding</h3>
+
+  <p>Now read each output against your rubric. For every failure, write down the <strong>first thing</strong> you notice that's wrong. Not everything that's wrong — just the first issue that jumps out. This matters because early failures tend to be the most salient and systematic ones.</p>
+
+  <p>Your notes might look like:</p>
+
+  <div class="eval-grid">
+    <div class="eval-row header">
+      <div class="eval-cell">#</div>
+      <div class="eval-cell">Input description</div>
+      <div class="eval-cell">Verdict</div>
+      <div class="eval-cell">First failure noted</div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-cell num">1</div>
+      <div class="eval-cell">Clean sprint, VP audience</div>
+      <div class="eval-cell pass">PASS</div>
+      <div class="eval-cell">—</div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-cell num">2</div>
+      <div class="eval-cell">Messy sprint, CEO audience</div>
+      <div class="eval-cell fail">FAIL</div>
+      <div class="eval-cell">Invented a "projected completion date" not in the data</div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-cell num">3</div>
+      <div class="eval-cell">Zero completed stories</div>
+      <div class="eval-cell fail">FAIL</div>
+      <div class="eval-cell">Skipped the Risks section entirely</div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-cell num">4</div>
+      <div class="eval-cell">Missing velocity data</div>
+      <div class="eval-cell fail">FAIL</div>
+      <div class="eval-cell">Made up velocity numbers</div>
+    </div>
+    <div class="eval-row">
+      <div class="eval-cell num">5</div>
+      <div class="eval-cell">Cross-functional audience</div>
+      <div class="eval-cell fail">FAIL</div>
+      <div class="eval-cell">Used deep technical jargon throughout</div>
+    </div>
+  </div>
+
+  <p>Don't agonize over whether your notes are perfect. You're building a dataset of observations, not writing a paper. Speed matters — you want to get through all 15 outputs while your judgment is fresh.</p>
+
+  <h3>Step 3: Axial Coding</h3>
+
+  <p>Now look across all your failure notes. You'll see patterns. Group the similar failures together and give each group a name. This is your <strong>failure taxonomy</strong> — the categories of ways your skill breaks. Concept 06 goes deeper on taxonomies, but here's the immediate step: count how many outputs fall into each category.</p>
+
+  <h3>Step 4: Fix and Re-Eval</h3>
+
+  <p>Fix the <strong>#1 category only</strong>. The one with the most failures. Make a single, targeted change to your system prompt — add a constraint, add an example, rewrite a section. Then re-run all 15 inputs and re-label everything.</p>
+
+  <p>Did the pass rate go up? Did the #1 category shrink? Did any new failure mode appear? Record all of this. You're not done — you repeat this cycle until you either hit your quality target or reach a point of diminishing returns (usually 3–5 cycles).</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">Core Principle</span>
+    <p><strong>Error analysis should consume 60–80% of your AI development time.</strong> Most people spend 90% tweaking prompts and 10% checking if the changes helped. Flip that ratio. The 4-step protocol tells you exactly where to invest your prompt-engineering effort — you're never guessing about what to fix next.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 06 FAILURE TAXONOMIES ══════════ -->
+<section id="taxonomy" class="cs">
+  <span class="ct">Concept 06</span>
+  <h2 class="ctitle">Failure Taxonomies — Naming What's Going Wrong</h2>
+  <p class="csub">A named failure is half-fixed. An unnamed failure recurs forever. Your taxonomy is the map that turns "this output seems off" into "here is the pattern and here is the fix."</p>
+
+  <p>When you finish axial coding (Step 3 above), you have a list of failure categories. That list is your <strong>failure taxonomy</strong> — the single most valuable artifact your eval produces. More valuable than the pass rate number. More valuable than any individual fixed output. The taxonomy tells you <em>how</em> your skill fails, which tells you exactly what to fix.</p>
+
+  <h3>A Real Taxonomy Example</h3>
+
+  <p>Here's what a failure taxonomy actually looks like for a PM stakeholder update skill, after evaluating 15 outputs:</p>
+
+  <div class="tax-wrap">
+    <div class="tax-label">Failure Taxonomy — Stakeholder Update Skill v1</div>
+    <div class="tax-bars">
+      <div class="tax-bar-row">
+        <div class="tax-bar-name"><strong>Hallucinated data</strong></div>
+        <div class="tax-bar b1">6 / 15</div>
+      </div>
+      <div class="tax-bar-row">
+        <div class="tax-bar-name"><strong>Missing risks section</strong></div>
+        <div class="tax-bar b2">4 / 15</div>
+      </div>
+      <div class="tax-bar-row">
+        <div class="tax-bar-name"><strong>Wrong audience tone</strong></div>
+        <div class="tax-bar b3">2 / 15</div>
+      </div>
+      <div class="tax-bar-row">
+        <div class="tax-bar-name"><strong>Other / one-off</strong></div>
+        <div class="tax-bar b4">1 / 15</div>
+      </div>
+    </div>
+  </div>
+
+  <p>This taxonomy tells you everything: the #1 problem is hallucinated data (invented metrics, made-up dates). That's where 40% of your failures live. Fix this one category — add an explicit constraint like "never invent metrics; if data is missing, state what's missing" — and your pass rate might jump from 53% to 75% in a single prompt change.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The most common failure mode is almost never what you expect.</strong> Before running evals, most PMs predict their skill's #1 problem will be "not enough detail" or "wrong format." The actual #1 failure is almost always something they didn't anticipate — hallucinated data, skipped sections, wrong audience framing, or invented KPIs. You genuinely cannot predict failure modes from introspection. You have to measure.</p>
+  </div>
+
+  <h3>Taxonomy Naming Discipline</h3>
+
+  <p>Name your categories precisely. "Bad output" is useless. "Hallucinated data" is actionable. "Tone issues" is vague. "Uses technical jargon for non-technical audience" is fixable. The quality of your category names determines the quality of your fixes. Each name should immediately suggest a prompt change.</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Weak category name</th><th>Strong category name</th><th>Implied fix</th></tr></thead>
+      <tbody>
+        <tr><td>Too long</td><td>Exceeds word limit by &gt;50%</td><td>Add explicit word count constraint</td></tr>
+        <tr><td>Missing stuff</td><td>Skips "Asks" section when no blockers exist</td><td>Add instruction: "Always include Asks section, even if the ask is 'no decisions needed this week'"</td></tr>
+        <tr><td>Inaccurate</td><td>Invents completion percentages not in source data</td><td>Add constraint: "Only cite numbers that appear in the input data. If a metric is missing, say 'data not available'"</td></tr>
+        <tr><td>Bad tone</td><td>Uses eng jargon ("velocity," "story points") for executive audience</td><td>Add constraint: "Never use terms VP of Marketing wouldn't understand without defining them"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>When to Split Your Skill</h3>
+
+  <p>If your taxonomy shows 3+ failure modes that can't be fixed without contradicting each other — for example, "needs more technical depth" AND "too much jargon for non-technical readers" — the skill is trying to do too much. Split it into two skills with different audience-specific system prompts. A "Technical Stakeholder Update" and an "Executive Stakeholder Update" will each perform better than one skill trying to serve both audiences.</p>
+
+  <div class="callout callout-context">
+    <span class="cl">Bridge to Module 06</span>
+    <p>Your failure taxonomy is a living document. In Module 06, you'll learn to maintain it across versions — tracking how new failure modes emerge as old ones get fixed, and using the taxonomy as the basis for automated feedback loops and eval sprints.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 07 THE FIX-ONE-THING CYCLE ══════════ -->
+<section id="fix-cycle" class="cs">
+  <span class="ct">Concept 07</span>
+  <h2 class="ctitle">The Fix-One-Thing Cycle — Why Fixing Two Things at Once Is Worse</h2>
+  <p class="csub">Disciplined single-variable iteration sounds slow. It's the fastest path to a reliable skill.</p>
+
+  <p>You've identified your #1 failure mode. You also see #2 and #3 in the taxonomy. The temptation is irresistible: fix all three at once, re-run, save time.</p>
+
+  <p><strong>Don't.</strong></p>
+
+  <p>When you change two things simultaneously and the pass rate goes from 53% to 67%, you don't know which change helped. Maybe the first fix improved things by 20 points and the second made things <em>worse</em> by 6 points, and you're seeing the net. You'll carry that second, harmful change forward forever.</p>
+
+  <p>The fix-one-thing-and-re-eval cycle works like this:</p>
+
+  <ol>
+    <li><strong>Fix only the #1 failure category.</strong> Make one change to your system prompt — add a constraint, rewrite an instruction, add an example that demonstrates the correct behavior.</li>
+    <li><strong>Re-run all 15 inputs.</strong> Not just the ones that previously failed. Sometimes fixing one thing breaks something that was passing before. You need the full picture.</li>
+    <li><strong>Re-label everything.</strong> Did the #1 category shrink? Did any new category appear? What's the new pass rate?</li>
+    <li><strong>Record the change.</strong> "v2: Added 'never invent metrics' constraint. Pass rate: 53% → 73%. Hallucinated data: 6 → 1. New issue: 2 outputs now missing velocity context (was available in data but model skipped it)."</li>
+    <li><strong>Repeat.</strong> Now fix the new #1 category (which might be the old #2, or might be the new issue you just discovered).</li>
+  </ol>
+
+  <p>Three to five cycles typically gets a skill from initial quality to reliably good. Track each cycle in a simple table — this becomes your prompt changelog, and it's the first thing you'll reference when the skill needs updating later.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Your skill will sometimes get worse before it gets better.</strong> You fix hallucinated data by adding a strict "only cite numbers from the input" constraint. Now the skill stops inventing numbers — but it also stops calculating totals that the source data clearly supports. This is a new failure mode caused by an over-correction. The fix-one-thing cycle catches this immediately because you re-run all 15 inputs after every change. The fix-three-things approach would bury it in noise.</p>
+  </div>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p>Version your system prompts explicitly. "Stakeholder Update Skill v1" → "v2" → "v3." Write a one-line changelog entry for each version: what you changed and why. Module 06 formalizes this into prompt versioning, but start the habit now. A month from now, you'll be glad you can trace why your skill behaves the way it does.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 08 GRADER TYPES ══════════ -->
+<section id="grader-types" class="cs">
+  <span class="ct">Concept 08</span>
+  <h2 class="ctitle">Grader Types — You vs. Code vs. LLM-as-Judge</h2>
+  <p class="csub">There are three ways to evaluate AI output. Each has a sweet spot. PMs who use the right grader for each criterion save hours without sacrificing quality.</p>
+
+  <p>So far, you've been the grader — reading each output against your rubric and labeling pass/fail. That works for 15 inputs. It doesn't work for 150. And it definitely doesn't work when you want to run evals weekly as part of a feedback loop (Module 06).</p>
+
+  <p>There are three types of graders, each suited to different evaluation criteria:</p>
+
+  <div class="grader-grid">
+    <div class="grader-item human">
+      <div class="grader-type">Human Grading</div>
+      <div class="grader-title">You Read It</div>
+      <div class="grader-desc">You read the output, compare it to your rubric, label pass/fail. The gold standard — most accurate, most nuanced. But slowest and most expensive. Standards drift between sessions.</div>
+      <div class="grader-when">Best for: Initial eval (first 15), calibrating other graders, subjective quality dimensions ("would I actually send this?"), final sign-off before shipping</div>
+    </div>
+    <div class="grader-item code">
+      <div class="grader-type">Code-Based Grading</div>
+      <div class="grader-title">String Matching</div>
+      <div class="grader-desc">Simple programmatic checks — does the output contain a "Risks" section? Is it under 500 words? Does it include at least one number? Fastest and most reliable. But can only check structural features, not quality.</div>
+      <div class="grader-when">Best for: Structural checks (section presence, word count, format compliance), regression tests after prompt changes, checks you'll run hundreds of times</div>
+    </div>
+    <div class="grader-item llm">
+      <div class="grader-type">LLM-as-Judge</div>
+      <div class="grader-title">Claude Grades Claude</div>
+      <div class="grader-desc">A second Claude instance evaluates the first's output using a rubric you provide. Scales like code, handles nuance like humans. But has systematic biases and requires calibration.</div>
+      <div class="grader-when">Best for: Quality dimensions at scale (clarity, accuracy, audience-appropriateness), running evals on 50+ outputs, continuous monitoring in production</div>
+    </div>
+  </div>
+
+  <h3>The PM Grading Stack</h3>
+
+  <p>In practice, you'll use a combination. For a stakeholder update skill, the grading stack might look like:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Criterion</th><th>Grader</th><th>Why this grader</th></tr></thead>
+      <tbody>
+        <tr><td>Has "Progress," "Risks," and "Asks" sections</td><td><strong>Code</strong></td><td>Simple string check — fast, deterministic, never wrong</td></tr>
+        <tr><td>Under 400 words</td><td><strong>Code</strong></td><td>Word count — code is perfect for this</td></tr>
+        <tr><td>No jargon for non-technical audience</td><td><strong>LLM-as-Judge</strong></td><td>Requires understanding of context — code can't detect jargon reliably</td></tr>
+        <tr><td>Risk mitigations are specific, not generic</td><td><strong>LLM-as-Judge</strong></td><td>"Specific" is a quality judgment — needs language understanding</td></tr>
+        <tr><td>Would I actually send this to the VP?</td><td><strong>Human</strong></td><td>The ultimate "ship it?" question — only you can answer this</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Start with human grading for your first eval. It's the foundation — you need to understand your skill's failure modes before you can automate grading. Then layer in code graders for structural checks and LLM-as-Judge for quality checks. Keep human grading for the final 10% spot-check that keeps everything calibrated.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The most capable grader isn't always the best grader.</strong> Using LLM-as-Judge for "does the output have a Risks section?" is like hiring a senior engineer to count lines of code. A simple string match is faster, cheaper, more reliable, and never hallucinates. Match the grader to the complexity of the criterion. Reserve LLM judges for criteria that genuinely require language understanding.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 09 LLM-AS-JUDGE ══════════ -->
+<section id="llm-judge" class="cs">
+  <span class="ct">Concept 09</span>
+  <h2 class="ctitle">LLM-as-Judge for PMs — Scaling Evaluation Without Losing Quality</h2>
+  <p class="csub">Using Claude to evaluate Claude's output sounds circular. Done right, it's the most practical evaluation technique available — with real limitations you need to understand.</p>
+
+  <p>LLM-as-Judge is the technique that lets you run evaluations at scale. Instead of you reading 50 outputs, you write a rubric prompt and have a separate Claude instance grade each output programmatically. Research shows strong LLM judges agree with human evaluators about 80–85% of the time — which is comparable to the agreement rate between two human raters (approximately 81%).</p>
+
+  <p>That statistic should simultaneously reassure you and keep you honest: LLM judges are <em>roughly as consistent as humans</em>, which means they're good enough for most evaluation purposes. But "roughly as consistent as humans" also means they make mistakes at a similar rate. This isn't a replacement for your judgment. It's a scalable complement to it.</p>
+
+  <h3>Writing a Judge Prompt</h3>
+
+  <p>A judge prompt is a specialized system prompt — except instead of generating content, it evaluates content. The structure follows the same contract pattern you learned in Module 03:</p>
+
+  <div class="prompt-box"><span class="prompt-label">LLM-as-Judge Prompt — Stakeholder Update Quality</span>You are an evaluation judge. You will be given an AI-generated stakeholder update and the source sprint data it was based on.
+
+<em>Evaluate ONLY this criterion: factual accuracy.</em>
+
+A PASS means:
+- Every number, date, and metric in the output appears in the source data
+- No metrics are invented or extrapolated beyond what the data supports
+- If data is missing, the output explicitly flags it rather than guessing
+
+A FAIL means:
+- Any number, date, or metric appears that is not in the source data
+- Any calculation is performed that the source data doesn't support
+- Missing data is silently filled in rather than flagged
+
+<em>Respond with exactly one word: PASS or FAIL.</em>
+<em>Then on a new line, provide a one-sentence explanation.</em></div>
+
+  <p>Notice what this prompt does: it evaluates <strong>one criterion</strong> (factual accuracy), defines pass and fail concretely, and asks for a binary verdict. This is the same rubric design discipline from Concept 03, applied to your judge.</p>
+
+  <h3>Known Biases to Watch For</h3>
+
+  <p>LLM judges have systematic biases that you need to account for:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Bias</th><th>What happens</th><th>How to mitigate</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Verbosity bias</strong></td><td>LLM judges tend to rate longer, more detailed outputs higher — even when brevity was the success criterion. Estimated ~15% score inflation for verbose outputs.</td><td>Explicitly instruct the judge to penalize verbosity: "Longer does not mean better. Apply the word count criterion strictly."</td></tr>
+        <tr><td><strong>Position bias</strong></td><td>When comparing two outputs, the judge tends to favor the one presented first (or last, depending on the model). One study found ~40% inconsistency when output positions were swapped.</td><td>If doing pairwise comparisons, evaluate both orderings (A vs B and B vs A) and only count consistent verdicts.</td></tr>
+        <tr><td><strong>Self-enhancement bias</strong></td><td>Claude rates Claude's output slightly higher than it would rate equivalent output from another model. The judge subtly recognizes its own patterns.</td><td>Consider using a different model as judge than the one generating output. Or calibrate: compare judge verdicts against your human labels on a test set.</td></tr>
+        <tr><td><strong>Sycophancy</strong></td><td>The judge may be reluctant to label output as "fail," especially when the output is coherent and well-written. Confident, fluent text gets the benefit of the doubt.</td><td>Use explicit failure criteria, not just success criteria. Tell the judge what specifically constitutes a fail, not just what constitutes a pass.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The Calibration Protocol</h3>
+
+  <p>Before trusting your LLM judge, calibrate it against your human labels:</p>
+
+  <ol>
+    <li><strong>Take your 15 human-labeled outputs from Step 2.</strong> You already have verdicts for these.</li>
+    <li><strong>Run the same 15 through your LLM judge.</strong> Compare judge labels to your labels.</li>
+    <li><strong>Calculate agreement rate.</strong> If the judge agrees with you on 12/15 (80%), it's well-calibrated. If it agrees on 8/15 (53%), your judge prompt needs work.</li>
+    <li><strong>Examine every disagreement.</strong> When the judge says PASS and you said FAIL (or vice versa), read the output again. Sometimes the judge caught something you missed. Sometimes the judge is wrong. Adjust the judge prompt based on the pattern of disagreements.</li>
+  </ol>
+
+  <p>Once calibrated, you can use the LLM judge for larger-scale evals (50+ outputs) and keep human grading for the 10% spot-check that ensures the judge hasn't drifted.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>LLM judges agree with humans more reliably than humans agree with each other.</strong> The ~80–85% agreement rate between LLM judges and human evaluators is comparable to — and sometimes exceeds — inter-annotator agreement between two human raters. Humans are inconsistent too. The advantage of the LLM judge isn't that it's perfect. It's that it's <em>consistently imperfect</em> in predictable, correctable ways.</p>
+  </div>
+
+  <div class="callout callout-warning">
+    <span class="cl">What Doesn't Work</span>
+    <p><strong>Buying eval tools before doing it manually.</strong> If you haven't manually reviewed 15+ outputs and built a failure taxonomy, you don't know what to measure. Tools like DeepEval, Braintrust, and Langfuse exist and are genuinely useful — but for later, once you know your failure modes and have a calibrated rubric. Manual first. Tooling later. The tools accelerate a process you already understand; they can't replace understanding you don't have yet.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 10 PROMPT CACHING ══════════ -->
+<section id="caching" class="cs">
+  <span class="ct">Concept 10</span>
+  <h2 class="ctitle">Prompt Caching for Eval Efficiency</h2>
+  <p class="csub">Running 15+ inputs through a skill with a long system prompt can get slow and expensive. Prompt caching solves this — your system prompt is processed once and reused.</p>
+
+  <p>When you run an eval, you're sending the same system prompt to Claude 15+ times — once for each test input. Without caching, Claude processes that entire system prompt from scratch every time. If your system prompt is 300 words plus uploaded reference documents, that's a lot of repeated work.</p>
+
+  <p><strong>Prompt caching</strong> fixes this. When enabled, Claude processes your system prompt once, caches the result, and reuses it for subsequent requests. The first call takes the same time as always. Every subsequent call in the eval sprint is faster and cheaper — typically <strong>90% lower latency and significantly reduced cost</strong> on the cached portion.</p>
+
+  <h3>When This Matters for PMs</h3>
+
+  <p>For a single 15-input eval, the savings are nice but not transformative. Where caching becomes essential is when you're doing the fix-one-thing cycle: you run 15 inputs, make a change, run 15 again, make another change, run 15 again. Three cycles × 15 inputs = 45 API calls with the same system prompt. Caching means that system prompt is processed once, not 45 times.</p>
+
+  <p>This matters even more in Module 06, where you'll run eval sprints regularly — monthly checks on your skill's performance against a growing test dataset. Caching makes the difference between "I'll run evals when I have time" and "evals run automatically as part of my workflow."</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p>If you're running evals through the Claude API (which Module 05 introduces), prompt caching is enabled by marking your system prompt as cacheable. If you're running evals manually in Claude Projects, the conversation-level caching handles this automatically — your system prompt and uploaded docs are processed once per conversation and reused across messages. The key behavior to know: <strong>keep your eval in one conversation.</strong> Starting a new conversation resets the cache.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 01 Connection</span>
+    <p>In Module 01, you learned about prompt caching as a cost and latency optimization. This is the first place in the curriculum where it becomes practically useful to you: running eval sprints efficiently. The concept you learned in theory now has a concrete workflow benefit.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 11 FROM EVAL TO IMPROVEMENT ══════════ -->
+<section id="bridge" class="cs">
+  <span class="ct">Concept 11</span>
+  <h2 class="ctitle">From Eval to Improvement — The Bridge to Module 06</h2>
+  <p class="csub">Your eval isn't a one-time event. It's the foundation of a system that makes your AI skills genuinely better over time — if you design the feedback loop right.</p>
+
+  <p>By now you've run your first structured eval. You have a pass rate, a failure taxonomy, and a prompt that's measurably better than where you started. But this raises the question: <strong>when do you eval again?</strong></p>
+
+  <h3>Your Eval Dataset Is a Personal Asset</h3>
+
+  <p>Every test case from real work — every input that caused a failure, every edge case that surprised you, every golden example that passed — is a permanent asset. It's your regression test suite. Next time you update your system prompt (for any reason), you re-run the test dataset and check that nothing broke.</p>
+
+  <p>This is one of the most underappreciated truths in AI development: <strong>your eval dataset compounds in value.</strong> Three months from now, you'll have 40+ test cases sourced from real PM work. That dataset represents hundreds of hours of implicit knowledge about what "good" looks like for your specific workflows. No one else has it. It's your competitive advantage as an AI-native PM.</p>
+
+  <h3>Three Signals It's Time to Re-Evaluate</h3>
+
+  <ul>
+    <li><strong>You updated your system prompt.</strong> Any prompt change — even a small one — can introduce regressions. Re-run your test dataset. This takes 10 minutes if you've kept your eval organized.</li>
+    <li><strong>The model updated.</strong> Claude improves regularly. Sometimes improvements change behavior in ways that interact with your prompt. Teams with eval datasets can upgrade models in days; teams without them face weeks of manual testing.</li>
+    <li><strong>You manually fixed an output.</strong> Every time you edit Claude's output before sending it, that's an eval signal. The input that required editing should go into your test dataset. The edit itself tells you what the failure was.</li>
+  </ul>
+
+  <h3>What Module 06 Builds On This</h3>
+
+  <p>This module taught you how to eval. Module 06 teaches you how to make evaluation a sustainable system:</p>
+
+  <ul>
+    <li><strong>Prompt versioning</strong> — tracking changes with changelogs and measured pass rates per version</li>
+    <li><strong>When to split a skill</strong> — using your taxonomy to decide when one skill is doing too much</li>
+    <li><strong>Automated feedback capture</strong> — using hooks to log every output for review, turning your daily work into continuous eval data</li>
+    <li><strong>Eval sprints</strong> — monthly structured evaluations with prompt caching, measuring drift and improvement over time</li>
+  </ul>
+
+  <p>The key mental shift: evaluation isn't a phase. It's a mode of working. Every time you use an AI skill and notice something about the output — good or bad — that's an evaluation data point. Module 06 teaches you to capture those data points systematically instead of letting them evaporate.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Evals that "pass" your skill today can become useless within months.</strong> As models improve, evals that were challenging become saturated — the model passes everything. Anthropic observed that frontier models went from 40% to over 80% on SWE-bench Verified in just one year. If your eval pass rate hits 95%+, it's time to raise the bar: add harder test cases, tighten your rubric criteria, or add new dimensions to evaluate. A perfect score means your eval is too easy, not that your skill is perfect.</p>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="cl">The PM Superpower</span>
+    <p><strong>A PM who can run structured error analysis on AI output is extraordinarily valuable.</strong> Not just for your own skills — for your product team. When your product ships an AI feature and something "feels off," you're the person who can tell the designer and engineer <em>exactly how</em> the AI is failing: "42% of outputs hallucinate completion dates, 23% skip the risk section, and the rest are fine." That's a specific bug report, not a vague complaint. That's the language engineering teams respond to.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ PROJECT ══════════ -->
+<div class="proj">
+  <span class="plbl">Module 04 Project</span>
+  <h4>The Full Error Analysis Sprint</h4>
+  <p>This project turns everything you learned into a complete evaluation of your best Module 03 skill. By the end, you'll have measurable proof of improvement — and a repeatable process you can apply to any AI skill for the rest of your career.</p>
+  <ol class="steps">
+    <li>
+      <strong>Write your rubric before looking at outputs.</strong> Take your best-performing Claude Project from Module 03. Define pass/fail in 2–3 sentences per criterion. Include at least two criteria: one structural (section presence, word count) and one quality-related (accuracy, audience-appropriateness). Save this rubric — you'll need it for comparison with your LLM judge.
+    </li>
+    <li>
+      <strong>Build your test dataset.</strong> Gather 15 inputs using dimension-based generation. At least 5 should be edge cases or adversarial inputs that your skill hasn't seen before. Mix real data (from your actual work) with synthetic data (generated to cover specific dimension combinations). Document each input's source and which dimensions it tests.
+    </li>
+    <li>
+      <strong>Run the 4-step error analysis.</strong> Run all 15 inputs through your skill. Label every output pass/fail against your rubric (open coding). Journal the first failure you notice for each failing output. Group failures into categories (axial coding). Count the frequency of each category. You now have your failure taxonomy.
+    </li>
+    <li>
+      <strong>Run the fix-one-thing cycle.</strong> Fix only the #1 failure category with a single prompt change. Re-run all 15 inputs. Re-label. Record: what you changed, pass rate before and after, what happened to each failure category. Run at least 2 cycles.
+    </li>
+    <li>
+      <strong>Write an LLM-as-Judge prompt and calibrate it.</strong> Write a judge prompt for your top quality criterion. Run it on the same 15 outputs you've already labeled by hand. Compare: where does the judge agree with you? Where does it disagree? Adjust the judge prompt until agreement exceeds 80%. Document the calibration gaps you found.
+    </li>
+    <li>
+      <strong>Compile your eval deliverable.</strong> Your final output is an eval spreadsheet (15 rows × columns for input, output, human label, judge label, failure category, version) plus a one-page eval summary: initial pass rate, final pass rate, failure taxonomy with frequencies, prompt changelog, and LLM judge calibration results. This deliverable becomes the input for Module 05's agent building — your evaluated, improved skill is now reliable enough to become a component in a multi-step workflow.
+    </li>
+  </ol>
+  <span class="deliv">Deliverable → Eval spreadsheet with 15 labeled outputs, failure taxonomy, prompt changelog showing measured improvement across 2+ cycles, and calibrated LLM-as-Judge comparison. Your evaluated skill becomes Module 05's building block.</span>
+</div>
+
+
+<!-- ─── Module Nav ─── -->
+<div class="mnav">
+  <a href="#" class="nbtn nbtn-prev">
+    <span class="nba">←</span>
+    <div><div class="nbl">Previous</div><div class="nbt">Module 03: Building Your AI Toolkit</div></div>
+  </a>
+  <a href="#" class="nbtn">
+    <div><div class="nbl">Up Next</div><div class="nbt">Module 05: From Skills to Agents</div></div>
+    <span class="nba">→</span>
+  </a>
+</div>
+
+<footer>The AI-Native PM · Module 04 of 08 · Updated April 2026</footer>

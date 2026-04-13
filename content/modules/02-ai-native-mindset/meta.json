@@ -1,0 +1,52 @@
+{
+  "number": 2,
+  "slug": "02-ai-native-mindset",
+  "title": "The AI-Native Mindset",
+  "subtitle": "How to think about AI as a PM — not as a tool to use occasionally, but as infrastructure to build your work around.",
+  "tier": 1,
+  "tierName": "Foundations",
+  "color": "blue",
+  "estimatedTime": "3–4 hours",
+  "conceptCount": 8,
+  "codeRequired": false,
+  "status": "complete",
+  "concepts": [
+    {
+      "id": "pm-work-audit",
+      "title": "PM Work Audit"
+    },
+    {
+      "id": "leverage-spectrum",
+      "title": "Leverage Spectrum"
+    },
+    {
+      "id": "ai-native-vs-assisted",
+      "title": "AI-Native vs AI-Assisted"
+    },
+    {
+      "id": "review-over-create",
+      "title": "Review Over Create"
+    },
+    {
+      "id": "where-ai-fails",
+      "title": "Where AI Fails"
+    },
+    {
+      "id": "roi-curve",
+      "title": "ROI Curve"
+    },
+    {
+      "id": "team-adoption",
+      "title": "Team Adoption"
+    },
+    {
+      "id": "audit-to-action",
+      "title": "Audit to Action"
+    }
+  ],
+  "access": {
+    "level": "free",
+    "previewConcepts": 3,
+    "gatedFrom": null
+  }
+}

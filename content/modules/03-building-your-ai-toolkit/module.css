@@ -1,0 +1,192 @@
+/* Breadcrumb */
+
+
+
+
+/* Hero */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Concept nav */
+
+
+
+
+/* Sections */
+
+
+
+
+
+
+
+/* Typography */
+
+
+
+
+
+
+
+
+/* Callouts */
+
+
+
+
+
+.callout-ti
+
+
+
+.callout-counter{background:var(--orange-dim);border-color:rgba(251,146,60,0.2)}
+.callout-counter 
+
+
+
+
+
+/* Before/After Cards */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.ba-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ba-card.before::before{background:var(--red)}
+.ba-card.after::before{background:var(--green)}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Prompt Block - NEW for Module 03 */
+.prompt-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin:24px 0;overflow:hidden}
+.prompt-header{padding:10px 20px;background:var(--surface-raised);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.prompt-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.prompt-tag.system{color:var(--green)}
+.prompt-tag.user{color:var(--blue)}
+.prompt-tag.output{color:var(--accent)}
+.prompt-tag.chain{color:var(--purple)}
+.prompt-
+.prompt-body em{color:var(--text);font-style:normal;font-weight:500}
+.prompt-body .xml{color:var(--teal)}
+.prompt-body .comment{color:var(--text-dim);font-style:italic}
+
+/* Architecture Diagram */
+.arch-wra
+.arch-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.arch-layers{display:flex;flex-direction:column;gap:8px}
+.arch-layer{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:8px;border:1px solid var(--border)}
+.arch-layer.l-system{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2)}
+.arch-layer.l-docs{background:rgba(96,165,250,0.06);border-color:rgba(96,165,250,0.2)}
+.arch-layer.l-mc
+.arch-layer.l-history{background:rgba(251,146,60,0.06);border-color:rgba(251,146,60,0.2)}
+.arch-layer.l-prompt{background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2)}
+.arch-pct{font-family:var(--mono);font-size:18px;font-weight:600;min-width:48px;text-align:right}
+.arch-layer.l-system .arch-pct{color:var(--green)}
+.arch-layer.l-docs .arch-pct{color:var(--blue)}
+.arch-layer.l-mcp .arch-pct{color:var(--purple)}
+.arch-layer.l-history .arch-pct{color:var(--orange)}
+.arch-layer.l-prompt .arch-pct{color:var(--accent)}
+.arch-info{flex:1}
+.arch-name{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
+.arch-desc{font-size:13px;color:var(--text-muted)}
+
+/* MCP Connector Grid */
+.mcp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.mcp-item{background:var(--surface);padding:18px 16px}
+.mcp-name{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.mcp-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+.mcp-tag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:6px;display:inline-block}
+.mcp-tag.free{color:var(--green);background:var(--green-dim)}
+.mcp-tag.pro{color:var(--purple);background:var(--purple-dim)}
+.mcp-tag.new{color:var(--teal);background:var(--teal-dim)}
+
+/* Skill Levels */
+.skill-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.skill-level{background:var(--surface);padding:20px 18px}
+.sl-num{font-family:var(--mono);font-size:22px;font-weight:600;margin-bottom:6px}
+.sl-num.s1{color:var(--green)}
+.sl-num.s2{color:var(--blue)}
+.sl-num.s3{color:var(--purple)}
+.sl-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.sl-when{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.5px;margin-bottom:8px}
+.sl-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.sl-cost{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* Chain Steps */
+.chain-flow{display:flex;flex-direction:column;gap:4px;margin:24px 0}
+.chain-ste
+.chain-num{font-family:var(--mono);font-size:14px;font-weight:600;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--border);color:var(--text-dim)}
+.chain-info{flex:1}
+.chain-title{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
+.chain-desc{font-size:13px;color:var(--text-muted)}
+.chain-arrow{display:flex;justify-content:center;color:var(--text-dim);font-family:var(--mono);font-size:14px}
+
+/* Workflow Compare */
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.wf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wf-card.disconnected::before{background:var(--red)}
+.wf-card.connected::before{background:var(--green)}
+.wf-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.wf-card.disconnected .wf-label{color:var(--red)}
+.wf-card.connected .wf-label{color:var(--green)}
+.wf-title{font-weight:700;font-size:15px;margin-bottom:12px;color:var(--text)}
+.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted);counter-reset:wfs}
+.wf-steps 
+.wf-steps li::before{content:counter(wfs);position:absolute;left:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-dim);width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border-radius:50%;border:1px solid var(--border);top:6px}
+.wf-steps li em{color:var(--text);font-style:normal;font-weight:600}
+
+/* MCP Product Spec */
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.spec-item{background:var(--surface);padding:20px 18px}
+.spec-icon{font-size:20px;margin-bottom:8px}
+.spec-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.spec-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Table */
+.tw-wra
+
+
+
+tr:last-child 
+tr:hover 
+
+/* Project Block */
+
+
+
+.proj 
+.proj 
+
+.proj .steps 
+
+
+
+
+/* Module Nav */
+
+
+
+
+
+
+.nbtn-prev{text-align:right}
+
+/* Footer */
+
+
+/* Responsive */
+
+  .mcp-grid,.skill-levels,.spec-grid{grid-template-columns:1fr}
+  
+}

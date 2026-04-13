@@ -1,0 +1,60 @@
+{
+  "number": 8,
+  "slug": "08-shipping-ai-products",
+  "title": "Shipping AI Products",
+  "subtitle": "Guardrails, trust, feedback loops, and responsible AI — what it takes to ship AI features that users actually trust.",
+  "tier": 4,
+  "tierName": "Lead with AI",
+  "color": "purple",
+  "estimatedTime": "5–6 hours",
+  "conceptCount": 10,
+  "codeRequired": false,
+  "status": "complete",
+  "concepts": [
+    {
+      "id": "infinite-edge-cases",
+      "title": "Infinite Edge Cases"
+    },
+    {
+      "id": "guardrails-vs-evaluators",
+      "title": "Guardrails vs Evaluators"
+    },
+    {
+      "id": "building-user-trust",
+      "title": "Building User Trust"
+    },
+    {
+      "id": "feedback-loops-signals",
+      "title": "Feedback Loops as Signals"
+    },
+    {
+      "id": "responsible-ai",
+      "title": "Responsible AI as Product Quality"
+    },
+    {
+      "id": "autonomy-roadmap",
+      "title": "Autonomy Roadmap"
+    },
+    {
+      "id": "data-privacy",
+      "title": "Data Retention & Privacy"
+    },
+    {
+      "id": "launch-strategy",
+      "title": "Launch Strategy"
+    },
+    {
+      "id": "monitoring-observability",
+      "title": "Monitoring & Observability"
+    },
+    {
+      "id": "capstone",
+      "title": "Capstone Project"
+    }
+  ],
+  "access": {
+    "level": "free",
+    "previewConcepts": 3,
+    "gatedFrom": null
+  }
+}

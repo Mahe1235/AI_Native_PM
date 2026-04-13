@@ -1,0 +1,165 @@
+/* Breadcrumb */
+
+
+
+
+/* Hero */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Concept nav */
+
+
+
+
+/* Sections */
+
+
+
+
+
+
+
+/* Typography */
+
+
+
+
+
+
+
+
+/* Callouts */
+
+
+
+
+
+.callout-ti
+
+
+
+.callout-counter{background:var(--orange-dim);border-color:rgba(251,146,60,0.2)}
+.callout-counter 
+
+
+
+
+
+/* Before/After Cards */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.ba-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ba-card.before::before{background:var(--red)}
+.ba-card.after::before{background:var(--green)}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Eval Spreadsheet Visual */
+.eval-grid{display:grid;gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.eval-row{display:grid;grid-template-columns:50px 1fr 100px 1fr;gap:2px}
+.eval-row.header{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.eval-cell{background:var(--surface);padding:12px 14px;font-size:13px;color:var(--text-muted);line-height:1.5}
+.eval-row.header .eval-cell{background:var(--surface-raised);color:var(--text-dim)}
+.eval-cell.pass{color:var(--green);font-weight:600;font-family:var(--mono);font-size:12px}
+.eval-cell.fail{color:var(--red);font-weight:600;font-family:var(--mono);font-size:12px}
+.eval-cell.num{font-family:var(--mono);font-size:12px;color:var(--text-dim);text-align:center}
+
+/* Step Process */
+.step-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.step-box{background:var(--surface);padding:20px 16px;text-align:center}
+.step-num{font-family:var(--mono);font-size:20px;font-weight:600;color:var(--green);margin-bottom:6px}
+.step-name{font-weight:700;font-size:13px;color:var(--text);margin-bottom:6px}
+.step-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+/* Grader Compare */
+.grader-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.grader-item{background:var(--surface);padding:20px 18px}
+.grader-type{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.grader-item.human .grader-type{color:var(--blue)}
+.grader-item.code .grader-type{color:var(--green)}
+.grader-item.llm .grader-type{color:var(--purple)}
+.grader-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.grader-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:8px}
+.grader-when{font-size:12px;color:var(--text-dim);font-family:var(--mono);padding-top:8px;border-top:1px solid var(--border)}
+
+/* Taxonomy Visual */
+.tax-wra
+.tax-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+.tax-bars{display:flex;flex-direction:column;gap:8px}
+.tax-bar-row{display:flex;align-items:center;gap:12px}
+.tax-bar-name{font-size:13px;color:var(--text-muted);width:200px;flex-shrink:0;text-align:right}
+.tax-bar{height:28px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--bg)}
+.tax-bar.b1{background:var(--red);width:45%}
+.tax-bar.b2{background:var(--orange);width:28%}
+.tax-bar.b3{background:var(--accent);width:15%}
+.tax-bar.b4{background:var(--text-dim);width:12%}
+
+/* Prompt Box */
+.prompt-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;margin:20px 0;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--text-muted);white-space:pre-wrap;overflow-x:auto}
+.prompt-box .prompt-label{display:block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:12px;font-family:var(--mono)}
+.prompt-box em{color:var(--text);font-style:normal;font-weight:500}
+
+/* Stats Row */
+.stats-row{display:flex;gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.stat-item{background:var(--surface);padding:20px 18px;flex:1;text-align:center}
+.stat-num{font-family:var(--mono);font-size:28px;font-weight:600;margin-bottom:4px}
+.stat-num.red{color:var(--red)}
+.stat-num.green{color:var(--green)}
+.stat-num.blue{color:var(--blue)}
+.stat-num.orange{color:var(--orange)}
+.stat-label{font-size:12px;color:var(--text-muted);line-height:1.4}
+
+/* Table */
+.tw-wra
+
+
+
+tr:last-child 
+tr:hover 
+
+/* Project Block */
+
+
+
+.proj 
+.proj 
+
+.proj .steps 
+
+
+
+
+/* Module Nav */
+
+
+
+
+
+
+.nbtn-prev{text-align:right}
+
+/* Footer */
+
+
+/* Responsive */
+
+  .step-flow{grid-template-columns:1fr 1fr}
+  .eval-row{grid-template-columns:40px 1fr 70px 1fr}
+  .stats-row{flex-wrap:wrap}
+  .stat-item{min-width:45%}
+  .tax-bar-name{width:120px;font-size:12px}
+  
+}

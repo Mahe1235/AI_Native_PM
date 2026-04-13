@@ -1,0 +1,80 @@
+{
+  "number": 5,
+  "slug": "05-from-skills-to-agents",
+  "title": "From Skills to Agents",
+  "subtitle": "When a skill isn't enough — how to add tools, chain decisions, and build agents that act in the world.",
+  "tier": 3,
+  "tierName": "Scale Your Impact",
+  "color": "orange",
+  "estimatedTime": "6–7 hours",
+  "conceptCount": 14,
+  "codeRequired": true,
+  "status": "complete",
+  "concepts": [
+    {
+      "id": "agency-spectrum",
+      "title": "The Agency Spectrum"
+    },
+    {
+      "id": "tools-tool-use",
+      "title": "Tools & Tool Use"
+    },
+    {
+      "id": "react-pattern",
+      "title": "The ReAct Pattern"
+    },
+    {
+      "id": "when-agent-beats-skill",
+      "title": "When Agent Beats Skill"
+    },
+    {
+      "id": "claude-api-tool-use",
+      "title": "Claude API Tool Use"
+    },
+    {
+      "id": "claude-code",
+      "title": "Claude Code"
+    },
+    {
+      "id": "computer-use",
+      "title": "Computer Use",
+      "isNew": true
+    },
+    {
+      "id": "hooks",
+      "title": "Hooks",
+      "isNew": true
+    },
+    {
+      "id": "agent-harness",
+      "title": "The Agent Harness"
+    },
+    {
+      "id": "agent-teams",
+      "title": "Agent Teams",
+      "isNew": true
+    },
+    {
+      "id": "subagents",
+      "title": "Subagents",
+      "isNew": true
+    },
+    {
+      "id": "agent-evaluation",
+      "title": "Agent Evaluation"
+    },
+    {
+      "id": "agent-safety",
+      "title": "Agent Safety"
+    },
+    {
+      "id": "indirect-prompt-injection",
+      "title": "Indirect Prompt Injection"
+    }
+  ],
+  "access": {
+    "level": "free",
+    "previewConcepts": 3,
+    "gatedFrom": null
+  }
+}

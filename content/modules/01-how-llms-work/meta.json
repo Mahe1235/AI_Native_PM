@@ -1,0 +1,70 @@
+{
+  "number": 1,
+  "slug": "01-how-llms-work",
+  "title": "How LLMs Actually Work",
+  "subtitle": "The mental models that change how you use AI — not ML theory, just what you need to get better results, spot limitations, build safer products, and stop being surprised by the weird stuff.",
+  "tier": 1,
+  "tierName": "Foundations",
+  "color": "blue",
+  "estimatedTime": "4–5 hours",
+  "conceptCount": 12,
+  "codeRequired": false,
+  "status": "complete",
+  "concepts": [
+    {
+      "id": "tokens",
+      "title": "Tokens, Not Words"
+    },
+    {
+      "id": "context-windows",
+      "title": "Context Windows"
+    },
+    {
+      "id": "temperature",
+      "title": "Temperature & Sampling"
+    },
+    {
+      "id": "few-shot",
+      "title": "Few-Shot Learning"
+    },
+    {
+      "id": "extended-thinking",
+      "title": "Extended Thinking",
+      "isNew": true
+    },
+    {
+      "id": "hallucination",
+      "title": "Hallucination"
+    },
+    {
+      "id": "structured-outputs",
+      "title": "Structured Outputs"
+    },
+    {
+      "id": "prompt-caching",
+      "title": "Prompt Caching",
+      "isNew": true
+    },
+    {
+      "id": "prompt-injection",
+      "title": "Prompt Injection"
+    },
+    {
+      "id": "knowledge-cutoffs",
+      "title": "Knowledge Cutoffs"
+    },
+    {
+      "id": "model-selection",
+      "title": "Model Selection"
+    },
+    {
+      "id": "four-levers",
+      "title": "Four Levers"
+    }
+  ],
+  "access": {
+    "level": "free",
+    "previewConcepts": 3,
+    "gatedFrom": null
+  }
+}

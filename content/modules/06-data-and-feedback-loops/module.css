@@ -1,0 +1,177 @@
+/* Breadcrumb */
+
+
+
+
+/* Hero */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Concept nav */
+
+
+
+
+
+/* Sections */
+
+
+
+
+
+/* Typography */
+
+
+
+
+
+
+
+
+/* Callouts */
+
+
+
+
+
+.callout-ti
+
+
+
+
+
+
+
+
+/* Compound math visual */
+.compound-viz{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.compound-track{background:var(--surface);padding:24px 20px}
+.compound-track.stale{border-bottom:3px solid var(--red)}
+.compound-track.growing{border-bottom:3px solid var(--green)}
+.cv-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;display:block}
+.compound-track.stale .cv-lbl{color:var(--red)}
+.compound-track.growing .cv-lbl{color:var(--green)}
+.cv-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.cv-desc{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:12px}
+.cv-stat{font-family:var(--mono);font-size:24px;font-weight:700;margin-bottom:2px}
+.compound-track.stale .cv-stat{color:var(--red)}
+.compound-track.growing .cv-stat{color:var(--green)}
+.cv-stat-label{font-size:12px;color:var(--text-dim);font-family:var(--mono)}
+
+/* Version log */
+.vlog{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0;margin:24px 0;overflow:hidden}
+.vlog-row{display:grid;grid-template-columns:60px 1fr 80px;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center}
+.vlog-row:last-child{border-bottom:none}
+.vlog-row.hdr{background:var(--surface-raised);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding:10px 20px}
+.vlog-ver{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent)}
+.vlog-change{font-size:14px;color:var(--text-muted);line-height:1.5}
+.vlog-rate{font-family:var(--mono);font-size:13px;font-weight:600;text-align:right}
+.rate-u
+.rate-down{color:var(--red)}
+.rate-same{color:var(--text-dim)}
+
+/* Before/after */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:700;font-size:14px;color:var(--text);margin-bottom:8px}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* Decision cards */
+.decision-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.dec-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;overflow:hidden}
+.dec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.dec-card.add::before{background:var(--blue)}
+.dec-card.split::before{background:var(--orange)}
+.dec-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.dec-card.add .dec-lbl{color:var(--blue)}
+.dec-card.split .dec-lbl{color:var(--orange)}
+.dec-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.dec-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* Edit signal flow */
+.flow{margin:24px 0;display:flex;flex-direction:column;gap:0}
+.flow-ste
+.flow-step::before{content:'';position:absolute;left:-7px;top:16px;width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--bg)}
+.flow-step.edit::before{border-color:var(--accent);background:var(--accent-glow)}
+.flow-step.note::before{border-color:var(--blue);background:var(--blue-dim)}
+.flow-step.save::before{border-color:var(--green);background:var(--green-dim)}
+.flow-step.improve::before{border-color:var(--purple);background:var(--purple-dim)}
+.flow-step:last-child{border-left-color:transparent}
+.fs-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;display:block}
+.flow-step.edit .fs-label{color:var(--accent)}
+.flow-step.note .fs-label{color:var(--blue)}
+.flow-step.save .fs-label{color:var(--green)}
+.flow-step.improve .fs-label{color:var(--purple)}
+.fs-content{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+/* Sprint checklist */
+.sprint-box{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0}
+.sprint-item{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.sprint-item:last-child{border-bottom:none}
+.sprint-num{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:var(--accent-glow);border-radius:6px;flex-shrink:0}
+.sprint-detail{font-size:14px;color:var(--text-muted);line-height:1.6}
+.sprint-detail strong{color:var(--text)}
+.sprint-time{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* Incident cards */
+.inc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0;border-left:3px solid var(--orange)}
+.inc.warn{border-left-color:var(--accent)}
+.incb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;display:block}
+.inct{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
+.inc
+.incl{margin-top:12px;padding:10px 14px;background:var(--orange-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+
+/* Table */
+.tw-wra
+
+
+
+tr:last-child 
+tr:hover 
+
+/* Code */
+
+
+pre 
+
+/* Tags */
+
+
+/* Project */
+
+
+
+.proj 
+.proj 
+
+.proj .steps 
+
+
+
+
+/* Nav */
+
+
+
+
+
+
+
+
+.ba-grid{grid-template-columns:1fr}
+  .decision-grid{grid-template-columns:1fr}
+  .vlog-row{grid-template-columns:50px 1fr 60px;gap:10px;padding:12px 14px}
+  
+}

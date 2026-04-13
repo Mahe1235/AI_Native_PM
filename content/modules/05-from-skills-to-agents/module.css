@@ -1,0 +1,188 @@
+/* Breadcrumb */
+
+
+
+
+/* Hero */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Concept nav */
+
+
+
+
+
+/* Sections */
+
+
+
+
+
+/* Typography */
+
+
+
+
+
+
+
+
+/* Callouts */
+
+
+
+
+
+.callout-ti
+
+
+
+
+
+
+
+
+
+
+/* Agency spectrum visual */
+.spectrum{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.sp-item{background:var(--surface);padding:22px 18px}
+.sp-item.active{background:var(--orange-dim)}
+.sp-item.done{background:var(--green-dim)}
+.sp-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;color:var(--text-dim)}
+.sp-item.active .sp-lbl{color:var(--orange)}
+.sp-item.done .sp-lbl{color:var(--green)}
+.sp-title{font-weight:700;font-size:14px;margin-bottom:6px;color:var(--text)}
+.sp-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:8px}
+.sp-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono)}
+
+/* Decision table */
+.d
+.dt-row{display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center}
+.dt-row:last-child{border-bottom:none}
+.dt-row.hdr{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding-bottom:12px}
+.dt-signal{font-size:14px;color:var(--text-muted)}
+.dt-verdict{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;text-align:center;white-space:nowrap}
+.dt-skill{background:var(--green-dim);color:var(--green)}
+.dt-agent{background:var(--orange-dim);color:var(--orange)}
+
+/* ReAct loop */
+.react-loo
+.react-ste
+.react-step::before{content:'';position:absolute;left:-7px;top:18px;width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--bg)}
+.react-step.think::before{border-color:var(--blue);background:var(--blue-dim)}
+.react-step.act::before{border-color:var(--orange);background:var(--orange-dim)}
+.react-step.observe::before{border-color:var(--green);background:var(--green-dim)}
+.react-step.repeat::before{border-color:var(--purple);background:var(--purple-dim)}
+.rs-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;display:block}
+.react-step.think .rs-label{color:var(--blue)}
+.react-step.act .rs-label{color:var(--orange)}
+.react-step.observe .rs-label{color:var(--green)}
+.react-step.repeat .rs-label{color:var(--purple)}
+.rs-content{font-size:14px;color:var(--text-muted);line-height:1.6}
+.react-step:last-child{border-left-color:transparent}
+
+/* Safety ladder */
+.ladder{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ladder-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;overflow:hidden}
+.ladder-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ladder-card.safe::before{background:var(--green)}
+.ladder-card.danger::before{background:var(--red)}
+.ladder-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ladder-card.safe .ladder-lbl{color:var(--green)}
+.ladder-card.danger .ladder-lbl{color:var(--red)}
+.ladder-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.ladder-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.ladder-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+
+/* Incident cards */
+.inc{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0;border-left:3px solid var(--red)}
+.incb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;display:block}
+.inct{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
+.inc
+.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+
+/* Before/after */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:700;font-size:14px;color:var(--text);margin-bottom:8px}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* Code blocks */
+
+
+pre 
+
+/* Transition matrix */
+.tmatrix{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0}
+.tm-lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+.tm-row{display:grid;grid-template-columns:140px repeat(4,1fr);gap:4px;margin-bottom:4px}
+.tm-cell{padding:10px 12px;font-size:12px;font-family:var(--mono);border-radius:4px;text-align:center}
+.tm-hdr{background:var(--surface-raised);color:var(--text-dim);font-weight:600;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
+.tm-label{background:var(--surface-raised);color:var(--text-muted);text-align:left;font-weight:600}
+.tm-pass{background:var(--green-dim);color:var(--green)}
+.tm-fail{background:var(--red-dim);color:var(--red)}
+.tm-warn{background:var(--accent-glow);color:var(--accent)}
+
+/* Hook comparison */
+.hook-cm
+.hook-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;position:relative;overflow:hidden}
+.hook-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.hook-card.prob::before{background:var(--accent)}
+.hook-card.det::before{background:var(--teal)}
+.hc-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.hook-card.prob .hc-lbl{color:var(--accent)}
+.hook-card.det .hc-lbl{color:var(--teal)}
+.hc-
+.hc-result{font-size:13px;color:var(--text-dim);font-family:var(--mono)}
+
+/* Table */
+.tw-wra
+
+
+
+tr:last-child 
+tr:hover 
+
+/* Tags */
+
+
+
+/* Project */
+
+
+
+.proj 
+.proj 
+
+.proj .steps 
+
+
+
+
+/* Nav */
+
+
+
+
+
+
+
+
+.ba-grid{grid-template-columns:1fr}.ladder{grid-template-columns:1fr}
+  .hook-cm.tm-row{grid-template-columns:100px repeat(4,1fr)}
+  
+}

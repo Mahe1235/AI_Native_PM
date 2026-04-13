@@ -1,0 +1,175 @@
+/* Breadcrumb */
+
+
+
+
+/* Hero */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Concept nav */
+
+
+
+
+/* Sections */
+
+
+
+
+
+
+
+/* Typography */
+
+
+
+
+
+
+
+
+/* Callouts */
+
+
+
+
+
+.callout-ti
+
+
+
+.callout-counter{background:var(--orange-dim);border-color:rgba(251,146,60,0.2)}
+.callout-counter 
+
+
+
+
+
+/* Audit Grid */
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.audit-item{background:var(--surface);padding:22px 18px}
+.audit-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.audit-item.sweet .audit-label{color:var(--green)}
+.audit-item.assist .audit-label{color:var(--blue)}
+.audit-item.judgment .audit-label{color:var(--orange)}
+.audit-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.audit-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:10px}
+.audit-examples{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted)}
+.audit-examples 
+.audit-examples li::before{content:'→';color:var(--text-dim);flex-shrink:0}
+
+/* Leverage Spectrum */
+.spectrum-wra
+.spectrum-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.spectrum-bar{display:flex;height:48px;border-radius:8px;overflow:hidden;margin-bottom:16px;gap:2px}
+.spec-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--bg)}
+.spec-seg.s1{background:var(--text-dim);flex:1}
+.spec-seg.s2{background:var(--blue);flex:1.5}
+.spec-seg.s3{background:var(--green);flex:2}
+.spec-seg.s4{background:var(--accent);flex:2.5}
+.spectrum-items{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.spec-item{font-size:13px;color:var(--text-muted);line-height:1.5}
+.spec-item strong{color:var(--text);display:block;margin-bottom:2px;font-size:12px}
+
+/* Before/After Cards */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.ba-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ba-card.before::before{background:var(--red)}
+.ba-card.after::before{background:var(--green)}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
+.ba-time{font-family:var(--mono);font-size:22px;font-weight:600;margin-bottom:8px}
+.ba-card.before .ba-time{color:var(--red)}
+.ba-card.after .ba-time{color:var(--green)}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Workflow Compare */
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.wf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wf-card.assisted::before{background:var(--blue)}
+.wf-card.native::before{background:var(--green)}
+.wf-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.wf-card.assisted .wf-label{color:var(--blue)}
+.wf-card.native .wf-label{color:var(--green)}
+.wf-title{font-weight:700;font-size:15px;margin-bottom:12px;color:var(--text)}
+.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted);counter-reset:wfs}
+.wf-steps 
+.wf-steps li::before{content:counter(wfs);position:absolute;left:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-dim);width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border-radius:50%;border:1px solid var(--border);top:6px}
+.wf-steps li em{color:var(--text);font-style:normal;font-weight:600}
+.wf-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:18px;color:var(--text-dim);padding:0 4px}
+
+/* Danger Zone */
+.dz-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.dz-item{background:var(--surface);padding:20px 18px}
+.dz-icon{font-size:20px;margin-bottom:8px}
+.dz-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.dz-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.dz-why{font-size:12px;color:var(--text-dim);font-family:var(--mono);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* ROI Curve */
+.roi-wra
+.roi-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+.roi-curve{display:flex;align-items:flex-end;gap:2px;height:120px;margin-bottom:16px}
+.roi-bar{border-radius:3px 3px 0 0;flex:1;position:relative;transition:all .3s}
+.roi-bar .roi-val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
+.roi-axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--text-dim);padding-top:8px;border-top:1px solid var(--border)}
+
+/* Team Adoption */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.team-item{background:var(--surface);padding:20px 18px}
+.team-role{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;color:var(--text-dim)}
+.team-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.team-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Table */
+.tw-wra
+
+
+
+tr:last-child 
+tr:hover 
+
+/* Project Block */
+
+
+
+.proj 
+.proj 
+
+.proj .steps 
+
+
+
+
+/* Module Nav */
+
+
+
+
+
+
+.nbtn-prev{text-align:right}
+
+/* Footer */
+
+
+/* Responsive */
+
+  .ba-grid,.wf-grid,.dz-grid{grid-template-columns:1fr}
+  .spectrum-items{grid-template-columns:1fr 1fr}
+  
+}
