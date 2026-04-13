@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 02: The AI-Native Mindset — The AI-Native PM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0C0E12;--surface:#141720;--surface-raised:#1A1E2A;--surface-hover:#222738;
+  --border:#2A2F3E;--border-accent:#3D4460;--text:#E2E4EA;--text-muted:#8C91A0;--text-dim:#5C6178;
+  --accent:#F59E0B;--accent-glow:rgba(245,158,11,0.15);
+  --green:#34D399;--green-dim:rgba(52,211,153,0.12);
+  --red:#F87171;--red-dim:rgba(248,113,113,0.12);
+  --blue:#60A5FA;--blue-dim:rgba(96,165,250,0.12);
+  --purple:#A78BFA;--purple-dim:rgba(167,139,250,0.12);
+  --teal:#2DD4BF;--teal-dim:rgba(45,212,191,0.12);
+  --orange:#FB923C;--orange-dim:rgba(251,146,60,0.12);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'IBM Plex Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono','Menlo',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.72;font-size:16px;font-weight:400;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+.container{max-width:820px;margin:0 auto;padding:0 28px}
+
+/* Breadcrumb */
+.bc{padding:24px 0 0;font-family:var(--mono);font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.bc a{color:var(--text-dim);text-decoration:none;transition:color .2s}.bc a:hover{color:var(--accent)}
+.bc .sep{color:var(--border-accent)}.bc .cur{color:var(--blue)}
+
+/* Hero */
+.hero{padding:48px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,var(--blue-dim) 0%,transparent 65%);pointer-events:none}
+.mod-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.mod-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--blue);background:var(--blue-dim);padding:4px 10px;border-radius:4px}
+.mod-tier{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--text-dim);text-transform:uppercase}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,5vw,50px);line-height:1.12;color:var(--text);margin-bottom:16px;font-weight:400}
+.hero h1 em{color:var(--blue);font-style:italic}
+.hero-sub{font-size:17px;color:var(--text-muted);max-width:600px;line-height:1.7;margin-bottom:24px}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap}
+.hero-mi{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--text-dim);text-transform:uppercase}
+.hero-mi .dot{width:6px;height:6px;border-radius:50%;background:var(--blue)}
+
+/* Concept nav */
+.cnav{display:flex;gap:6px;padding:24px 0 56px;flex-wrap:wrap}
+.cp{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+.cp:hover{background:var(--surface-raised);border-color:var(--border-accent);color:var(--text)}
+
+/* Sections */
+.cs{padding:64px 0 40px;border-top:1px solid var(--border)}
+.ct{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+.ctitle{font-family:var(--serif);font-size:clamp(26px,3.5vw,34px);font-weight:400;line-height:1.2;margin-bottom:10px}
+.csub{font-size:15px;color:var(--text-muted);max-width:600px;margin-bottom:32px}
+.ntag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:4px}
+.utag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);padding:2px 8px;border-radius:3px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+
+/* Typography */
+h3{font-family:var(--serif);font-size:22px;font-weight:400;margin:44px 0 14px;color:var(--text)}
+h4{font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin:32px 0 10px;color:var(--text-muted)}
+p{margin-bottom:16px;color:var(--text-muted)}
+p strong,li strong{color:var(--text);font-weight:600}
+ul,ol{margin:0 0 20px 20px;color:var(--text-muted)}
+li{margin-bottom:8px}
+li::marker{color:var(--text-dim)}
+
+/* Callouts */
+.callout{border-radius:10px;padding:22px 26px;margin:24px 0;border:1px solid}
+.callout-insight{background:var(--accent-glow);border-color:rgba(245,158,11,0.25)}
+.callout-insight .cl{color:var(--accent)}
+.callout-warning{background:var(--red-dim);border-color:rgba(248,113,113,0.2)}
+.callout-warning .cl{color:var(--red)}
+.callout-tip{background:var(--green-dim);border-color:rgba(52,211,153,0.2)}
+.callout-tip .cl{color:var(--green)}
+.callout-context{background:var(--blue-dim);border-color:rgba(96,165,250,0.2)}
+.callout-context .cl{color:var(--blue)}
+.callout-counter{background:var(--orange-dim);border-color:rgba(251,146,60,0.2)}
+.callout-counter .cl{color:var(--orange)}
+.callout-watch{background:var(--purple-dim);border-color:rgba(167,139,250,0.2)}
+.callout-watch .cl{color:var(--purple)}
+.cl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.callout p:last-child{margin-bottom:0}
+
+/* Audit Grid */
+.audit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.audit-item{background:var(--surface);padding:22px 18px}
+.audit-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.audit-item.sweet .audit-label{color:var(--green)}
+.audit-item.assist .audit-label{color:var(--blue)}
+.audit-item.judgment .audit-label{color:var(--orange)}
+.audit-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
+.audit-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:10px}
+.audit-examples{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted)}
+.audit-examples li{padding:4px 0;margin:0;display:flex;gap:8px}
+.audit-examples li::before{content:'→';color:var(--text-dim);flex-shrink:0}
+
+/* Leverage Spectrum */
+.spectrum-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0}
+.spectrum-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.spectrum-bar{display:flex;height:48px;border-radius:8px;overflow:hidden;margin-bottom:16px;gap:2px}
+.spec-seg{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--bg)}
+.spec-seg.s1{background:var(--text-dim);flex:1}
+.spec-seg.s2{background:var(--blue);flex:1.5}
+.spec-seg.s3{background:var(--green);flex:2}
+.spec-seg.s4{background:var(--accent);flex:2.5}
+.spectrum-items{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.spec-item{font-size:13px;color:var(--text-muted);line-height:1.5}
+.spec-item strong{color:var(--text);display:block;margin-bottom:2px;font-size:12px}
+
+/* Before/After Cards */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.ba-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ba-card.before::before{background:var(--red)}
+.ba-card.after::before{background:var(--green)}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
+.ba-time{font-family:var(--mono);font-size:22px;font-weight:600;margin-bottom:8px}
+.ba-card.before .ba-time{color:var(--red)}
+.ba-card.after .ba-time{color:var(--green)}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Workflow Compare */
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.wf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wf-card.assisted::before{background:var(--blue)}
+.wf-card.native::before{background:var(--green)}
+.wf-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.wf-card.assisted .wf-label{color:var(--blue)}
+.wf-card.native .wf-label{color:var(--green)}
+.wf-title{font-weight:700;font-size:15px;margin-bottom:12px;color:var(--text)}
+.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted);counter-reset:wfs}
+.wf-steps li{counter-increment:wfs;padding:6px 0 6px 28px;position:relative;margin:0}
+.wf-steps li::before{content:counter(wfs);position:absolute;left:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-dim);width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border-radius:50%;border:1px solid var(--border);top:6px}
+.wf-steps li em{color:var(--text);font-style:normal;font-weight:600}
+.wf-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:18px;color:var(--text-dim);padding:0 4px}
+
+/* Danger Zone */
+.dz-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.dz-item{background:var(--surface);padding:20px 18px}
+.dz-icon{font-size:20px;margin-bottom:8px}
+.dz-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.dz-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.dz-why{font-size:12px;color:var(--text-dim);font-family:var(--mono);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* ROI Curve */
+.roi-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0}
+.roi-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:16px}
+.roi-curve{display:flex;align-items:flex-end;gap:2px;height:120px;margin-bottom:16px}
+.roi-bar{border-radius:3px 3px 0 0;flex:1;position:relative;transition:all .3s}
+.roi-bar .roi-val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;color:var(--text-dim);white-space:nowrap}
+.roi-axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--text-dim);padding-top:8px;border-top:1px solid var(--border)}
+
+/* Team Adoption */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.team-item{background:var(--surface);padding:20px 18px}
+.team-role{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;color:var(--text-dim)}
+.team-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.team-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Table */
+.tw-wrap{overflow-x:auto;margin:20px 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--surface-raised);padding:12px 16px;text-align:left;font-weight:600;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border)}
+td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;line-height:1.6}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface)}
+
+/* Project Block */
+.proj{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;margin:48px 0 40px;position:relative;overflow:hidden}
+.proj::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),transparent)}
+.plbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:inline-block;padding:3px 10px;border-radius:4px;color:var(--blue);background:var(--blue-dim)}
+.proj h4{font-family:var(--serif);font-size:22px;font-weight:400;margin:0 0 12px;text-transform:none;letter-spacing:normal;color:var(--text)}
+.proj p{color:var(--text-muted)}
+.proj .steps{margin:16px 0 0;list-style:none;padding:0;counter-reset:step}
+.proj .steps li{counter-increment:step;padding:12px 0 12px 44px;position:relative;border-left:1px solid var(--border);margin-bottom:0;margin-left:14px;font-size:15px}
+.proj .steps li::before{content:counter(step);position:absolute;left:-14px;top:12px;width:28px;height:28px;background:var(--surface-raised);border:1px solid var(--border);border-radius:50%;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;color:var(--text-muted)}
+.proj .steps li:last-child{border-left-color:transparent}
+.deliv{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-glow);padding:6px 14px;border-radius:5px}
+
+/* Module Nav */
+.mnav{display:flex;justify-content:space-between;align-items:center;padding:32px 0;border-top:1px solid var(--border);margin-top:40px;gap:16px;flex-wrap:wrap}
+.nbtn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;text-decoration:none;transition:all .2s}
+.nbtn:hover{background:var(--surface-raised);border-color:var(--border-accent)}
+.nbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:2px}
+.nbt{font-size:14px;font-weight:600;color:var(--text)}
+.nba{font-size:18px;color:var(--text-dim)}
+.nbtn-prev{text-align:right}
+
+/* Footer */
+footer{padding:40px 0;text-align:center;color:var(--text-dim);font-size:13px;font-family:var(--mono)}
+
+/* Responsive */
+@media(max-width:640px){
+  .container{padding:0 18px}.cs{padding:48px 0 32px}.proj{padding:24px 18px}
+  .audit-grid,.team-grid{grid-template-columns:1fr}
+  .ba-grid,.wf-grid,.dz-grid{grid-template-columns:1fr}
+  .spectrum-items{grid-template-columns:1fr 1fr}
+  .mnav{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ─── Breadcrumb ─── -->
+<div class="bc">
+  <a href="#">The AI-Native PM</a>
+  <span class="sep">→</span>
+  <a href="#">Tier 1: Foundations</a>
+  <span class="sep">→</span>
+  <span class="cur">Module 02</span>
+</div>
+
+<!-- ─── Hero ─── -->
+<header class="hero">
+  <div class="mod-badge">
+    <span class="mod-num">MODULE 02</span>
+    <span class="mod-tier">Tier 1 · Foundations</span>
+  </div>
+  <h1>The AI-Native<br><em>Mindset</em></h1>
+  <p class="hero-sub">Module 01 taught you how LLMs work. This module is about where they work for you — mapping your real PM work, finding the highest-leverage opportunities, and redesigning how you approach tasks when AI goes first.</p>
+  <div class="hero-meta">
+    <div class="hero-mi"><span class="dot"></span> 3–4 hours</div>
+    <div class="hero-mi"><span class="dot"></span> No code required</div>
+    <div class="hero-mi"><span class="dot"></span> 8 concepts</div>
+  </div>
+</header>
+
+<!-- ─── Concept Nav ─── -->
+<nav class="cnav">
+  <a href="#audit" class="cp">The PM Work Audit</a>
+  <a href="#leverage" class="cp">The Leverage Spectrum</a>
+  <a href="#native-vs-assisted" class="cp">AI-Native vs AI-Assisted</a>
+  <a href="#review" class="cp">Review Over Create</a>
+  <a href="#danger" class="cp">Where AI Fails You</a>
+  <a href="#roi" class="cp">The ROI Curve</a>
+  <a href="#team" class="cp">Your Team's Adoption</a>
+  <a href="#bridge" class="cp">From Audit to Action</a>
+</nav>
+
+
+<!-- ══════════ 01 THE PM WORK AUDIT ══════════ -->
+<section id="audit" class="cs">
+  <span class="ct">Concept 01</span>
+  <h2 class="ctitle">The PM Work Audit — Map Your Week Before You Optimize It</h2>
+  <p class="csub">Most PMs start with "let me try AI for writing PRDs." That's backwards. Start with your actual calendar, your actual tasks, your actual time — then find the AI sweet spots.</p>
+
+  <p>If you ask ten PMs what they'd use AI for first, eight will say "writing." It's the obvious answer — and it's usually the wrong one. Writing is where you <em>feel</em> the most friction, but it's rarely where AI creates the most value. The PM work audit starts with honesty: <strong>what do you actually do all week?</strong></p>
+
+  <p>Here's the exercise. Open your calendar and task list from the last two weeks. List every task. Don't categorize yet — just inventory. Include the tasks you're not proud of: the half-hour you spent reformatting a table, the hour of context-switching between Slack threads, the meeting prep you skipped because you ran out of time.</p>
+
+  <p>Now categorize each task into one of three buckets:</p>
+
+  <div class="audit-grid">
+    <div class="audit-item sweet">
+      <div class="audit-label">AI Sweet Spot</div>
+      <div class="audit-title">AI Could Draft This</div>
+      <div class="audit-desc">High-volume, language-heavy, structured, or pattern-based. You'd review and edit the output, but AI does the heavy lifting.</div>
+      <ul class="audit-examples">
+        <li>Synthesizing feedback from 50+ tickets</li>
+        <li>Weekly stakeholder update emails</li>
+        <li>First-draft PRD sections</li>
+        <li>Meeting notes → action items</li>
+        <li>Competitive feature comparison tables</li>
+      </ul>
+    </div>
+    <div class="audit-item assist">
+      <div class="audit-label">AI Can Assist</div>
+      <div class="audit-title">AI Helps, You Lead</div>
+      <div class="audit-desc">Tasks where your judgment is the product, but AI can accelerate the process — research, exploration, structuring your thinking.</div>
+      <ul class="audit-examples">
+        <li>Sprint prioritization (Claude surfaces trade-offs)</li>
+        <li>User interview question design</li>
+        <li>Framing a strategy narrative</li>
+        <li>Exploring edge cases for a feature spec</li>
+        <li>Drafting options for a hard decision</li>
+      </ul>
+    </div>
+    <div class="audit-item judgment">
+      <div class="audit-label">Requires Your Judgment</div>
+      <div class="audit-title">AI Shouldn't Lead</div>
+      <div class="audit-desc">Relationship-dependent, politically nuanced, or deeply contextual. AI doesn't have the organizational map you carry in your head.</div>
+      <ul class="audit-examples">
+        <li>1:1s with reports and stakeholders</li>
+        <li>Navigating a scope disagreement</li>
+        <li>Reading the room in a roadmap review</li>
+        <li>Building trust with a new engineering lead</li>
+        <li>Deciding what to cut when timelines slip</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>What the Audit Reveals</h3>
+  <p>When PMs do this exercise honestly, a pattern almost always emerges: <strong>they spend 40–60% of their week on tasks in the first two columns — but their "AI strategy" only targets the most obvious 10%.</strong> The gap between what AI could handle and what they've actually tried it on is enormous.</p>
+
+  <p>The common surprise: most PMs underestimate how much time they spend on synthesis and analysis tasks. Collating customer feedback, comparing metrics across cohorts, reviewing competitive moves, extracting themes from research — this work is invisible because it happens in the cracks between meetings. It's also exactly where AI creates the most leverage.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Real Value of the Audit</span>
+    <p><strong>The audit isn't about finding tasks to hand off — it's about finding tasks you're currently skipping.</strong> The PM who spends an hour synthesizing 200 support tickets discovers insights the PM who skimmed 20 never sees. AI doesn't just save time on work you already do. It makes work possible that you were never going to get to.</p>
+  </div>
+
+  <h3>The "Time × Frequency" Filter</h3>
+  <p>Not all sweet-spot tasks are equal. Prioritize by two factors:</p>
+  <ul>
+    <li><strong>Time per instance.</strong> A task that takes 45 minutes each time is a better AI target than one that takes 5 minutes — even if the 5-minute task is more annoying.</li>
+    <li><strong>Frequency.</strong> A weekly task you automate with AI pays back 52× a year. A quarterly task pays back 4×. Multiply time saved × frequency — that's your leverage score.</li>
+  </ul>
+  <p>This is deliberately simple arithmetic, not a complex framework. The point is to rank your audit list by actual impact rather than by what feels most tempting to automate.</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">Bridge to Module 03</span>
+    <p>Your top 3 high-leverage targets from this audit become the foundation for Module 03. You'll build dedicated AI skills for these exact tasks — not hypothetical workflows, but the specific things eating your real time. That's why the audit matters: <strong>it prevents you from building skills for imaginary problems.</strong></p>
+  </div>
+</section>
+
+
+<!-- ══════════ 02 THE LEVERAGE SPECTRUM ══════════ -->
+<section id="leverage" class="cs">
+  <span class="ct">Concept 02</span>
+  <h2 class="ctitle">The Leverage Spectrum — Not All AI Gains Are Equal</h2>
+  <p class="csub">Saving 5 minutes reformatting a table is nice. Running a competitive deep-dive that would have taken a full day in a single prompt — that's a different category of value entirely.</p>
+
+  <p>When PMs talk about AI productivity, they usually mean <em>the same work, faster.</em> But the most valuable AI use cases don't just speed up existing work — they change what's possible. The leverage spectrum helps you sort AI opportunities by the magnitude of their impact, not just the time saved.</p>
+
+  <div class="spectrum-wrap">
+    <div class="spectrum-label">The PM Leverage Spectrum</div>
+    <div class="spectrum-bar">
+      <div class="spec-seg s1">Convenience</div>
+      <div class="spec-seg s2">Acceleration</div>
+      <div class="spec-seg s3">Capability</div>
+      <div class="spec-seg s4">Transformation</div>
+    </div>
+    <div class="spectrum-items">
+      <div class="spec-item">
+        <strong>Saves minutes</strong>
+        Reformatting tables, fixing grammar, converting bullet points to prose. Useful but marginal.
+      </div>
+      <div class="spec-item">
+        <strong>Saves hours</strong>
+        First-draft PRDs, meeting summary → action items, weekly updates. You'd have done this anyway, just slower.
+      </div>
+      <div class="spec-item">
+        <strong>Makes it feasible</strong>
+        Synthesizing 200 tickets, comparing 10 competitor pages, extracting themes from 15 interviews. Work you'd skip or rush.
+      </div>
+      <div class="spec-item">
+        <strong>Makes it possible</strong>
+        Comprehensive market analysis across 50+ sources. Regulatory landscape scan. Pattern detection across a year of user feedback.
+      </div>
+    </div>
+  </div>
+
+  <h3>Concrete Before-and-After</h3>
+  <p>Abstract frameworks don't stick. Specific numbers do. Here are four real PM tasks, measured:</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Before AI</span>
+      <div class="ba-task">Weekly stakeholder update</div>
+      <div class="ba-time">45 min</div>
+      <div class="ba-desc">Manually review JIRA, pull metrics from dashboard, write narrative, format for email. Every week.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">After AI</span>
+      <div class="ba-task">Weekly stakeholder update</div>
+      <div class="ba-time">12 min</div>
+      <div class="ba-desc">Paste sprint data, have Claude draft narrative and flag anomalies. Review, adjust tone for audience, send. Quality often better.</div>
+    </div>
+  </div>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Before AI</span>
+      <div class="ba-task">Competitive deep-dive (5 competitors)</div>
+      <div class="ba-time">Full day</div>
+      <div class="ba-desc">Browse each competitor's site, docs, blog posts, recent launches. Compile notes. Build comparison. Often deferred "until I have time."</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">After — Deep Research</span>
+      <div class="ba-task">Competitive deep-dive (5 competitors)</div>
+      <div class="ba-time">1 prompt + 30 min review</div>
+      <div class="ba-desc">Deep Research runs autonomously for 10–30 minutes across dozens of sources. Returns a comprehensive, cited report. You review, add judgment, ship. <span class="utag">New</span></div>
+    </div>
+  </div>
+
+  <h3>Deep Research as the Extreme Example</h3>
+  <p>Deep Research sits at the far right of the leverage spectrum — the "makes it possible" category. It's Claude conducting autonomous, multi-step research sessions: formulating search queries, reading dozens of pages, synthesizing findings, producing structured reports with citations. Tasks that would take a PM an entire day — or more realistically, tasks a PM would never get to at all — become a single prompt.</p>
+
+  <p>The PM use cases where Deep Research changes the game:</p>
+  <ul>
+    <li><strong>Competitive landscape scans.</strong> "Research the AI features of our top 5 competitors. For each, document what they've shipped, their pricing model, and any public user sentiment." Deep Research reads product pages, blog posts, review sites, and social media — across all five.</li>
+    <li><strong>Market sizing and analysis.</strong> "What's the current state of the B2B expense management market? Who are the main players, what are the growth trends, and where are the gaps?" Returns a sourced analysis you'd normally commission from an analyst.</li>
+    <li><strong>Regulatory scanning.</strong> "What accessibility regulations affect SaaS products serving EU customers, and what changed in 2025?" Covers WCAG updates, EAA enforcement, and specific compliance requirements.</li>
+  </ul>
+
+  <div class="callout callout-warning">
+    <span class="cl">Deep Research Isn't Magic</span>
+    <p><strong>Deep Research is powerful research assistance, not a substitute for PM judgment.</strong> It can synthesize public information comprehensively. It cannot tell you which competitive move actually threatens your position (that requires knowing your strategy), which regulatory change affects your specific architecture (that requires knowing your system), or which market trend is noise vs. signal (that requires knowing your customers). The research gets better; the judgment layer stays yours.</p>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The biggest productivity gains aren't in writing — they're in analysis.</strong> Most PMs gravitate to AI for writing tasks: PRDs, emails, docs. But writing was never the bottleneck. The bottleneck is the work that precedes writing: synthesizing 200 support tickets, extracting patterns from interview transcripts, comparing 10 competitor feature pages. These are tasks PMs either skip (too tedious) or do poorly (skim instead of analyze). AI — especially Deep Research — makes them feasible. Focus your skill-building on analysis, not prose.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 03 AI-NATIVE VS AI-ASSISTED ══════════ -->
+<section id="native-vs-assisted" class="cs">
+  <span class="ct">Concept 03</span>
+  <h2 class="ctitle">AI-Native vs AI-Assisted — Who Goes First?</h2>
+  <p class="csub">This is the single biggest mindset shift in the curriculum. It's not about using AI more — it's about redesigning the workflow so AI is the starting point, not the polish step.</p>
+
+  <p>There are two fundamentally different ways to integrate AI into how you work, and most PMs are stuck on the first one:</p>
+
+  <div class="wf-grid">
+    <div class="wf-card assisted">
+      <div class="wf-label">AI-Assisted</div>
+      <div class="wf-title">You Work, Then Claude Polishes</div>
+      <ol class="wf-steps">
+        <li><em>You</em> write the first draft of a PRD</li>
+        <li><em>You</em> organize the structure and arguments</li>
+        <li>Claude cleans up the prose and formatting</li>
+        <li><em>You</em> make final edits and ship</li>
+      </ol>
+    </div>
+    <div class="wf-card native">
+      <div class="wf-label">AI-Native</div>
+      <div class="wf-title">Claude Drafts, You Shape</div>
+      <ol class="wf-steps">
+        <li><em>You</em> define the problem, context, and constraints</li>
+        <li>Claude generates a structured first draft</li>
+        <li><em>You</em> evaluate, reshape, add judgment</li>
+        <li><em>You</em> refine, add what only you know, ship</li>
+      </ol>
+    </div>
+  </div>
+
+  <p>The difference isn't cosmetic — it's structural. In the AI-assisted model, you do the hard creative work and AI does the easy cleanup. In the AI-native model, AI handles the volume and structure while you focus on judgment, context, and quality. <strong>Your time shifts from production to evaluation.</strong></p>
+
+  <h3>What "AI Goes First" Looks Like in Practice</h3>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>PM Task</th><th>AI-Assisted Approach</th><th>AI-Native Approach</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Competitive analysis</strong></td>
+          <td>You research competitors, write the analysis, have Claude clean up the formatting</td>
+          <td>You define the competitive dimensions. Deep Research generates the analysis. You add strategic interpretation.</td>
+        </tr>
+        <tr>
+          <td><strong>PRD</strong></td>
+          <td>You write the PRD from scratch, paste it to Claude for grammar and structure feedback</td>
+          <td>You provide problem statement, user research, and constraints. Claude generates a structured draft. You reshape sections, add context Claude can't know, sharpen the success metrics.</td>
+        </tr>
+        <tr>
+          <td><strong>Sprint retrospective summary</strong></td>
+          <td>You take notes during retro, then write the summary</td>
+          <td>You paste the raw notes. Claude extracts themes, clusters feedback, proposes action items. You validate, adjust priority based on what you know about the team.</td>
+        </tr>
+        <tr>
+          <td><strong>User feedback synthesis</strong></td>
+          <td>You skim 200 tickets, make mental notes, write a summary</td>
+          <td>You paste all 200 tickets. Claude categorizes, extracts patterns, quantifies themes. You review the analysis, overlay product strategy context, decide what matters.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The Input Quality Principle</h3>
+  <p>AI-native workflows flip what matters most. In the old model, the output was the hard part — you sweated over every paragraph. In the AI-native model, <strong>the input is the hard part.</strong> How clearly you define the problem, what context you provide, which constraints you set — these determine 80% of the output quality.</p>
+
+  <p>This is why Module 01's concepts matter. Understanding context windows tells you how much input to provide. Understanding hallucination tells you which inputs to ground with primary sources. Understanding structured outputs tells you how to constrain the output format. The mental models feed the workflow design.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Shift Is Gradual</span>
+    <p><strong>You don't flip from AI-assisted to AI-native overnight.</strong> Start with one task you do weekly — preferably one from the "AI sweet spot" column of your audit. Run it AI-native for three weeks straight. The first time will feel awkward. By the third time, you'll have a reusable prompt and a review checklist. That's when the speed compounds. Then pick the next task.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 04 REVIEW-OVER-CREATE ══════════ -->
+<section id="review" class="cs">
+  <span class="ct">Concept 04</span>
+  <h2 class="ctitle">The Review-Over-Create Shift — Your Core Skill Changes</h2>
+  <p class="csub">When AI writes the first draft, the PM who can evaluate, critique, and improve AI output becomes more valuable than the PM who can write from scratch. This is the most career-relevant idea in the module.</p>
+
+  <p>In a world where Claude can produce a structurally sound PRD in 30 seconds, <strong>the ability to write a PRD from scratch isn't your differentiator anymore.</strong> What differentiates you is knowing what a good PRD looks like — and being able to tell whether Claude's draft meets that bar or falls short in ways that matter.</p>
+
+  <p>This isn't a theoretical prediction. It's already happening. PMs who use AI regularly report that their work shifts from creation to curation: spending less time drafting, more time reviewing, editing, and stress-testing AI output.</p>
+
+  <h3>The Review Skill Stack</h3>
+  <p>Reviewing AI output is a skill — and most PMs haven't built the muscle yet. Here's what effective AI review looks like:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Review Skill</th><th>What You're Checking</th><th>Common AI Failures</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Hallucination spotting</strong></td>
+          <td>Are the specific claims, numbers, and attributions real?</td>
+          <td>Fabricated statistics, invented competitor features, plausible-sounding KPIs that don't exist in your dashboard</td>
+        </tr>
+        <tr>
+          <td><strong>Context injection</strong></td>
+          <td>Does the output reflect things only you know?</td>
+          <td>Missing organizational context, wrong assumptions about team capacity, ignorance of recent decisions</td>
+        </tr>
+        <tr>
+          <td><strong>Audience calibration</strong></td>
+          <td>Is the tone right for who's reading this?</td>
+          <td>Too formal for Slack, too casual for an exec review, generic "business speak" that sounds like AI</td>
+        </tr>
+        <tr>
+          <td><strong>Completeness check</strong></td>
+          <td>Did it cover what matters and skip what doesn't?</td>
+          <td>Over-covering safe topics, under-covering hard trade-offs, padding with filler sections</td>
+        </tr>
+        <tr>
+          <td><strong>Logic validation</strong></td>
+          <td>Do the recommendations follow from the analysis?</td>
+          <td>Recommending "invest heavily" after listing mostly risks, contradicting earlier sections, circular reasoning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>You need to have done the work manually before you can review AI's version of it.</strong> A junior PM who has never written a PRD from scratch can't evaluate whether Claude's draft PRD is missing the right things. The review skill is built on top of the create skill — not instead of it. AI-native doesn't mean you skip the fundamentals. It means the fundamentals shift from "produce the output" to "know what good looks like."</p>
+  </div>
+
+  <h3>The Cross-Functional Ripple</h3>
+  <p>This shift doesn't just affect you — it ripples across your team. Your designer starts evaluating AI-generated user research summaries instead of reading raw transcripts. Your data analyst reviews AI-drafted metric narratives instead of writing them. Your engineering lead uses Claude to draft technical specs and spends their time on the architecture decisions that actually require their expertise.</p>
+
+  <p>As a PM, you're often the one introducing AI tools to the team. Understanding the review-over-create shift helps you set the right expectations: <strong>"Claude will draft this. Your job is to catch what Claude gets wrong and add what Claude can't know."</strong> That framing is more effective than "Claude will do your work for you" — and it's more honest.</p>
+
+  <div class="callout callout-context">
+    <span class="cl">Bridge to Module 04</span>
+    <p>Module 04 formalizes the review skill into a repeatable evaluation protocol. You'll learn to run 15+ outputs through a structured eval, build a failure taxonomy, and measure improvement — turning "I'll eyeball it" into a quality system. The review instinct you build here becomes the foundation for that work.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 05 WHERE AI FAILS YOU ══════════ -->
+<section id="danger" class="cs">
+  <span class="ct">Concept 05</span>
+  <h2 class="ctitle">Where AI Fails You — The Tasks That Get Worse with AI</h2>
+  <p class="csub">Every AI productivity guide tells you what to automate. This section is about what not to — the PM tasks where AI actively degrades your effectiveness if you lean on it.</p>
+
+  <p>The lever spectrum from Concept 02 shows where AI creates value. This section maps the opposite: tasks where AI intervention is net-negative. Not "AI can't help here" — but <strong>"AI will make this worse if you let it."</strong></p>
+
+  <div class="dz-grid">
+    <div class="dz-item">
+      <div class="dz-icon">🧭</div>
+      <div class="dz-title">Political Navigation</div>
+      <div class="dz-desc">Knowing which stakeholder is aligned, who needs to be pre-sold, what history shapes a reaction. Claude can't map your org's power dynamics.</div>
+      <div class="dz-why">Risk: AI-drafted comms that are technically correct but politically tone-deaf. You send a perfectly structured email that ignores a recent conflict.</div>
+    </div>
+    <div class="dz-item">
+      <div class="dz-icon">🤝</div>
+      <div class="dz-title">Relationship-Dependent Decisions</div>
+      <div class="dz-desc">Deciding whether to push back on an eng estimate, how to support a struggling report, when to escalate vs. absorb. These require reading people, not text.</div>
+      <div class="dz-why">Risk: Over-delegation erodes your instincts for the human dynamics that determine whether a product ships or stalls.</div>
+    </div>
+    <div class="dz-item">
+      <div class="dz-icon">🎯</div>
+      <div class="dz-title">Ambiguous Strategy Calls</div>
+      <div class="dz-desc">Should we build for enterprise or SMB? Invest in platform or features? These are judgment calls that depend on information Claude doesn't have: your company's financials, team capacity, founder vision.</div>
+      <div class="dz-why">Risk: Claude will give you a plausible framework — and you'll mistake a well-structured argument for the right answer.</div>
+    </div>
+    <div class="dz-item">
+      <div class="dz-icon">🔮</div>
+      <div class="dz-title">Real-Time Judgment</div>
+      <div class="dz-desc">A critical bug ships. A key customer escalates. Your CEO asks a pointed question in an all-hands. These moments require instant synthesis of context, stakes, and audience.</div>
+      <div class="dz-why">Risk: You develop a dependency on "let me draft this with AI" and lose the muscle for fast, high-stakes communication.</div>
+    </div>
+  </div>
+
+  <h3>The Dependency Trap</h3>
+  <p>The most insidious failure mode isn't AI producing bad output — it's the PM who can no longer think without it. The PM who can't write a clear Slack message without Claude. The PM who can't synthesize three data points without pasting them into a prompt first. The PM who uses AI to avoid the discomfort of original thinking.</p>
+
+  <p><strong>"AI-native" means AI-augmented, not AI-dependent.</strong> The distinction matters. An AI-native PM uses Claude to handle volume so they can focus on judgment. An AI-dependent PM uses Claude to avoid doing the hard cognitive work that makes a PM valuable.</p>
+
+  <div class="callout callout-warning">
+    <span class="cl">The Litmus Test</span>
+    <p><strong>Ask yourself: could I do this task well without AI if I had to?</strong> If the answer is yes — you're AI-native. You're choosing to use AI because it's faster, not because you can't function without it. If the answer is "I'm not sure anymore" — that's the dependency trap. You've traded a skill for a tool, and the tool isn't always available when you need it most: in a live meeting, on a plane, in a crisis where speed matters more than polish.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 06 THE ROI CURVE ══════════ -->
+<section id="roi" class="cs">
+  <span class="ct">Concept 06</span>
+  <h2 class="ctitle">The ROI Curve — AI Makes You Slower Before It Makes You Faster</h2>
+  <p class="csub">Your first AI-assisted PRD might take longer than writing it yourself. The ROI comes on the 10th use, not the first. Understanding this curve prevents the most common abandonment pattern.</p>
+
+  <p>Every PM who has tried to adopt AI tools has experienced this: the first attempt takes longer than doing it manually. The prompt doesn't work right. The output needs heavy editing. You spend more time wrangling Claude than you would have spent just writing the thing. And you conclude: "AI isn't actually faster."</p>
+
+  <p>This conclusion is correct — for use #1. It's catastrophically wrong as a prediction about use #10.</p>
+
+  <div class="roi-wrap">
+    <div class="roi-label">Time Investment vs. Payoff — First 10 Uses of an AI Skill</div>
+    <div class="roi-curve">
+      <div class="roi-bar" style="height:95%;background:var(--red)"><span class="roi-val">Use 1</span></div>
+      <div class="roi-bar" style="height:80%;background:var(--red)"><span class="roi-val">2</span></div>
+      <div class="roi-bar" style="height:65%;background:var(--orange)"><span class="roi-val">3</span></div>
+      <div class="roi-bar" style="height:55%;background:var(--orange)"><span class="roi-val">4</span></div>
+      <div class="roi-bar" style="height:48%;background:var(--accent)"><span class="roi-val">5</span></div>
+      <div class="roi-bar" style="height:38%;background:var(--accent)"><span class="roi-val">6</span></div>
+      <div class="roi-bar" style="height:30%;background:var(--green)"><span class="roi-val">7</span></div>
+      <div class="roi-bar" style="height:25%;background:var(--green)"><span class="roi-val">8</span></div>
+      <div class="roi-bar" style="height:22%;background:var(--green)"><span class="roi-val">9</span></div>
+      <div class="roi-bar" style="height:20%;background:var(--green)"><span class="roi-val">10</span></div>
+    </div>
+    <div class="roi-axis">
+      <span>← Slower than manual</span>
+      <span>Break-even (use ~4–5)</span>
+      <span>Compounding returns →</span>
+    </div>
+  </div>
+
+  <h3>What Happens Across Those 10 Uses</h3>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Phase</th><th>Uses</th><th>What's Happening</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>The Valley</strong></td>
+          <td>1–3</td>
+          <td>You're learning what Claude needs from you. Your prompts are vague. You over-edit the output. You're comparing AI output against a mental standard shaped by years of doing it manually. It feels slower because it <em>is</em> slower.</td>
+        </tr>
+        <tr>
+          <td><strong>Break-Even</strong></td>
+          <td>4–5</td>
+          <td>Your prompt is getting specific. You've built a template. You know which parts of Claude's output to trust and which to always override. Total time roughly matches manual effort — but the output is often more comprehensive.</td>
+        </tr>
+        <tr>
+          <td><strong>Compounding</strong></td>
+          <td>6–10</td>
+          <td>You have a refined prompt, a review checklist, and a clear understanding of what Claude needs from you. The task that took 45 minutes now takes 12. And you've freed cognitive load for the judgment work that actually matters.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>AI makes you slower before it makes you faster.</strong> The single biggest reason PMs abandon AI tools is evaluating them after one or two uses. They try it, it's clunky, they conclude "this doesn't work for me." The PMs who get transformative value are the ones who push past the valley — who use the same prompt on the same task type 5–10 times, refining each iteration. Treat your first three attempts as calibration, not evaluation.</p>
+  </div>
+
+  <h3>How to Push Through the Valley</h3>
+  <ul>
+    <li><strong>Pick one task, not five.</strong> Trying AI on five different tasks simultaneously means five valleys at once. Pick your highest-leverage audit target and commit to it for two weeks.</li>
+    <li><strong>Save your prompts.</strong> After each use, save the version of the prompt that produced the best result. By use #5, your prompt is your most valuable artifact — not the output.</li>
+    <li><strong>Compare the output, not the process.</strong> On use #1, the process feels slower. But compare the final output: is Claude's draft more comprehensive than what you would have written? Does it catch things you'd have missed? Quality often improves before speed does.</li>
+    <li><strong>Build a review checklist.</strong> By use #3, you'll notice a pattern in what you always fix. Write it down: "Always check the success metrics section. Always verify the competitor claims. Always adjust the tone for this stakeholder." That checklist makes use #4 dramatically faster.</li>
+  </ul>
+</section>
+
+
+<!-- ══════════ 07 YOUR TEAM'S ADOPTION ══════════ -->
+<section id="team" class="cs">
+  <span class="ct">Concept 07</span>
+  <h2 class="ctitle">Your Team's AI Adoption — The Multiplier Effect</h2>
+  <p class="csub">Your personal AI workflow is valuable. Your team adopting AI effectively is 5× more valuable. As a PM, you're often the person who introduces AI into cross-functional work — and how you frame it matters.</p>
+
+  <p>Most AI adoption advice focuses on individual productivity. But PMs don't work alone — you work with designers, engineers, data analysts, and stakeholders. When your entire cross-functional team is AI-literate, the leverage multiplies: the designer who can evaluate AI-generated research saves you a meeting; the analyst who can review AI-drafted narratives frees you from being the bottleneck.</p>
+
+  <div class="team-grid">
+    <div class="team-item">
+      <div class="team-role">Designer</div>
+      <div class="team-title">Evaluating AI Research</div>
+      <div class="team-desc">Your designer can use Claude to synthesize user research, generate persona drafts, or explore UX copy variants — then apply their design judgment to what comes back. They stop waiting for you to summarize the research.</div>
+    </div>
+    <div class="team-item">
+      <div class="team-role">Data Analyst</div>
+      <div class="team-title">Reviewing AI Narratives</div>
+      <div class="team-desc">Your analyst uses Claude to draft data narratives from raw metrics — "here's what the numbers say." They spend their time on the "so what?" and the statistical rigor, not the prose.</div>
+    </div>
+    <div class="team-item">
+      <div class="team-role">Engineering Lead</div>
+      <div class="team-title">Spec Clarity at Speed</div>
+      <div class="team-desc">Your eng lead uses Claude to draft technical approach docs, generate edge case lists, or structure RFC feedback. They focus on architecture decisions, not document formatting.</div>
+    </div>
+  </div>
+
+  <h3>How to Introduce AI to Your Team</h3>
+  <p>The framing matters more than the tool. Here's what works and what doesn't:</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">What Doesn't Work</span>
+      <div class="ba-task">"You should use AI for your work"</div>
+      <div class="ba-desc">Vague, sounds like a mandate, implies they're being slow. People nod and ignore it. Or worse — they try it once, hit the valley, and conclude it doesn't work.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">What Works</span>
+      <div class="ba-task">"I used Claude for X — here's the before/after"</div>
+      <div class="ba-desc">Specific, shows real results, lets them see the workflow. The best adoption driver is showing, not telling. Share your actual prompt, your actual output, and the time you saved.</div>
+    </div>
+  </div>
+
+  <ul>
+    <li><strong>Demo with their problem, not yours.</strong> Show the designer how Claude handles a design research synthesis — not how it writes your PRD. People adopt tools that solve their problems.</li>
+    <li><strong>Share prompts, not advice.</strong> "Here's the exact prompt I use for sprint retro summaries — try it" is 10× more actionable than "you should try Claude for meeting notes."</li>
+    <li><strong>Normalize the review-over-create shift.</strong> Frame it explicitly: "Claude drafts, you judge. Your expertise is what makes the output good — Claude just handles the volume." This prevents the fear that AI replaces their skill.</li>
+    <li><strong>Start with the analyst or designer.</strong> Engineers often have their own AI workflows (Copilot, Claude Code). Analysts and designers are usually earlier in their adoption curve — and they benefit most from the synthesis/research use cases that PMs know well.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <span class="cl">The Multiplier Math</span>
+    <p>If you save 5 hours/week with AI, that's valuable. If your designer saves 3, your analyst saves 4, and your eng lead saves 2 — that's 14 hours/week across the team. More importantly, the <strong>quality</strong> changes: research is more comprehensive, specs are more thorough, and data narratives are clearer. The PM who enables their team's AI adoption creates more value than the PM who optimizes only their own workflow.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 08 FROM AUDIT TO ACTION ══════════ -->
+<section id="bridge" class="cs">
+  <span class="ct">Concept 08</span>
+  <h2 class="ctitle">From Audit to Action — Turning Insights into Module 03 Targets</h2>
+  <p class="csub">Your audit revealed leverage opportunities. Your understanding of the spectrum tells you which ones matter most. Now you need to turn those findings into the specific skill targets you'll build next.</p>
+
+  <p>This is the bridge between "understanding where AI helps" and "building the tools that help." Everything in this module has been about seeing clearly. Module 03 is about building. The connection between them is your <strong>three highest-leverage targets</strong> — the tasks you identified in the audit that sit at the right end of the leverage spectrum.</p>
+
+  <h3>The Three-Target Framework</h3>
+  <p>Pick exactly three targets from your audit. Not one (too narrow — you won't learn the range of AI applications). Not five (too scattered — you'll hit the ROI valley on all of them simultaneously). Three is the number that lets you go deep enough to reach the compounding phase on at least one.</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Target Criteria</th><th>Why It Matters</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>High frequency</strong></td>
+          <td>Weekly or biweekly tasks compound savings fastest</td>
+          <td>Weekly stakeholder update (52× annual payoff)</td>
+        </tr>
+        <tr>
+          <td><strong>High time-per-instance</strong></td>
+          <td>Tasks that take 30+ minutes have room for dramatic compression</td>
+          <td>Customer feedback synthesis (currently 2 hours)</td>
+        </tr>
+        <tr>
+          <td><strong>Currently skipped or rushed</strong></td>
+          <td>Tasks you'd do if you had time — the "makes it feasible" category</td>
+          <td>Competitive feature comparison (never done comprehensively)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What a Good Target Looks Like</h3>
+  <p>A good Module 03 target is specific enough to build a skill for. Compare:</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Too Vague</span>
+      <div class="ba-task">"Use AI for research"</div>
+      <div class="ba-desc">What kind of research? For whom? What format? This isn't a skill target — it's a category. You'll end up with a generic prompt that produces generic output.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">Specific Enough</span>
+      <div class="ba-task">"Weekly synthesis of Zendesk tickets into themed report for eng standup"</div>
+      <div class="ba-desc">Clear input (Zendesk tickets), clear output (themed report), clear audience (eng team), clear frequency (weekly). You can build a skill for this.</div>
+    </div>
+  </div>
+
+  <h3>Your Deliverable Chain Starts Here</h3>
+  <p>Every module in this curriculum feeds the next. Here's how Module 02's output connects forward:</p>
+
+  <ul>
+    <li><strong>Module 02 → Module 03:</strong> Your three audit targets become the tasks you build AI skills for. You won't build hypothetical skills — you'll build skills for your actual, measured, highest-leverage PM tasks.</li>
+    <li><strong>Module 03 → Module 04:</strong> The skills you build become the subjects of your first evaluation. You'll run 15+ inputs through each skill, label pass/fail, build a failure taxonomy, and improve them systematically.</li>
+    <li><strong>Module 04 → Module 05:</strong> Your evaluated, improved skills become the building blocks for multi-step agent workflows. A skill that handles one task becomes part of an agent that handles an entire workflow.</li>
+  </ul>
+
+  <div class="callout callout-insight">
+    <span class="cl">Why the Chain Matters</span>
+    <p><strong>The deliverable chain is why this curriculum builds real skills instead of theoretical knowledge.</strong> By Module 05, you're not building an agent from scratch — you're composing evaluated, reliable skills you've been refining for weeks. That's the difference between "I took an AI course" and "I have a working AI system for my PM workflow."</p>
+  </div>
+</section>
+
+
+<!-- ══════════ PROJECT ══════════ -->
+<div class="proj">
+  <span class="plbl">Module 02 Project</span>
+  <h4>The PM Work Audit + Deep Research Test</h4>
+  <p>This is the most personally relevant project in the curriculum. You're not working with hypothetical scenarios — you're mapping your actual work and finding your actual AI opportunities. The output directly shapes what you build in Module 03.</p>
+  <ol class="steps">
+    <li>
+      <strong>Inventory your last 2 weeks.</strong> Open your calendar, JIRA, Slack, email — whatever captures your work. List every task you did, even the ones that feel too small to mention. Estimate time spent on each. Be honest about the reformatting, the context-switching, the meeting prep you skipped.
+    </li>
+    <li>
+      <strong>Categorize each task.</strong> Use the three-bucket framework: "AI could draft," "AI could assist," or "requires my judgment." For each task in the first two buckets, note its frequency (daily, weekly, biweekly, monthly) and estimated time per instance.
+    </li>
+    <li>
+      <strong>Calculate leverage scores.</strong> For each first-two-bucket task: time saved per instance × annual frequency = leverage score. Rank them. Your top 3 are your Module 03 skill targets.
+    </li>
+    <li>
+      <strong>Run a Deep Research test.</strong> Take your single highest-leverage analysis task — the one that sits furthest right on the leverage spectrum — and run it as a Deep Research query. Evaluate what comes back: Is it useful as-is? What judgment layer did you need to add? How does the comprehensiveness compare to what you'd have produced manually? Write up your assessment.
+    </li>
+    <li>
+      <strong>Write your Module 02 deliverable.</strong> Compile your task audit into a simple table or spreadsheet. Include: task name, time per instance, frequency, category (draft/assist/judgment), leverage score. Highlight your top 3 targets. Attach your Deep Research evaluation (what you asked, what came back, your assessment of quality). This deliverable is the input for Module 03.
+    </li>
+  </ol>
+  <span class="deliv">Deliverable → PM task audit with leverage scores, 3 highlighted AI targets, and a Deep Research evaluation. This directly feeds into Module 03's skill-building projects.</span>
+</div>
+
+
+<!-- ─── Module Nav ─── -->
+<div class="mnav">
+  <a href="#" class="nbtn nbtn-prev">
+    <span class="nba">←</span>
+    <div><div class="nbl">Previous</div><div class="nbt">Module 01: How LLMs Actually Work</div></div>
+  </a>
+  <a href="#" class="nbtn">
+    <div><div class="nbl">Up Next</div><div class="nbt">Module 03: Building Your AI Toolkit</div></div>
+    <span class="nba">→</span>
+  </a>
+</div>
+
+<footer>The AI-Native PM · Module 02 of 08 · Updated April 2026</footer>
+
+</div>
+</body>
+</html>

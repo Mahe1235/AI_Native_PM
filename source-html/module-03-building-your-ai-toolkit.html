@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 03: Building Your AI Toolkit — The AI-Native PM</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0C0E12;--surface:#141720;--surface-raised:#1A1E2A;--surface-hover:#222738;
+  --border:#2A2F3E;--border-accent:#3D4460;--text:#E2E4EA;--text-muted:#8C91A0;--text-dim:#5C6178;
+  --accent:#F59E0B;--accent-glow:rgba(245,158,11,0.15);
+  --green:#34D399;--green-dim:rgba(52,211,153,0.12);
+  --red:#F87171;--red-dim:rgba(248,113,113,0.12);
+  --blue:#60A5FA;--blue-dim:rgba(96,165,250,0.12);
+  --purple:#A78BFA;--purple-dim:rgba(167,139,250,0.12);
+  --teal:#2DD4BF;--teal-dim:rgba(45,212,191,0.12);
+  --orange:#FB923C;--orange-dim:rgba(251,146,60,0.12);
+  --tier:#34D399;--tier-dim:rgba(52,211,153,0.12);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'IBM Plex Sans',-apple-system,sans-serif;
+  --mono:'IBM Plex Mono','Menlo',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.72;font-size:16px;font-weight:400;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+.container{max-width:820px;margin:0 auto;padding:0 28px}
+
+/* Breadcrumb */
+.bc{padding:24px 0 0;font-family:var(--mono);font-size:12px;color:var(--text-dim);display:flex;align-items:center;gap:8px}
+.bc a{color:var(--text-dim);text-decoration:none;transition:color .2s}.bc a:hover{color:var(--accent)}
+.bc .sep{color:var(--border-accent)}.bc .cur{color:var(--tier)}
+
+/* Hero */
+.hero{padding:48px 0 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,var(--tier-dim) 0%,transparent 65%);pointer-events:none}
+.mod-badge{display:inline-flex;align-items:center;gap:10px;margin-bottom:20px}
+.mod-num{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--tier);background:var(--tier-dim);padding:4px 10px;border-radius:4px}
+.mod-tier{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--text-dim);text-transform:uppercase}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,5vw,50px);line-height:1.12;color:var(--text);margin-bottom:16px;font-weight:400}
+.hero h1 em{color:var(--tier);font-style:italic}
+.hero-sub{font-size:17px;color:var(--text-muted);max-width:620px;line-height:1.7;margin-bottom:24px}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap}
+.hero-mi{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.5px;color:var(--text-dim);text-transform:uppercase}
+.hero-mi .dot{width:6px;height:6px;border-radius:50%;background:var(--tier)}
+
+/* Concept nav */
+.cnav{display:flex;gap:6px;padding:24px 0 56px;flex-wrap:wrap}
+.cp{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--surface);border:1px solid var(--border);border-radius:6px;color:var(--text-muted);font-size:13px;font-weight:500;text-decoration:none;transition:all .2s}
+.cp:hover{background:var(--surface-raised);border-color:var(--border-accent);color:var(--text)}
+
+/* Sections */
+.cs{padding:64px 0 40px;border-top:1px solid var(--border)}
+.ct{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--tier);margin-bottom:10px;display:block}
+.ctitle{font-family:var(--serif);font-size:clamp(26px,3.5vw,34px);font-weight:400;line-height:1.2;margin-bottom:10px}
+.csub{font-size:15px;color:var(--text-muted);max-width:600px;margin-bottom:32px}
+.ntag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);padding:2px 7px;border-radius:3px;vertical-align:middle;margin-left:4px}
+.utag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--teal);background:var(--teal-dim);padding:2px 8px;border-radius:3px;margin-left:4px;vertical-align:middle;white-space:nowrap}
+
+/* Typography */
+h3{font-family:var(--serif);font-size:22px;font-weight:400;margin:44px 0 14px;color:var(--text)}
+h4{font-size:14px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;margin:32px 0 10px;color:var(--text-muted)}
+p{margin-bottom:16px;color:var(--text-muted)}
+p strong,li strong{color:var(--text);font-weight:600}
+ul,ol{margin:0 0 20px 20px;color:var(--text-muted)}
+li{margin-bottom:8px}
+li::marker{color:var(--text-dim)}
+
+/* Callouts */
+.callout{border-radius:10px;padding:22px 26px;margin:24px 0;border:1px solid}
+.callout-insight{background:var(--accent-glow);border-color:rgba(245,158,11,0.25)}
+.callout-insight .cl{color:var(--accent)}
+.callout-warning{background:var(--red-dim);border-color:rgba(248,113,113,0.2)}
+.callout-warning .cl{color:var(--red)}
+.callout-tip{background:var(--green-dim);border-color:rgba(52,211,153,0.2)}
+.callout-tip .cl{color:var(--green)}
+.callout-context{background:var(--blue-dim);border-color:rgba(96,165,250,0.2)}
+.callout-context .cl{color:var(--blue)}
+.callout-counter{background:var(--orange-dim);border-color:rgba(251,146,60,0.2)}
+.callout-counter .cl{color:var(--orange)}
+.callout-watch{background:var(--purple-dim);border-color:rgba(167,139,250,0.2)}
+.callout-watch .cl{color:var(--purple)}
+.cl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:block}
+.callout p:last-child{margin-bottom:0}
+
+/* Before/After Cards */
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.ba-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.ba-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.ba-card.before::before{background:var(--red)}
+.ba-card.after::before{background:var(--green)}
+.ba-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
+.ba-card.before .ba-label{color:var(--red)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
+.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Prompt Block - NEW for Module 03 */
+.prompt-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin:24px 0;overflow:hidden}
+.prompt-header{padding:10px 20px;background:var(--surface-raised);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.prompt-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.prompt-tag.system{color:var(--green)}
+.prompt-tag.user{color:var(--blue)}
+.prompt-tag.output{color:var(--accent)}
+.prompt-tag.chain{color:var(--purple)}
+.prompt-body{padding:18px 20px;font-family:var(--mono);font-size:13px;line-height:1.7;color:var(--text-muted);white-space:pre-wrap;word-wrap:break-word}
+.prompt-body em{color:var(--text);font-style:normal;font-weight:500}
+.prompt-body .xml{color:var(--teal)}
+.prompt-body .comment{color:var(--text-dim);font-style:italic}
+
+/* Architecture Diagram */
+.arch-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0}
+.arch-label{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px}
+.arch-layers{display:flex;flex-direction:column;gap:8px}
+.arch-layer{display:flex;align-items:center;gap:12px;padding:14px 18px;border-radius:8px;border:1px solid var(--border)}
+.arch-layer.l-system{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2)}
+.arch-layer.l-docs{background:rgba(96,165,250,0.06);border-color:rgba(96,165,250,0.2)}
+.arch-layer.l-mcp{background:rgba(167,139,250,0.06);border-color:rgba(167,139,250,0.2)}
+.arch-layer.l-history{background:rgba(251,146,60,0.06);border-color:rgba(251,146,60,0.2)}
+.arch-layer.l-prompt{background:rgba(245,158,11,0.06);border-color:rgba(245,158,11,0.2)}
+.arch-pct{font-family:var(--mono);font-size:18px;font-weight:600;min-width:48px;text-align:right}
+.arch-layer.l-system .arch-pct{color:var(--green)}
+.arch-layer.l-docs .arch-pct{color:var(--blue)}
+.arch-layer.l-mcp .arch-pct{color:var(--purple)}
+.arch-layer.l-history .arch-pct{color:var(--orange)}
+.arch-layer.l-prompt .arch-pct{color:var(--accent)}
+.arch-info{flex:1}
+.arch-name{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
+.arch-desc{font-size:13px;color:var(--text-muted)}
+
+/* MCP Connector Grid */
+.mcp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.mcp-item{background:var(--surface);padding:18px 16px}
+.mcp-name{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.mcp-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+.mcp-tag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:6px;display:inline-block}
+.mcp-tag.free{color:var(--green);background:var(--green-dim)}
+.mcp-tag.pro{color:var(--purple);background:var(--purple-dim)}
+.mcp-tag.new{color:var(--teal);background:var(--teal-dim)}
+
+/* Skill Levels */
+.skill-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.skill-level{background:var(--surface);padding:20px 18px}
+.sl-num{font-family:var(--mono);font-size:22px;font-weight:600;margin-bottom:6px}
+.sl-num.s1{color:var(--green)}
+.sl-num.s2{color:var(--blue)}
+.sl-num.s3{color:var(--purple)}
+.sl-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
+.sl-when{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.5px;margin-bottom:8px}
+.sl-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.sl-cost{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* Chain Steps */
+.chain-flow{display:flex;flex-direction:column;gap:4px;margin:24px 0}
+.chain-step{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--surface);border:1px solid var(--border);border-radius:8px}
+.chain-num{font-family:var(--mono);font-size:14px;font-weight:600;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--border);color:var(--text-dim)}
+.chain-info{flex:1}
+.chain-title{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
+.chain-desc{font-size:13px;color:var(--text-muted)}
+.chain-arrow{display:flex;justify-content:center;color:var(--text-dim);font-family:var(--mono);font-size:14px}
+
+/* Workflow Compare */
+.wf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.wf-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.wf-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wf-card.disconnected::before{background:var(--red)}
+.wf-card.connected::before{background:var(--green)}
+.wf-label{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.wf-card.disconnected .wf-label{color:var(--red)}
+.wf-card.connected .wf-label{color:var(--green)}
+.wf-title{font-weight:700;font-size:15px;margin-bottom:12px;color:var(--text)}
+.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted);counter-reset:wfs}
+.wf-steps li{counter-increment:wfs;padding:6px 0 6px 28px;position:relative;margin:0}
+.wf-steps li::before{content:counter(wfs);position:absolute;left:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-dim);width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border-radius:50%;border:1px solid var(--border);top:6px}
+.wf-steps li em{color:var(--text);font-style:normal;font-weight:600}
+
+/* MCP Product Spec */
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
+.spec-item{background:var(--surface);padding:20px 18px}
+.spec-icon{font-size:20px;margin-bottom:8px}
+.spec-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
+.spec-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+
+/* Table */
+.tw-wrap{overflow-x:auto;margin:20px 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--surface-raised);padding:12px 16px;text-align:left;font-weight:600;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border)}
+td{padding:13px 16px;border-bottom:1px solid var(--border);color:var(--text-muted);vertical-align:top;line-height:1.6}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface)}
+
+/* Project Block */
+.proj{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;margin:48px 0 40px;position:relative;overflow:hidden}
+.proj::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--tier),transparent)}
+.plbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:inline-block;padding:3px 10px;border-radius:4px;color:var(--tier);background:var(--tier-dim)}
+.proj h4{font-family:var(--serif);font-size:22px;font-weight:400;margin:0 0 12px;text-transform:none;letter-spacing:normal;color:var(--text)}
+.proj p{color:var(--text-muted)}
+.proj .steps{margin:16px 0 0;list-style:none;padding:0;counter-reset:step}
+.proj .steps li{counter-increment:step;padding:12px 0 12px 44px;position:relative;border-left:1px solid var(--border);margin-bottom:0;margin-left:14px;font-size:15px}
+.proj .steps li::before{content:counter(step);position:absolute;left:-14px;top:12px;width:28px;height:28px;background:var(--surface-raised);border:1px solid var(--border);border-radius:50%;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;color:var(--text-muted)}
+.proj .steps li:last-child{border-left-color:transparent}
+.deliv{display:inline-block;margin-top:20px;font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-glow);padding:6px 14px;border-radius:5px}
+
+/* Module Nav */
+.mnav{display:flex;justify-content:space-between;align-items:center;padding:32px 0;border-top:1px solid var(--border);margin-top:40px;gap:16px;flex-wrap:wrap}
+.nbtn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;text-decoration:none;transition:all .2s}
+.nbtn:hover{background:var(--surface-raised);border-color:var(--border-accent)}
+.nbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);display:block;margin-bottom:2px}
+.nbt{font-size:14px;font-weight:600;color:var(--text)}
+.nba{font-size:18px;color:var(--text-dim)}
+.nbtn-prev{text-align:right}
+
+/* Footer */
+footer{padding:40px 0;text-align:center;color:var(--text-dim);font-size:13px;font-family:var(--mono)}
+
+/* Responsive */
+@media(max-width:640px){
+  .container{padding:0 18px}.cs{padding:48px 0 32px}.proj{padding:24px 18px}
+  .ba-grid,.wf-grid{grid-template-columns:1fr}
+  .mcp-grid,.skill-levels,.spec-grid{grid-template-columns:1fr}
+  .mnav{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ─── Breadcrumb ─── -->
+<div class="bc">
+  <a href="#">The AI-Native PM</a>
+  <span class="sep">→</span>
+  <a href="#">Tier 2: Build Your Workflow</a>
+  <span class="sep">→</span>
+  <span class="cur">Module 03</span>
+</div>
+
+<!-- ─── Hero ─── -->
+<header class="hero">
+  <div class="mod-badge">
+    <span class="mod-num">MODULE 03</span>
+    <span class="mod-tier">Tier 2 · Build Your Workflow</span>
+  </div>
+  <h1>Building Your<br><em>AI Toolkit</em></h1>
+  <p class="hero-sub">Module 02 identified your highest-leverage PM tasks. This module turns them into a system: specialized AI workspaces, connected to the tools you already use, producing reliable output you can trust. You'll go from ad-hoc prompting to a repeatable AI operating system.</p>
+  <div class="hero-meta">
+    <div class="hero-mi"><span class="dot"></span> 6–8 hours</div>
+    <div class="hero-mi"><span class="dot"></span> No code required</div>
+    <div class="hero-mi"><span class="dot"></span> 12 concepts</div>
+  </div>
+</header>
+
+<!-- ─── Concept Nav ─── -->
+<nav class="cnav">
+  <a href="#workspaces" class="cp">Designing AI Workspaces</a>
+  <a href="#system-prompts" class="cp">System Prompt Anatomy</a>
+  <a href="#claude-4x" class="cp">What Claude 4.x Needs</a>
+  <a href="#projects" class="cp">Projects as Skills</a>
+  <a href="#mcp-intro" class="cp">MCP Integration Layer</a>
+  <a href="#few-shot" class="cp">Few-Shot Examples</a>
+  <a href="#mcp-workflows" class="cp">MCP Workflows</a>
+  <a href="#chaining" class="cp">Prompt Chaining</a>
+  <a href="#skills" class="cp">Claude Skills</a>
+  <a href="#mcp-apps" class="cp">MCP Apps</a>
+  <a href="#structured" class="cp">Structured Outputs</a>
+  <a href="#mcp-product" class="cp">MCP Product Thinking</a>
+</nav>
+
+
+<!-- ══════════ 01 DESIGNING AI WORKSPACES ══════════ -->
+<section id="workspaces" class="cs">
+  <span class="ct">Concept 01</span>
+  <h2 class="ctitle">Designing AI Workspaces, Not Writing Prompts</h2>
+  <p class="csub">Your prompt is roughly 10% of what determines output quality. The other 90% is everything else the model sees. Designing that environment is the real skill.</p>
+
+  <p>Most people think the key to getting good AI output is writing a better prompt. That's like thinking the key to onboarding a new hire is writing a better first email. The email matters — but the onboarding package, the documentation, the tools, the team context, and the access permissions matter far more.</p>
+
+  <p>The industry has a name for this shift: <strong>context engineering.</strong> If prompt engineering is about <em>what you say</em> to the model, context engineering is about <em>what the model sees</em> when you say it. Andrej Karpathy framed it well: the LLM is a CPU, the context window is RAM, and your job is to be the operating system — loading exactly the right information for each task.</p>
+
+  <p>For PMs, this reframe is liberating. You're not trying to find magic words. You're designing an environment — one where a very capable, very literal new team member has everything they need to do great work.</p>
+
+  <h3>What Actually Fills the Context Window</h3>
+
+  <p>Every time Claude generates a response, it sees all of this — not just your message:</p>
+
+  <div class="arch-wrap">
+    <div class="arch-label">What Claude Sees When You Send a Message</div>
+    <div class="arch-layers">
+      <div class="arch-layer l-system">
+        <span class="arch-pct">~30%</span>
+        <div class="arch-info">
+          <div class="arch-name">System Prompt / Project Instructions</div>
+          <div class="arch-desc">Your role definition, constraints, output format, examples. The "job description" for this conversation.</div>
+        </div>
+      </div>
+      <div class="arch-layer l-docs">
+        <span class="arch-pct">~25%</span>
+        <div class="arch-info">
+          <div class="arch-name">Uploaded Documents & Knowledge</div>
+          <div class="arch-desc">Files in your Project, reference docs, data. The "employee handbook" and relevant briefs.</div>
+        </div>
+      </div>
+      <div class="arch-layer l-mcp">
+        <span class="arch-pct">~20%</span>
+        <div class="arch-info">
+          <div class="arch-name">MCP Tool Outputs</div>
+          <div class="arch-desc">Live data from JIRA, Slack, Google Drive, Notion — pulled in real-time. The "current state of the world."</div>
+        </div>
+      </div>
+      <div class="arch-layer l-history">
+        <span class="arch-pct">~15%</span>
+        <div class="arch-info">
+          <div class="arch-name">Conversation History</div>
+          <div class="arch-desc">Everything said so far in this chat. The "shared context" from your working session.</div>
+        </div>
+      </div>
+      <div class="arch-layer l-prompt">
+        <span class="arch-pct">~10%</span>
+        <div class="arch-info">
+          <div class="arch-name">Your Actual Message</div>
+          <div class="arch-desc">The question or instruction you just typed. What most people think of as "the prompt."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>The percentages vary, but the principle is consistent: <strong>your typed message is a small fraction of what shapes the output.</strong> The system prompt, the uploaded docs, the connected tools, the conversation history — that's where output quality is really determined.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Research suggests LLM reasoning performance starts degrading around 3,000 tokens of prompt — well below the technical maximum.</strong> The practical sweet spot for most task instructions is 150–300 words. More context doesn't mean better output, even with a 200K token window. You want <em>minimum viable context</em>: the smallest, most relevant set of high-signal information. Think of it as designing an onboarding doc, not writing an encyclopedia.</p>
+  </div>
+
+  <h3>The Workspace Design Mindset</h3>
+
+  <p>From this point forward, every time you set up an AI interaction, think in terms of workspace design:</p>
+
+  <ul>
+    <li><strong>What role does this specialist need to play?</strong> (→ system prompt)</li>
+    <li><strong>What reference materials do they need on their desk?</strong> (→ uploaded docs)</li>
+    <li><strong>What live information do they need to pull?</strong> (→ MCP connectors)</li>
+    <li><strong>What does great output look like for this task?</strong> (→ examples)</li>
+    <li><strong>What should they never do?</strong> (→ constraints)</li>
+  </ul>
+
+  <p>This module teaches you each of these components — and how they combine into a system that produces reliable, high-quality output across your PM workflow.</p>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 01 Connection</span>
+    <p>In Module 01, you learned that context windows act like a shared whiteboard — everything on it influences the output. This module is about <strong>intentionally designing what goes on that whiteboard</strong> for each task in your workflow. The concepts of token limits, prompt placement, and structured outputs you learned earlier become practical tools here.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 02 SYSTEM PROMPT ANATOMY ══════════ -->
+<section id="system-prompts" class="cs">
+  <span class="ct">Concept 02</span>
+  <h2 class="ctitle">The Anatomy of a Great System Prompt</h2>
+  <p class="csub">A system prompt isn't a conversation opener. It's a contract between you and your AI — specifying exactly what it does, how it does it, and what success looks like.</p>
+
+  <p>The single highest-leverage thing you can do to improve AI output quality is write a better system prompt. Not a better question — a better <em>job description.</em> The system prompt persists across every conversation in a Claude Project. It defines the specialist you're building.</p>
+
+  <h3>The Contract-Style Pattern</h3>
+  <p>The most effective system prompts follow a five-section pattern. Think of it as a contract: clear terms, no ambiguity, with examples of what compliance looks like.</p>
+
+  <div class="prompt-block">
+    <div class="prompt-header">
+      <span class="prompt-tag system">System Prompt</span> — Weekly Stakeholder Update Skill
+    </div>
+    <div class="prompt-body"><span class="xml">&lt;role&gt;</span>
+You are a PM communications specialist. You transform raw project data into concise stakeholder updates for senior leadership.
+<span class="xml">&lt;/role&gt;</span>
+
+<span class="xml">&lt;success_criteria&gt;</span>
+- Lead with the single most important decision or blocker
+- Keep total length under 400 words
+- Include exactly 3 sections: Progress, Risks, Asks
+- Every risk must have a mitigation plan or a specific ask
+- Use concrete numbers, not vague qualifiers ("3 of 7 stories complete" not "good progress")
+<span class="xml">&lt;/success_criteria&gt;</span>
+
+<span class="xml">&lt;constraints&gt;</span>
+- Never use jargon the VP of Marketing wouldn't understand
+- Never invent metrics or dates — if data is missing, flag it explicitly
+- Never bury bad news below the fold
+<span class="xml">&lt;/constraints&gt;</span>
+
+<span class="xml">&lt;uncertainty_handling&gt;</span>
+If you're missing information needed for a complete update, state what's missing and suggest where to find it rather than guessing.
+<span class="xml">&lt;/uncertainty_handling&gt;</span>
+
+<span class="xml">&lt;output_format&gt;</span>
+## [Project Name] — Week of [Date]
+
+**Top Line:** [One sentence: the most important thing leadership needs to know]
+
+### Progress
+[2-3 bullet points with concrete metrics]
+
+### Risks
+[Each risk with severity and mitigation/ask]
+
+### Asks
+[Numbered list of specific decisions or resources needed, with deadlines]
+<span class="xml">&lt;/output_format&gt;</span></div>
+  </div>
+
+  <p>Notice what this prompt <em>doesn't</em> do: it doesn't describe how LLMs work, it doesn't beg the model to try its best, it doesn't use threatening language. It specifies the job clearly — role, success criteria, constraints, how to handle uncertainty, and the exact output format. Claude fills in the rest.</p>
+
+  <h3>Why This Works: The Job Description Analogy</h3>
+
+  <p>When you hire someone, you don't write them a pep talk. You write a job description: here's what you do, here's what success looks like, here's what you never do. A system prompt works the same way. The five sections map directly:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Section</th><th>Job Description Equivalent</th><th>What It Does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Role</strong></td><td>Job title + team</td><td>Focuses the model's behavior and vocabulary</td></tr>
+        <tr><td><strong>Success criteria</strong></td><td>KPIs / OKRs</td><td>Defines what "good" looks like — measurably</td></tr>
+        <tr><td><strong>Constraints</strong></td><td>Compliance / guardrails</td><td>Defines what to never do — prevents common failures</td></tr>
+        <tr><td><strong>Uncertainty handling</strong></td><td>"Escalation policy"</td><td>Tells the model what to do when it's not sure — reduces hallucination</td></tr>
+        <tr><td><strong>Output format</strong></td><td>Template / deliverable spec</td><td>Eliminates format guesswork — output is consistent every time</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The XML Structure Advantage</h3>
+  <p>You'll notice the example uses XML tags like <code>&lt;role&gt;</code> and <code>&lt;constraints&gt;</code>. This isn't decorative. <strong>XML tags are the most effective structuring method for Claude specifically.</strong> They help Claude parse complex prompts unambiguously, especially when you're mixing instructions, context, examples, and variable inputs. Multiple independent tests have confirmed XML tags produce more reliable instruction-following than Markdown headers or numbered lists.</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">Practical Tip</span>
+    <p><strong>Use consistent, descriptive tag names across your prompts.</strong> <code>&lt;role&gt;</code>, <code>&lt;instructions&gt;</code>, <code>&lt;context&gt;</code>, <code>&lt;examples&gt;</code>, <code>&lt;output_format&gt;</code> — pick names that mean something and reuse them. Nest tags when content has a natural hierarchy. Claude will parse them reliably and you'll build a personal prompt vocabulary that works across all your skills.</p>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Length Sweet Spot</span>
+    <p><strong>The best system prompts are 150–300 words.</strong> That's a half-page, not a novel. Structure beats length every time. A 200-word prompt with clear XML sections, specific success criteria, and one good example will outperform a 1,500-word wall of text. If your prompt is getting long, you probably need to split it into a system prompt + uploaded reference document instead.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 03 WHAT CLAUDE 4.X NEEDS FROM YOU ══════════ -->
+<section id="claude-4x" class="cs">
+  <span class="ct">Concept 03</span>
+  <h2 class="ctitle">What Claude 4.x Actually Needs From You</h2>
+  <p class="csub">Claude's latest models follow instructions literally. This changes how you write prompts — in ways that are better for PMs once you understand the shift.</p>
+
+  <p>If you used earlier Claude models (3.5 or before), you might have gotten away with vague instructions. The model would infer what you probably meant and add extras you didn't ask for. Claude 4.x — including Opus 4.6 and Sonnet 4.6 — behaves differently: <strong>if you don't ask for it, you won't get it.</strong></p>
+
+  <p>This sounds like a limitation. It's actually an upgrade. You get predictable, controllable output. No more unwanted additions, no more inconsistent formatting between sessions. But it requires you to be explicit about what you want.</p>
+
+  <h3>The Five Behavioral Shifts</h3>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Behavior</th><th>What Changed</th><th>What to Do Now</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Literal following</strong></td>
+          <td>Model no longer infers "above and beyond" behavior from vague prompts</td>
+          <td>Be explicit: "Include 5 competitive alternatives with pricing" not "be comprehensive"</td>
+        </tr>
+        <tr>
+          <td><strong>Aggressive language hurts</strong></td>
+          <td>"CRITICAL!", "YOU MUST", "NEVER EVER" overtrigger the model and produce worse results</td>
+          <td>Use calm, direct instructions: "Use this tool when..." not "ALWAYS USE THIS TOOL"</td>
+        </tr>
+        <tr>
+          <td><strong>Motivated constraints work best</strong></td>
+          <td>Explaining <em>why</em> a rule exists helps the model generalize it to edge cases</td>
+          <td>"Format as prose paragraphs because this will be read aloud at standup" beats "Do not use bullet points"</td>
+        </tr>
+        <tr>
+          <td><strong>More concise by default</strong></td>
+          <td>Model may skip summaries, jump directly to action, provide shorter responses</td>
+          <td>If you want detail, ask: "Provide a thorough analysis with supporting evidence for each point"</td>
+        </tr>
+        <tr>
+          <td><strong>Proactive tool use</strong></td>
+          <td>Model is more aggressive about using tools; previous "nudge" language now causes overtriggering</td>
+          <td>Remove old prompts like "If in doubt, use [tool]" — model will trigger appropriately on its own</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The Golden Rule Test</h3>
+  <p>Anthropic's official prompting guide offers this simple test: <strong>show your prompt to a colleague with minimal context on the task and ask them to follow it. If they'd be confused, Claude will be too.</strong> If your colleague would ask "what do you mean by 'comprehensive'?" or "how long should this be?" or "who is the audience?" — your prompt is missing critical information.</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Vague — Claude Guesses</span>
+      <div class="ba-task">"Write a competitive analysis for my product."</div>
+      <div class="ba-desc">Missing: Which competitors? What dimensions? What format? For whom? How long? Claude will produce something — but it will be generic and probably wrong for your context.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">Explicit — Claude Delivers</span>
+      <div class="ba-task">"Compare Notion, Linear, and Asana on these dimensions: pricing, API capabilities, and enterprise security. Format as a comparison table with our product (Acme PM) in the fourth column. Audience: engineering leadership evaluating migration. Max 500 words plus table."</div>
+      <div class="ba-desc">Clear competitors, clear dimensions, clear format, clear audience, clear length. Claude can hit this spec on the first attempt.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>"Don't" instructions are sometimes more effective than "do" instructions — but only when motivated.</strong> "Never mention competitor pricing as an advantage because our legal team flagged this as a compliance risk" works better than both "Don't mention pricing" (unmotivated negative) and "Focus on feature differentiation" (vague positive). The reason matters because it helps Claude apply the constraint intelligently to cases you didn't anticipate.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 04 CLAUDE PROJECTS ══════════ -->
+<section id="projects" class="cs">
+  <span class="ct">Concept 04</span>
+  <h2 class="ctitle">Claude Projects as Your Skill Management System</h2>
+  <p class="csub">Each Claude Project is a specialist on your team. System prompt = skill definition. Uploaded docs = reference library. You're building a personal AI team, one Project at a time.</p>
+
+  <p>A Claude Project is the simplest way to turn what you learned in Concepts 01–03 into something permanent. Instead of rewriting your system prompt every session, you create a Project with instructions that persist across every conversation inside it. Upload relevant documents and they become the Project's always-available reference library.</p>
+
+  <p>Think of your Projects as specialists sitting at desks, each with a clearly defined job:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Project</th><th>System Prompt Focus</th><th>Uploaded Docs</th><th>You Use It For</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Sprint Reporter</strong></td>
+          <td>Transforms raw sprint data into leadership-ready updates</td>
+          <td>Stakeholder update template, team roster, OKR doc</td>
+          <td>Weekly status emails, sprint review prep</td>
+        </tr>
+        <tr>
+          <td><strong>Feedback Synthesizer</strong></td>
+          <td>Extracts patterns from customer feedback, categorizes by theme and severity</td>
+          <td>Product taxonomy, persona definitions, last quarter's themes</td>
+          <td>Support ticket analysis, NPS deep-dives, interview synthesis</td>
+        </tr>
+        <tr>
+          <td><strong>Competitive Analyst</strong></td>
+          <td>Compares features, pricing, positioning against specific competitors</td>
+          <td>Competitive landscape doc, your product's feature matrix, pricing page</td>
+          <td>Win/loss analysis, feature comparison tables, market positioning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The Three Context Decisions</h3>
+  <p>For every Project, you make three decisions about where information lives:</p>
+
+  <ul>
+    <li><strong>System prompt:</strong> Instructions that apply to every conversation. Role, success criteria, constraints, output format. Changes rarely. This is the "job description."</li>
+    <li><strong>Uploaded documents:</strong> Reference material the specialist needs on their desk. Product docs, templates, style guides, competitor data. Changes occasionally — update when the source material changes.</li>
+    <li><strong>Per-conversation context:</strong> The specific data for this task — the sprint's JIRA export, this week's support tickets, the specific competitor to analyze. Changes every session. This is what you paste or connect via MCP.</li>
+  </ul>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Key Design Principle</span>
+    <p><strong>Stable information goes in the system prompt and uploaded docs. Variable information goes in the conversation.</strong> If you find yourself repeatedly pasting the same context, it probably belongs in the Project's uploaded docs. If your system prompt changes with every task, you're conflating instructions with data — split them.</p>
+  </div>
+
+  <h3>Building Your First Three Projects</h3>
+  <p>Your Module 02 deliverable identified three highest-leverage PM tasks. Those are your first three Projects. For each one:</p>
+
+  <ol>
+    <li><strong>Write a contract-style system prompt</strong> using the five-section pattern from Concept 02. Keep it under 300 words.</li>
+    <li><strong>Upload 2–3 reference documents</strong> that the specialist would need. Your product's feature matrix, the stakeholder template you want output to match, the personas your team uses.</li>
+    <li><strong>Run the task three times</strong> with different inputs. Is the output consistently good? If not, the issue is almost always in the system prompt — unclear success criteria or missing constraints.</li>
+  </ol>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 02 Connection</span>
+    <p>Your PM work audit identified tasks with specific inputs, outputs, audiences, and frequencies. That specificity is exactly what makes a good Project. "Weekly synthesis of Zendesk tickets into themed report for eng standup" becomes a Project with a system prompt defining the synthesis methodology, uploaded docs containing the team's product taxonomy, and per-conversation input of this week's ticket export.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 05 MCP INTEGRATION LAYER ══════════ -->
+<section id="mcp-intro" class="cs">
+  <span class="ct">Concept 05</span>
+  <h2 class="ctitle">MCP — Your AI's Integration Layer</h2>
+  <p class="csub">The Model Context Protocol is the open standard that lets Claude talk to your work tools. Think USB-C for AI: one standard, works everywhere.</p>
+
+  <p>You've built Projects with system prompts and uploaded docs. But there's a problem: the data your specialist needs is often <em>live.</em> This week's JIRA tickets are different from last week's. Today's Slack highlights aren't yesterday's. You've been copy-pasting this data manually — which defeats half the point of having an AI system.</p>
+
+  <p><strong>MCP (Model Context Protocol) fixes this.</strong> It's an open standard — originally created by Anthropic in late 2024, now governed by the Linux Foundation and adopted by Claude, ChatGPT, VS Code, Gemini, and hundreds of other tools. When you enable an MCP connector, Claude can pull live data from your work tools directly, without copy-paste.</p>
+
+  <h3>The Ecosystem in April 2026</h3>
+
+  <p>The numbers tell the adoption story: 97 million monthly SDK downloads, 10,000+ public MCP servers, and every major AI platform on board. Here's what matters for PMs:</p>
+
+  <div class="mcp-grid">
+    <div class="mcp-item">
+      <div class="mcp-name">Google Workspace</div>
+      <div class="mcp-desc">Gmail, Drive, Calendar, Sheets. Search emails, read documents, check calendar — all from inside Claude.</div>
+      <span class="mcp-tag free">All Plans</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Microsoft 365</div>
+      <div class="mcp-desc">Outlook, SharePoint, OneDrive, Teams. Search threads, read docs, review meeting notes.</div>
+      <span class="mcp-tag new">New · Apr 2026</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Slack</div>
+      <div class="mcp-desc">Search channels, read threads, draft messages. Pull team discussions into your AI workflow.</div>
+      <span class="mcp-tag free">All Plans</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Notion</div>
+      <div class="mcp-desc">Read pages, query databases, add entries. Your wiki and project docs accessible without switching tabs.</div>
+      <span class="mcp-tag free">All Plans</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Linear / Jira</div>
+      <div class="mcp-desc">Pull sprint data, read ticket details, track status. Live project data instead of stale exports.</div>
+      <span class="mcp-tag pro">Pro+</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">GitHub</div>
+      <div class="mcp-desc">Search repos, read PRs, review code. Engineering context without asking your eng lead.</div>
+      <span class="mcp-tag free">All Plans</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Airtable</div>
+      <div class="mcp-desc">Query bases, cross-table analysis. Your lightweight databases searchable in natural language.</div>
+      <span class="mcp-tag pro">Pro+</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Zapier</div>
+      <div class="mcp-desc">Trigger workflows across 7,000+ apps. Bridge to tools that don't have native MCP connectors yet.</div>
+      <span class="mcp-tag pro">Pro+</span>
+    </div>
+    <div class="mcp-item">
+      <div class="mcp-name">Custom MCP</div>
+      <div class="mcp-desc">Build your own remote MCP server to connect any internal tool or API. Full flexibility.</div>
+      <span class="mcp-tag pro">Pro+</span>
+    </div>
+  </div>
+
+  <h3>How It Works in Practice</h3>
+  <p>Setup takes seconds for most connectors: go to Claude's settings, find the connector, click "Connect," authorize via OAuth. Once enabled, Claude can use the connector in any conversation where you've toggled it on.</p>
+
+  <p>The practical advice from teams already using MCP: <strong>don't connect everything at once.</strong> Start with the two or three tools you use most. Build workflows that save time with those. Then expand. The directory grows quarterly — Anthropic has confirmed new integrations regularly ship.</p>
+
+  <div class="callout callout-warning">
+    <span class="cl">Security Note</span>
+    <p><strong>MCP connectors use delegated permissions — Claude can only access what you can access.</strong> This means if you can see a confidential Slack channel, so can Claude when the connector is active. Be deliberate about which connectors you enable for which conversations. Review permissions during setup. Community MCP servers carry additional risk — stick with official connectors from the directory for sensitive workflows, and limit write access until you trust the workflow.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 06 FEW-SHOT EXAMPLES ══════════ -->
+<section id="few-shot" class="cs">
+  <span class="ct">Concept 06</span>
+  <h2 class="ctitle">Few-Shot Examples and Output Anchoring</h2>
+  <p class="csub">One well-chosen example of ideal output is worth more than ten paragraphs of instructions. This is the single most reliable way to control quality and consistency.</p>
+
+  <p>You've written a contract-style system prompt with clear success criteria. Your Projects are set up. Output is better — but maybe not consistent. Sometimes the format drifts. Sometimes the tone shifts. Sometimes the depth varies between sessions.</p>
+
+  <p><strong>Examples fix this.</strong> When you show Claude what great output looks like for your specific task, consistency jumps dramatically. This technique — called "few-shot prompting" — is one of the most reliable tools in your workspace design kit.</p>
+
+  <h3>The Sweet Spot: 2–3 Examples</h3>
+
+  <p>Anthropic's official guidance: include 3–5 examples for best results. In practice, for PM tasks, 2–3 carefully chosen examples hit the sweet spot. Here's why:</p>
+
+  <ul>
+    <li><strong>1 example</strong> (one-shot) often suffices for format and tone. Start here.</li>
+    <li><strong>2–3 examples</strong> cover format + edge cases. This is the reliable range for most PM skills.</li>
+    <li><strong>5+ examples</strong> can backfire — the model starts mimicking surface patterns (word choice, sentence structure) instead of understanding the underlying task. You get output that looks like a copy of your examples rather than a thoughtful application of the pattern.</li>
+  </ul>
+
+  <h3>The Golden Examples Technique</h3>
+  <p>The best examples aren't hypothetical — they're your own best work. Every time Claude produces output you're particularly happy with, save it. These "golden examples" become the anchors for your system prompt:</p>
+
+  <div class="prompt-block">
+    <div class="prompt-header">
+      <span class="prompt-tag system">System Prompt Excerpt</span> — Example Section
+    </div>
+    <div class="prompt-body"><span class="xml">&lt;examples&gt;</span>
+<span class="xml">&lt;example&gt;</span>
+<span class="comment">&lt;!-- A real output you were happy with, anonymized if needed --&gt;</span>
+
+<em>## ProjectX — Week of March 10</em>
+
+<em>**Top Line:** API migration is 2 days behind schedule due to unexpected auth compatibility issues; need eng director decision on scope cut by Friday.</em>
+
+<em>### Progress</em>
+<em>- 5 of 8 endpoints migrated and passing integration tests</em>
+<em>- Performance benchmarks show 40% latency improvement vs legacy</em>
+<em>- Partner notification emails sent to 12 of 15 affected accounts</em>
+
+<em>### Risks</em>
+<em>- **Auth compatibility (High):** OAuth token refresh breaks for 3 enterprise clients using legacy SDK. Mitigation: Engineering proposed a shim layer, needs 2 additional days. Ask below.</em>
+
+<em>### Asks</em>
+<em>1. Approve 2-day extension for auth shim (eng director, by Fri March 14)</em>
+<em>2. Confirm partner comms go out Monday regardless of auth fix (PM lead, by Fri)</em>
+<span class="xml">&lt;/example&gt;</span>
+<span class="xml">&lt;/examples&gt;</span></div>
+  </div>
+
+  <p>When Claude sees this example alongside your system prompt, it understands: this is the exact format, this is the level of specificity for metrics, this is how risks get structured, this is what an "ask" looks like. No amount of verbal instruction communicates this as clearly as one concrete example.</p>
+
+  <div class="callout callout-tip">
+    <span class="cl">Make Examples Diverse</span>
+    <p><strong>If you use 2–3 examples, make them cover different situations</strong> — not just variations of the same scenario. For a stakeholder update skill: one example with good news (on-track sprint), one with a blocker (delayed timeline with an ask), and one with mixed signals (some features ahead, others behind). This teaches Claude the pattern, not a template.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 07 MCP WORKFLOWS ══════════ -->
+<section id="mcp-workflows" class="cs">
+  <span class="ct">Concept 07</span>
+  <h2 class="ctitle">Designing MCP-Connected Workflows</h2>
+  <p class="csub">The real power isn't connecting tools. It's combining your system prompt, your examples, and your live data into a workflow that runs in minutes instead of hours.</p>
+
+  <p>You've got Projects with great system prompts and examples. You've got MCP connectors pulling live data. Now you combine them — and this is where things get transformative.</p>
+
+  <p>Consider the weekly sprint summary that most PMs spend 45–90 minutes on every Friday:</p>
+
+  <div class="wf-grid">
+    <div class="wf-card disconnected">
+      <span class="wf-label">Without MCP · 45–90 min</span>
+      <div class="wf-title">Manual Sprint Summary</div>
+      <ol class="wf-steps">
+        <li>Open JIRA, export sprint board as CSV</li>
+        <li>Open Slack, scroll through #engineering channel</li>
+        <li>Open Google Docs, copy stakeholder template</li>
+        <li>Manually compile data into template</li>
+        <li>Paste into Claude Project, ask for formatting</li>
+        <li>Review, edit, send</li>
+      </ol>
+    </div>
+    <div class="wf-card connected">
+      <span class="wf-label">With MCP · 10–15 min</span>
+      <div class="wf-title">Connected Sprint Summary</div>
+      <ol class="wf-steps">
+        <li>Open your Sprint Reporter Project (MCP enabled)</li>
+        <li>Type: <em>"Pull this sprint's data and highlights"</em></li>
+        <li>Claude queries JIRA for sprint status, reads Slack #engineering for key threads</li>
+        <li>Claude generates stakeholder update using your system prompt, examples, and live data</li>
+        <li>Review, edit, send</li>
+      </ol>
+    </div>
+  </div>
+
+  <p>The time savings are real — but the quality shift matters more. When Claude can see the actual JIRA data instead of your hastily pasted export, it catches things you might miss: stories that were moved to the backlog mid-sprint, a blocker that was flagged on Tuesday but resolved by Thursday, velocity trends that only appear when comparing against the previous sprint.</p>
+
+  <h3>Design Principles for Connected Workflows</h3>
+
+  <ul>
+    <li><strong>Start with your highest-leverage Project.</strong> Don't MCP-connect everything at once. Pick the one Project from your Module 02 targets that uses the most external data. Connect that one first. Get the workflow right. Then expand.</li>
+    <li><strong>Separate data-pull from analysis.</strong> A useful pattern: first ask Claude to pull and summarize the raw data ("Show me this sprint's JIRA status and Slack highlights"), review what it found, then ask for the analysis ("Now generate the stakeholder update"). This two-step approach lets you verify the data before the synthesis.</li>
+    <li><strong>Tell Claude which connectors to use.</strong> If multiple connectors are enabled, be specific: "Search Slack #product-launches for any threads about the API migration" rather than "find what people said about the migration." Specificity reduces noise.</li>
+  </ul>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The biggest productivity gains from MCP aren't in tasks you already do — they're in tasks you used to skip.</strong> Most PMs don't do comprehensive competitive monitoring weekly because it takes too long. With a Competitive Analyst Project connected to web search, you can run it in 15 minutes. Most PMs don't synthesize all support tickets before a planning meeting. With a Feedback Synthesizer connected to your support tool, you can. MCP makes the "would be nice if I had time" category suddenly feasible.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 08 PROMPT CHAINING ══════════ -->
+<section id="chaining" class="cs">
+  <span class="ct">Concept 08</span>
+  <h2 class="ctitle">Prompt Chaining vs. Mega-Prompts</h2>
+  <p class="csub">Complex tasks fail in one shot. Break them into steps. Each step is simpler, more reliable, and — critically — easier to evaluate and improve independently.</p>
+
+  <p>It's tempting to write one massive prompt that does everything: "Research competitors, synthesize findings, compare on 12 dimensions, create a table, draft an executive summary, and suggest three strategic responses." That's a mega-prompt. It will produce output, but it will be unreliable — some sections great, others mediocre, and you won't know which part of the prompt caused which problem.</p>
+
+  <p><strong>Prompt chaining breaks complex tasks into sequential steps.</strong> Each step has one job. The output of step one becomes the input for step two.</p>
+
+  <div class="chain-flow">
+    <div class="chain-step">
+      <span class="chain-num">1</span>
+      <div class="chain-info">
+        <div class="chain-title">Research</div>
+        <div class="chain-desc">"Search for recent news and updates about Notion, Linear, and Monday.com. Focus on enterprise features, pricing changes, and new AI capabilities launched in the last 6 months."</div>
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <span class="chain-num">2</span>
+      <div class="chain-info">
+        <div class="chain-title">Synthesize</div>
+        <div class="chain-desc">"Using the research above, create a structured comparison on these dimensions: pricing tiers, API capabilities, AI features, enterprise security certifications, and integration ecosystem."</div>
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <span class="chain-num">3</span>
+      <div class="chain-info">
+        <div class="chain-title">Draft</div>
+        <div class="chain-desc">"Based on the comparison, draft a 300-word executive summary for our VP of Product. Lead with the most significant competitive threat. End with 2 recommended strategic responses."</div>
+      </div>
+    </div>
+    <div class="chain-arrow">↓</div>
+    <div class="chain-step">
+      <span class="chain-num">4</span>
+      <div class="chain-info">
+        <div class="chain-title">Review</div>
+        <div class="chain-desc">"Review the executive summary against these criteria: (1) every claim has supporting data, (2) no jargon the VP wouldn't know, (3) recommendations are specific and actionable. Flag any issues."</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Each step is simple, testable, and improvable independently. If the research step is weak, you fix that prompt without touching the synthesis logic. If the executive summary is too vague, you tighten step 3 without re-running the research. This separation is what makes chaining powerful — and it's exactly what Module 04 will help you evaluate systematically.</p>
+
+  <h3>When Chaining vs. When a Single Prompt</h3>
+
+  <p>Claude 4.x models have strong adaptive thinking — they often handle multi-step reasoning internally without you breaking it into pieces. Explicit chaining is still valuable when:</p>
+
+  <ul>
+    <li><strong>You need to inspect intermediate outputs.</strong> "Show me the raw data before you analyze it."</li>
+    <li><strong>Different steps have different quality issues.</strong> Research might be great but synthesis weak — you need to know which step to fix.</li>
+    <li><strong>The task spans multiple conversations or sessions.</strong> Each step's output can be saved and resumed later.</li>
+    <li><strong>You want a self-correction loop.</strong> Generate → review against criteria → refine. This "generate then critique" pattern is the most common production chaining pattern.</li>
+  </ul>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 04 Preview</span>
+    <p><strong>Prompt chaining becomes essential when you start evaluating your skills.</strong> In Module 04, you'll run 15+ inputs through each skill and label outputs as pass or fail. If a skill uses a single mega-prompt, you can only fix the whole thing at once. If it uses a chain, you can identify exactly which step produces the failures and fix just that step. Build chains now — you'll thank yourself in Module 04.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 09 CLAUDE SKILLS ══════════ -->
+<section id="skills" class="cs">
+  <span class="ct">Concept 09</span>
+  <h2 class="ctitle">Claude Skills — From Projects to Portable Expertise</h2>
+  <p class="csub">Projects are great for personal use. Skills are the production version: portable, versioned, shareable, and executable across every Claude surface.</p>
+
+  <p>You've been building Projects — each one a specialist workspace with a system prompt and uploaded docs. Skills take this further. A Skill is a packaged folder of instructions that Claude loads automatically when relevant. The analogy that captures the difference: <strong>if MCP is the kitchen (access to tools and ingredients), Skills are the recipes (how to use them).</strong></p>
+
+  <h3>Projects vs. Skills</h3>
+
+  <div class="ba-grid">
+    <div class="ba-card before" style="--before-color:var(--blue)">
+      <span class="ba-label" style="color:var(--blue)">Project</span>
+      <div class="ba-task">Subject-focused workspace</div>
+      <div class="ba-desc">Contains everything about one topic: Q3 planning docs, competitive landscape, customer research. You manually open the right Project and work inside it. Good for personal, conversational use — where you're the one choosing which specialist to engage.</div>
+    </div>
+    <div class="ba-card after" style="--after-color:var(--green)">
+      <span class="ba-label" style="color:var(--green)">Skill</span>
+      <div class="ba-task">Behavior-focused instructions</div>
+      <div class="ba-desc">Defines how Claude handles a specific type of task: generating stakeholder updates, analyzing feedback, creating competitive tables. Loads automatically when Claude detects a matching request. Portable across Claude.ai, Claude Code, and API.</div>
+    </div>
+  </div>
+
+  <h3>How Skills Work: Progressive Disclosure</h3>
+
+  <p>Skills use a three-level architecture that keeps Claude efficient. Only the minimum information loads at each stage:</p>
+
+  <div class="skill-levels">
+    <div class="skill-level">
+      <div class="sl-num s1">L1</div>
+      <div class="sl-title">Metadata</div>
+      <div class="sl-when">Always loaded at startup</div>
+      <div class="sl-desc">The YAML frontmatter: skill name and description. Just enough for Claude to know when this skill is relevant. Like a job title on a team roster.</div>
+      <div class="sl-cost">~100 tokens per skill</div>
+    </div>
+    <div class="skill-level">
+      <div class="sl-num s2">L2</div>
+      <div class="sl-title">Instructions</div>
+      <div class="sl-when">Loaded when skill is triggered</div>
+      <div class="sl-desc">The SKILL.md body: full workflow, examples, constraints. Like opening the specialist's playbook. Only loads when Claude thinks this skill matches your request.</div>
+      <div class="sl-cost">&lt;5,000 tokens typically</div>
+    </div>
+    <div class="skill-level">
+      <div class="sl-num s3">L3</div>
+      <div class="sl-title">Resources</div>
+      <div class="sl-when">Loaded as needed</div>
+      <div class="sl-desc">Additional files: scripts, templates, reference docs. Like the specialist pulling a reference manual off their shelf. Only accessed when specifically needed.</div>
+      <div class="sl-cost">Effectively unlimited</div>
+    </div>
+  </div>
+
+  <p>This architecture means you can install many Skills without flooding Claude's context. Claude reads only the metadata for each installed Skill. The full instructions only load when a specific skill triggers — keeping the context window lean.</p>
+
+  <h3>When to Graduate from Project to Skill</h3>
+
+  <p>Not everything should be a Skill. Use this decision framework:</p>
+
+  <ul>
+    <li><strong>Stay with Projects</strong> when you need subject-specific knowledge (uploaded docs, project context) and the skill is just for your personal use.</li>
+    <li><strong>Graduate to a Skill</strong> when you've refined a workflow through multiple iterations (it works reliably), you want it to trigger automatically across any conversation, or you want to share it with your team.</li>
+    <li><strong>Skill + MCP together</strong> for the most powerful patterns. The Skill tells Claude the recipe; the MCP connector provides the live ingredients. Example: a "Sprint Summary Skill" that knows your update format, combined with a JIRA connector that provides the live data.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <span class="cl">Skills Are an Open Standard</span>
+    <p><strong>Anthropic published Agent Skills as an open standard.</strong> The same SKILL.md format works across Claude.ai, Claude Code, Cursor, Gemini CLI, and other compatible tools. You're not locked in. Skills are distributed as folders — upload to Claude.ai via Settings → Capabilities → Skills, or place directly in a Claude Code skills directory. Organization admins can deploy skills workspace-wide.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 10 MCP APPS ══════════ -->
+<section id="mcp-apps" class="cs">
+  <span class="ct">Concept 10</span>
+  <h2 class="ctitle">MCP Apps — Your Conversation Becomes a Workspace</h2>
+  <p class="csub">MCP connectors pull data into your conversation. MCP Apps render interactive UIs inside it. You filter dashboards, edit timelines, and review designs — without ever leaving Claude.</p>
+
+  <p>MCP connectors (Concept 05) let Claude <em>read</em> data from your tools. MCP Apps go further: they <em>render interactive interfaces</em> inside your conversation. Instead of Claude describing your Amplitude dashboard in text, the dashboard appears in the chat — and you can filter, drill down, and explore it.</p>
+
+  <h3>What MCP Apps Look Like in Practice</h3>
+
+  <p>When an MCP App is active, your conversation window becomes a hybrid workspace:</p>
+
+  <ul>
+    <li><strong>Amplitude:</strong> Charts and dashboards render inline. You can ask Claude to filter by segment, change date ranges, and compare cohorts — all within the chat.</li>
+    <li><strong>Asana / Linear:</strong> Project timelines and task boards appear as interactive components. You can edit due dates, reassign tasks, and create new items without switching tabs.</li>
+    <li><strong>Figma:</strong> Design files render for review. You can annotate, comment, and reference specific components in your conversation with Claude.</li>
+    <li><strong>Slack:</strong> Message composers render inline. Draft messages, preview them in context, edit, and send — all from within Claude.</li>
+  </ul>
+
+  <p>For PMs, this collapses the "tab-switching tax." Instead of operating across six different tools — each with its own interface, its own login, its own mental model — you operate from one environment. Claude becomes your workspace, not just your assistant.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Connectors vs. Apps</span>
+    <p><strong>Connectors are for data access. Apps are for interactive work.</strong> Use a connector when you need Claude to pull information and analyze it (searching Slack, reading JIRA data, querying a database). Use an MCP App when you want to interact with the tool visually — filtering dashboards, editing project plans, reviewing designs. Many tools offer both, and they complement each other.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 11 STRUCTURED OUTPUTS ══════════ -->
+<section id="structured" class="cs">
+  <span class="ct">Concept 11</span>
+  <h2 class="ctitle">Structured Outputs for Reliable Data Extraction</h2>
+  <p class="csub">Stop hoping Claude returns the right format. Structured outputs enforce a JSON schema — guaranteed conformance, every time.</p>
+
+  <p>You learned about structured outputs in Module 01 as a concept. Now you put them to work. When you need Claude to extract data into a specific shape — a competitive feature table, categorized support tickets, a formatted spec — structured outputs enforce the schema. The output isn't "pretty close" to JSON. It's validated against your exact specification.</p>
+
+  <h3>When to Use Structured Outputs</h3>
+
+  <p>Structured outputs shine when the downstream consumer of Claude's work is a system, not a human. Common PM use cases:</p>
+
+  <ul>
+    <li><strong>Competitive feature matrices:</strong> Extract features, pricing, and capabilities into a consistent table format you can import into a spreadsheet or database.</li>
+    <li><strong>Support ticket categorization:</strong> Classify each ticket by theme, severity, feature area, and sentiment — structured so you can aggregate and chart the results.</li>
+    <li><strong>Meeting action items:</strong> Extract action items with owner, deadline, and status fields from meeting notes or transcripts.</li>
+    <li><strong>User story extraction:</strong> Pull structured user stories (role, action, benefit, acceptance criteria) from freeform requirements documents.</li>
+  </ul>
+
+  <h3>How Structured Outputs Work with MCP</h3>
+
+  <p>The combination is powerful: MCP pulls live data in, structured outputs shape data going out. A workflow might look like:</p>
+
+  <ol>
+    <li><strong>MCP connector</strong> pulls the last 200 support tickets from your help desk</li>
+    <li><strong>System prompt</strong> defines your categorization taxonomy (product area, severity, theme)</li>
+    <li><strong>Structured output</strong> ensures each ticket is categorized into exactly the fields your analytics dashboard expects</li>
+    <li><strong>Result:</strong> A clean, importable dataset — no manual cleanup needed</li>
+  </ol>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 01 Connection</span>
+    <p>In Module 01, you learned that structured outputs guarantee JSON schema conformance — not "please try to return JSON" but validated output against a spec you define. Here's the practical payoff: <strong>every skill you build that produces data (not prose) should use structured outputs.</strong> The format consistency means your outputs are reliably importable into spreadsheets, dashboards, and other tools without manual cleanup every time.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ 12 MCP PRODUCT THINKING ══════════ -->
+<section id="mcp-product" class="cs">
+  <span class="ct">Concept 12</span>
+  <h2 class="ctitle">Thinking Like an MCP Product Manager</h2>
+  <p class="csub">"Should your product have an MCP server?" is the 2026 version of "Should we have an API?" If you're a PM at a SaaS company, this question is already on your roadmap — or it should be.</p>
+
+  <p>You've been using MCP as a consumer — enabling connectors to pull data into your AI workflows. Now think about it as a product strategy: what happens when your <em>own</em> product exposes an MCP server?</p>
+
+  <p>The logic mirrors the API economy of the 2010s. When every SaaS product built a REST API, it wasn't because APIs were trendy — it was because customers demanded integration. MCP is following the same arc. Forrester predicts 30% of enterprise app vendors will launch MCP servers in 2026. The question isn't whether to build one, but when and what to expose.</p>
+
+  <h3>What an MCP Server Exposes</h3>
+
+  <p>MCP servers publish three types of capabilities to AI clients:</p>
+
+  <div class="spec-grid">
+    <div class="spec-item">
+      <div class="spec-icon">⚡</div>
+      <div class="spec-title">Tools</div>
+      <div class="spec-desc">Actions the AI can perform. "Create a ticket," "update a status," "search projects." Equivalent to API endpoints, but discoverable by any MCP client.</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon">📄</div>
+      <div class="spec-title">Resources</div>
+      <div class="spec-desc">Data the AI can read. "Project details," "user profiles," "ticket history." Read-only data sources that provide context for AI reasoning.</div>
+    </div>
+    <div class="spec-item">
+      <div class="spec-icon">💬</div>
+      <div class="spec-title">Prompts</div>
+      <div class="spec-desc">Reusable templates for common workflows. "Summarize this project," "create a weekly report." Pre-built interaction patterns for your product.</div>
+    </div>
+  </div>
+
+  <h3>The N×M Problem MCP Solves</h3>
+
+  <p>Before MCP, if your product wanted to work with 5 AI platforms (Claude, ChatGPT, Gemini, Copilot, Cursor), you needed 5 custom integrations — each with its own auth flow, data format, and maintenance burden. With MCP, you build one server and it works with all of them. The 97 million monthly SDK downloads confirm: the standard has won.</p>
+
+  <h3>The PM Decisions</h3>
+
+  <p>If you're speccing an MCP server for your product, these are the decisions that matter:</p>
+
+  <ul>
+    <li><strong>Read-only first, write later.</strong> Start by exposing resources (data that AI can read). This is low-risk and immediately valuable — customers can query your product's data through their AI workflows. Add write tools (create, update, delete) once you've validated the use cases and security model.</li>
+    <li><strong>Scope permissions deliberately.</strong> MCP uses delegated permissions — the AI can only do what the authenticated user can do. But that's still a broad surface. Consider tool-level access controls: expose search and read tools to all users, but restrict create and delete tools to admins.</li>
+    <li><strong>Think in workflows, not endpoints.</strong> Don't just mirror your REST API as MCP tools. Design for how AI agents actually use your product. A "get-project-summary" tool that returns a synthesized view is more useful to an AI than separate calls to list-tasks, list-milestones, get-project-details that the AI has to orchestrate itself.</li>
+    <li><strong>Prompt injection matters.</strong> Content from your product flows into AI context windows. If a malicious user can inject text into a field your MCP server returns, that text could influence AI behavior. Sanitize outputs. This is the MCP equivalent of XSS prevention.</li>
+  </ul>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Strategic View</span>
+    <p><strong>MCP servers are becoming the new competitive moat for SaaS products.</strong> When a customer's AI assistant can seamlessly pull data from your tool, create items, and trigger workflows — all in natural language — the switching cost increases dramatically. The product that's deeply embedded in a customer's AI workflow is harder to replace than the product that just has a good UI. This is the "API moat" thesis, updated for the AI era. Module 07 goes deeper into this strategic analysis.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ PROJECT ══════════ -->
+<div class="proj">
+  <span class="plbl">Module 03 Project</span>
+  <h4>Build Your AI Toolkit: 3 Projects + MCP Workflow + Product Spec</h4>
+  <p>This is the most hands-on project in the curriculum. You're not working with hypothetical tasks — you're building the actual AI system for the three highest-leverage PM tasks you identified in Module 02. Everything you build here becomes the subject of your first evaluation in Module 04.</p>
+  <ol class="steps">
+    <li>
+      <strong>Build your first Claude Project.</strong> Take your #1 target from the Module 02 audit. Write a contract-style system prompt (role, success criteria, constraints, uncertainty handling, output format). Upload 2–3 reference documents. Run the task three times with different inputs and iterate the system prompt until output is consistently good.
+    </li>
+    <li>
+      <strong>Build Projects 2 and 3.</strong> Repeat for your other two audit targets. For at least one, include 2–3 few-shot examples in the system prompt using the golden examples technique. Compare output consistency with and without examples.
+    </li>
+    <li>
+      <strong>Connect MCP to your highest-data Project.</strong> Pick the Project that relies most on live data (sprint summaries, feedback synthesis, competitive analysis). Enable the relevant MCP connector(s). Run the workflow with MCP connected vs. with manually pasted data. Document what changed: time saved, data completeness, quality differences.
+    </li>
+    <li>
+      <strong>Write an MCP product spec.</strong> If your product had an MCP server, what would it expose? Write a brief spec: 3–5 tools (actions AI can take), 3–5 resources (data AI can read), and 1–2 prompt templates (common workflows). Include notes on permission scoping and security considerations. One page is enough.
+    </li>
+    <li>
+      <strong>Document your toolkit.</strong> Compile a simple reference: each Project's name, purpose, system prompt summary, connected tools, and one example of output. This becomes your personal AI toolkit reference — and the input for Module 04's evaluation.
+    </li>
+  </ol>
+  <span class="deliv">Deliverable → 3 working Claude Projects with system prompts, 1 MCP-connected workflow with before/after comparison, 1 MCP product spec, and a toolkit reference doc. Your best-performing skill becomes the subject of Module 04's evaluation.</span>
+</div>
+
+
+<!-- ─── Module Nav ─── -->
+<div class="mnav">
+  <a href="#" class="nbtn nbtn-prev">
+    <span class="nba">←</span>
+    <div><div class="nbl">Previous</div><div class="nbt">Module 02: The AI-Native Mindset</div></div>
+  </a>
+  <a href="#" class="nbtn">
+    <div><div class="nbl">Up Next</div><div class="nbt">Module 04: Evaluating Your AI Work</div></div>
+    <span class="nba">→</span>
+  </a>
+</div>
+
+<footer>The AI-Native PM · Module 03 of 08 · Updated April 2026</footer>
+
+</div>
+</body>
+</html>
