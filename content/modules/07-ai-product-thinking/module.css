@@ -59,7 +59,7 @@
 .df-row{display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center}
 .df-row:last-child{border-bottom:none}
 .df-row.hdr{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding-bottom:12px}
-.df-signal{font-size:14px;color:var(--text-muted)}
+.df-signal{font-size:14px;color:var(--text)}
 .df-verdict{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;text-align:center;white-space:nowrap}
 .df-yes{background:var(--green-dim);color:var(--green)}
 .df-no{background:var(--red-dim);color:var(--red)}
@@ -74,7 +74,7 @@
 .sp-item.active .sp-lbl{color:var(--purple)}
 .sp-item.done .sp-lbl{color:var(--green)}
 .sp-title{font-weight:700;font-size:14px;margin-bottom:6px;color:var(--text)}
-.sp-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:8px}
+.sp-desc{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:8px}
 .sp-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono)}
 
 /* UX Pattern cards */
@@ -89,7 +89,7 @@
 .ux-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
 .ux-card.c1 .ux-lbl{color:var(--blue)}.ux-card.c2 .ux-lbl{color:var(--green)}.ux-card.c3 .ux-lbl{color:var(--purple)}.ux-card.c4 .ux-lbl{color:var(--orange)}.ux-card.c5 .ux-lbl{color:var(--teal)}
 .ux-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.ux-desc{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+.ux-desc{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:8px}
 .ux-trust{font-size:12px;color:var(--text-dim);font-family:var(--mono);padding-top:10px;border-top:1px solid var(--border)}
 .ux-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono);margin-top:6px}
 
@@ -98,28 +98,28 @@
 .incb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;display:block}
 .inct{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
 .inc
-.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text);font-family:var(--mono)}
 
 /* Success cards */
 .succ{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0;border-left:3px solid var(--green)}
 .succb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:block}
 .succt{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
 .succ
-.succl{margin-top:12px;padding:10px 14px;background:var(--green-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+.succl{margin-top:12px;padding:10px 14px;background:var(--green-dim);border-radius:6px;font-size:13px;color:var(--text);font-family:var(--mono)}
 
 /* Metric cards */
 .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}
 .metric-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px}
 .mc-val{font-family:var(--serif);font-size:28px;color:var(--purple);margin-bottom:4px}
 .mc-lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
-.mc-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.mc-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Autonomy ladder */
 .alad{display:grid;grid-template-columns:1fr;gap:0;margin:24px 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .alad-ste
 .alad-step:last-child{border-bottom:none}
 .alad-stage{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-.alad-desc{font-size:14px;color:var(--text-muted)}
+.alad-desc{font-size:14px;color:var(--text)}
 .alad-gate{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;text-align:center;white-space:nowrap}
 
 /* Before/after */
@@ -129,7 +129,7 @@
 .ba-card.before .ba-label{color:var(--red)}
 .ba-card.after .ba-label{color:var(--green)}
 .ba-task{font-weight:700;font-size:14px;color:var(--text);margin-bottom:8px}
-.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.ba-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Moat cards */
 .moat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
@@ -143,7 +143,7 @@
 .moat-card.weak .moat-lbl{color:var(--red)}
 .moat-card.med .moat-lbl{color:var(--accent)}
 .moat-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.moat-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.moat-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Table */
 .tw-wra
@@ -179,7 +179,7 @@ tr:hover
 .track.a .track-lbl{color:var(--purple)}
 .track.b .track-lbl{color:var(--teal)}
 .track-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.track-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.track-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Nav */
 

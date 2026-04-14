@@ -218,9 +218,9 @@ pre code { background: none; padding: 0; color: inherit; }
 .proj::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--tier-color), transparent); }
 .plbl { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; display: inline-block; padding: 3px 10px; border-radius: 4px; color: var(--tier-color); background: var(--tier-color-dim); }
 .proj h4 { font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 0 0 12px; text-transform: none; letter-spacing: normal; color: var(--text); }
-.proj p { color: var(--text-muted); }
+.proj p { color: var(--text); }
 .proj .steps { margin: 16px 0 0; list-style: none; padding: 0; counter-reset: step; }
-.proj .steps li { counter-increment: step; padding: 12px 0 12px 44px; position: relative; border-left: 1px solid var(--border); margin-bottom: 0; margin-left: 14px; font-size: 15px; color: var(--text-muted); }
+.proj .steps li { counter-increment: step; padding: 12px 0 12px 44px; position: relative; border-left: 1px solid var(--border); margin-bottom: 0; margin-left: 14px; font-size: 15px; color: var(--text); }
 .proj .steps li::before { content: counter(step); position: absolute; left: -14px; top: 12px; width: 28px; height: 28px; background: var(--surface-raised); border: 1px solid var(--border); border-radius: 50%; font-family: var(--mono); font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
 .proj .steps li:last-child { border-left-color: transparent; }
 .deliv { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-glow); padding: 6px 14px; border-radius: 5px; }

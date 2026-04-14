@@ -65,7 +65,7 @@
 .ba-card.before .ba-label{color:var(--red)}
 .ba-card.after .ba-label{color:var(--green)}
 .ba-task{font-weight:600;font-size:14px;color:var(--text);margin-bottom:6px}
-.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.ba-desc{font-size:13px;color:var(--text);line-height:1.55}
 
 /* Prompt Block - NEW for Module 03 */
 .prompt-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin:24px 0;overflow:hidden}
@@ -98,13 +98,13 @@
 .arch-layer.l-prompt .arch-pct{color:var(--accent)}
 .arch-info{flex:1}
 .arch-name{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
-.arch-desc{font-size:13px;color:var(--text-muted)}
+.arch-desc{font-size:13px;color:var(--text)}
 
 /* MCP Connector Grid */
 .mcp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:24px 0;border-radius:12px;overflow:hidden;background:var(--border)}
 .mcp-item{background:var(--surface);padding:18px 16px}
 .mcp-name{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
-.mcp-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+.mcp-desc{font-size:12px;color:var(--text);line-height:1.5}
 .mcp-tag{font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:6px;display:inline-block}
 .mcp-tag.free{color:var(--green);background:var(--green-dim)}
 .mcp-tag.pro{color:var(--purple);background:var(--purple-dim)}
@@ -119,7 +119,7 @@
 .sl-num.s3{color:var(--purple)}
 .sl-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:4px}
 .sl-when{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.5px;margin-bottom:8px}
-.sl-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.sl-desc{font-size:13px;color:var(--text);line-height:1.55}
 .sl-cost{font-family:var(--mono);font-size:11px;color:var(--text-dim);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
 
 /* Chain Steps */
@@ -128,7 +128,7 @@
 .chain-num{font-family:var(--mono);font-size:14px;font-weight:600;min-width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--border);color:var(--text-dim)}
 .chain-info{flex:1}
 .chain-title{font-weight:600;font-size:14px;color:var(--text);margin-bottom:2px}
-.chain-desc{font-size:13px;color:var(--text-muted)}
+.chain-desc{font-size:13px;color:var(--text)}
 .chain-arrow{display:flex;justify-content:center;color:var(--text-dim);font-family:var(--mono);font-size:14px}
 
 /* Workflow Compare */
@@ -141,7 +141,7 @@
 .wf-card.disconnected .wf-label{color:var(--red)}
 .wf-card.connected .wf-label{color:var(--green)}
 .wf-title{font-weight:700;font-size:15px;margin-bottom:12px;color:var(--text)}
-.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text-muted);counter-reset:wfs}
+.wf-steps{list-style:none;padding:0;margin:0;font-size:13px;color:var(--text);counter-reset:wfs}
 .wf-steps 
 .wf-steps li::before{content:counter(wfs);position:absolute;left:0;font-family:var(--mono);font-size:11px;font-weight:600;color:var(--text-dim);width:20px;height:20px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border-radius:50%;border:1px solid var(--border);top:6px}
 .wf-steps li em{color:var(--text);font-style:normal;font-weight:600}
@@ -151,7 +151,7 @@
 .spec-item{background:var(--surface);padding:20px 18px}
 .spec-icon{font-size:20px;margin-bottom:8px}
 .spec-title{font-weight:700;font-size:14px;color:var(--text);margin-bottom:6px}
-.spec-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
+.spec-desc{font-size:13px;color:var(--text);line-height:1.55}
 
 /* Table */
 .tw-wra

@@ -63,7 +63,7 @@
 .sp-item.active .sp-lbl{color:var(--orange)}
 .sp-item.done .sp-lbl{color:var(--green)}
 .sp-title{font-weight:700;font-size:14px;margin-bottom:6px;color:var(--text)}
-.sp-desc{font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:8px}
+.sp-desc{font-size:13px;color:var(--text);line-height:1.55;margin-bottom:8px}
 .sp-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono)}
 
 /* Decision table */
@@ -71,7 +71,7 @@
 .dt-row{display:grid;grid-template-columns:1fr auto auto;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);align-items:center}
 .dt-row:last-child{border-bottom:none}
 .dt-row.hdr{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);padding-bottom:12px}
-.dt-signal{font-size:14px;color:var(--text-muted)}
+.dt-signal{font-size:14px;color:var(--text)}
 .dt-verdict{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;text-align:center;white-space:nowrap}
 .dt-skill{background:var(--green-dim);color:var(--green)}
 .dt-agent{background:var(--orange-dim);color:var(--orange)}
@@ -89,7 +89,7 @@
 .react-step.act .rs-label{color:var(--orange)}
 .react-step.observe .rs-label{color:var(--green)}
 .react-step.repeat .rs-label{color:var(--purple)}
-.rs-content{font-size:14px;color:var(--text-muted);line-height:1.6}
+.rs-content{font-size:14px;color:var(--text);line-height:1.6}
 .react-step:last-child{border-left-color:transparent}
 
 /* Safety ladder */
@@ -102,7 +102,7 @@
 .ladder-card.safe .ladder-lbl{color:var(--green)}
 .ladder-card.danger .ladder-lbl{color:var(--red)}
 .ladder-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.ladder-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.ladder-desc{font-size:13px;color:var(--text);line-height:1.6}
 .ladder-ex{font-size:12px;color:var(--text-dim);font-family:var(--mono);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
 
 /* Incident cards */
@@ -110,7 +110,7 @@
 .incb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;display:block}
 .inct{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
 .inc
-.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text);font-family:var(--mono)}
 
 /* Before/after */
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
@@ -119,7 +119,7 @@
 .ba-card.before .ba-label{color:var(--red)}
 .ba-card.after .ba-label{color:var(--green)}
 .ba-task{font-weight:700;font-size:14px;color:var(--text);margin-bottom:8px}
-.ba-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.ba-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Code blocks */
 
@@ -132,7 +132,7 @@ pre
 .tm-row{display:grid;grid-template-columns:140px repeat(4,1fr);gap:4px;margin-bottom:4px}
 .tm-cell{padding:10px 12px;font-size:12px;font-family:var(--mono);border-radius:4px;text-align:center}
 .tm-hdr{background:var(--surface-raised);color:var(--text-dim);font-weight:600;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
-.tm-label{background:var(--surface-raised);color:var(--text-muted);text-align:left;font-weight:600}
+.tm-label{background:var(--surface-raised);color:var(--text);text-align:left;font-weight:600}
 .tm-pass{background:var(--green-dim);color:var(--green)}
 .tm-fail{background:var(--red-dim);color:var(--red)}
 .tm-warn{background:var(--accent-glow);color:var(--accent)}

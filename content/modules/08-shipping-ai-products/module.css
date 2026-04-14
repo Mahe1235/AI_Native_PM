@@ -57,21 +57,21 @@
 .incb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px;display:block}
 .inct{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
 .inc
-.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+.incl{margin-top:12px;padding:10px 14px;background:var(--red-dim);border-radius:6px;font-size:13px;color:var(--text);font-family:var(--mono)}
 
 /* Success cards */
 .succ{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px;margin:24px 0;border-left:3px solid var(--green)}
 .succb{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:block}
 .succt{font-weight:700;font-size:15px;color:var(--text);margin-bottom:8px}
 .succ
-.succl{margin-top:12px;padding:10px 14px;background:var(--green-dim);border-radius:6px;font-size:13px;color:var(--text-muted);font-family:var(--mono)}
+.succl{margin-top:12px;padding:10px 14px;background:var(--green-dim);border-radius:6px;font-size:13px;color:var(--text);font-family:var(--mono)}
 
 /* Metric cards */
 .metric-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}
 .metric-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px}
 .mc-val{font-family:var(--serif);font-size:28px;color:var(--purple);margin-bottom:4px}
 .mc-lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
-.mc-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.mc-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* UX Pattern / guardrail cards */
 .ux-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0}
@@ -86,7 +86,7 @@
 .ux-lbl{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;display:block}
 .ux-card.c1 .ux-lbl{color:var(--blue)}.ux-card.c2 .ux-lbl{color:var(--green)}.ux-card.c3 .ux-lbl{color:var(--purple)}.ux-card.c4 .ux-lbl{color:var(--orange)}.ux-card.c5 .ux-lbl{color:var(--teal)}.ux-card.c6 .ux-lbl{color:var(--red)}
 .ux-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.ux-desc{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:8px}
+.ux-desc{font-size:13px;color:var(--text);line-height:1.6;margin-bottom:8px}
 .ux-trust{font-size:12px;color:var(--text-dim);font-family:var(--mono);padding-top:10px;border-top:1px solid var(--border)}
 
 /* Autonomy ladder */
@@ -94,7 +94,7 @@
 .alad-ste
 .alad-step:last-child{border-bottom:none}
 .alad-stage{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
-.alad-desc{font-size:14px;color:var(--text-muted)}
+.alad-desc{font-size:14px;color:var(--text)}
 .alad-gate{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 12px;border-radius:4px;text-align:center;white-space:nowrap}
 
 /* Checklist */
@@ -102,7 +102,7 @@
 .check-item{display:flex;gap:14px;padding:16px 22px;border-bottom:1px solid var(--border);background:var(--surface);align-items:flex-start}
 .check-item:last-child{border-bottom:none}
 .check-box{flex-shrink:0;width:20px;height:20px;border:2px solid var(--border-accent);border-radius:4px;margin-top:2px}
-.check-text{font-size:14px;color:var(--text-muted);line-height:1.6}
+.check-text{font-size:14px;color:var(--text);line-height:1.6}
 .check-text strong{color:var(--text)}
 
 /* Table */
@@ -140,14 +140,14 @@ tr:hover
 .track.b .track-lbl{color:var(--teal)}
 .track.c .track-lbl{color:var(--orange)}
 .track-title{font-weight:700;font-size:15px;margin-bottom:8px;color:var(--text)}
-.track-desc{font-size:13px;color:var(--text-muted);line-height:1.6}
+.track-desc{font-size:13px;color:var(--text);line-height:1.6}
 
 /* Curriculum arc */
 .arc{display:grid;grid-template-columns:1fr;gap:0;margin:24px 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
 .arc-item{display:grid;grid-template-columns:80px 1fr;gap:16px;padding:16px 22px;border-bottom:1px solid var(--border);background:var(--surface);align-items:center}
 .arc-item:last-child{border-bottom:none}
 .arc-num{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--purple)}
-.arc-text{font-size:14px;color:var(--text-muted)}
+.arc-text{font-size:14px;color:var(--text)}
 .arc-text strong{color:var(--text)}
 
 /* Nav */

@@ -68,7 +68,7 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
                 gap: 8,
                 padding: "6px 0",
                 textDecoration: "none",
-                color: isActive ? tierColor : "var(--text-dim)",
+                color: isActive ? tierColor : "var(--text-muted)",
                 fontSize: 13,
                 fontWeight: isActive ? 600 : 400,
                 transition: "color .15s",
@@ -81,7 +81,7 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
                 style={{
                   fontFamily: "var(--mono)",
                   fontSize: 10,
-                  color: isActive ? tierColor : "var(--text-dim)",
+                  color: isActive ? tierColor : "var(--text-muted)",
                   flexShrink: 0,
                   width: 20,
                 }}
