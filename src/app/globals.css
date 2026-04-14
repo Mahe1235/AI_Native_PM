@@ -40,6 +40,11 @@
   /* Tier color defaults (overridden per module via data-tier attribute) */
   --tier-color: var(--blue);
   --tier-color-dim: var(--blue-dim);
+
+  /* Font aliases — next/font sets --font-sans/serif/mono; alias to shorthand */
+  --sans: var(--font-sans, system-ui, sans-serif);
+  --serif: var(--font-serif, Georgia, serif);
+  --mono: var(--font-mono, "Courier New", monospace);
 }
 
 /* Tier color overrides */
@@ -68,6 +73,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 72px; /* sticky nav height (56px) + 16px buffer */
 }
 
 body {
@@ -158,12 +164,12 @@ body {
 
 /* Typography within content */
 .module-content h3 { font-family: var(--serif); font-size: 22px; font-weight: 400; margin: 44px 0 14px; color: var(--text); }
-.module-content h4 { font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; margin: 32px 0 10px; color: var(--text-muted); }
-.module-content p { margin-bottom: 16px; color: var(--text-muted); }
+.module-content h4 { font-size: 14px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; margin: 32px 0 10px; color: var(--text); }
+.module-content p { margin-bottom: 16px; color: var(--text); }
 .module-content p strong, .module-content li strong { color: var(--text); font-weight: 600; }
-.module-content ul, .module-content ol { margin: 0 0 20px 20px; color: var(--text-muted); }
+.module-content ul, .module-content ol { margin: 0 0 20px 20px; color: var(--text); }
 .module-content li { margin-bottom: 8px; }
-.module-content li::marker { color: var(--text-dim); }
+.module-content li::marker { color: var(--text-muted); }
 
 /* Callouts */
 .callout { border-radius: 10px; padding: 22px 26px; margin: 24px 0; border: 1px solid; }
@@ -193,13 +199,13 @@ body {
 /* Tables */
 .tw-wrap { overflow-x: auto; margin: 20px 0; border-radius: 10px; border: 1px solid var(--border); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
-th { background: var(--surface-raised); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; color: var(--text-muted); border-bottom: 1px solid var(--border); }
-td { padding: 13px 16px; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: top; line-height: 1.6; }
+th { background: var(--surface-raised); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 11px; letter-spacing: .5px; text-transform: uppercase; color: var(--text); border-bottom: 1px solid var(--border); }
+td { padding: 13px 16px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.6; }
 tr:last-child td { border-bottom: none; }
 tr:hover td { background: var(--surface); }
 
 /* Code */
-pre { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 22px; margin: 20px 0; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--text-muted); }
+pre { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 22px; margin: 20px 0; overflow-x: auto; font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--text); }
 code { font-family: var(--mono); font-size: .88em; background: var(--surface-raised); padding: 2px 7px; border-radius: 4px; color: var(--accent); }
 pre code { background: none; padding: 0; color: inherit; }
 
