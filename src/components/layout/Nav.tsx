@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { ModuleMeta } from "@/lib/types";
 
 const TIER_COLORS: Record<number, string> = {
@@ -18,7 +18,9 @@ interface NavProps {
 
 export function Nav({ modules }: NavProps) {
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [openTier, setOpenTier] = useState<number | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
   const tiers = [1, 2, 3, 4].map((t) => ({
     tier: t,
@@ -26,15 +28,32 @@ export function Nav({ modules }: NavProps) {
     modules: modules.filter((m) => m.tier === t),
   }));
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenTier(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setOpenTier(null);
+    setMobileOpen(false);
+  }, [pathname]);
+
   return (
     <nav
+      ref={navRef}
       style={{
         position: "sticky",
         top: 0,
         zIndex: 50,
         background: "var(--bg)",
         borderBottom: "1px solid var(--border)",
-        backdropFilter: "blur(12px)",
       }}
     >
       <div
@@ -69,11 +88,7 @@ export function Nav({ modules }: NavProps) {
 
         {/* Desktop nav */}
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 4,
-          }}
+          style={{ display: "flex", alignItems: "center", gap: 4 }}
           className="nav-desktop"
         >
           <Link
@@ -86,82 +101,134 @@ export function Nav({ modules }: NavProps) {
               textDecoration: "none",
               padding: "6px 12px",
               borderRadius: 6,
-              transition: "all .2s",
+              transition: "color .15s",
             }}
           >
             All Modules
           </Link>
-          {tiers.map(({ tier, name, modules: tierModules }) => (
-            <div key={tier} style={{ position: "relative" }} className="nav-dropdown-wrap">
-              <button
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: 12,
-                  fontWeight: 500,
-                  color: "var(--text-muted)",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "6px 12px",
-                  borderRadius: 6,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 4,
-                }}
-              >
-                <span style={{ color: TIER_COLORS[tier], fontSize: 8 }}>●</span>
-                Tier {tier}
-              </button>
-              <div className="nav-dropdown">
-                <div
+
+          {tiers.map(({ tier, name, modules: tierModules }) => {
+            const isOpen = openTier === tier;
+            const tierColor = TIER_COLORS[tier];
+
+            return (
+              <div key={tier} style={{ position: "relative" }}>
+                <button
+                  onClick={() => setOpenTier(isOpen ? null : tier)}
                   style={{
                     fontFamily: "var(--mono)",
-                    fontSize: 10,
-                    fontWeight: 600,
-                    letterSpacing: "1.5px",
-                    textTransform: "uppercase",
-                    color: TIER_COLORS[tier],
-                    padding: "12px 16px 8px",
-                    borderBottom: "1px solid var(--border)",
+                    fontSize: 12,
+                    fontWeight: 500,
+                    color: isOpen ? tierColor : "var(--text-muted)",
+                    background: isOpen ? `${tierColor}15` : "none",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "6px 12px",
+                    borderRadius: 6,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 5,
+                    transition: "all .15s",
                   }}
                 >
-                  {name}
-                </div>
-                {tierModules.map((m) => (
-                  <Link
-                    key={m.slug}
-                    href={`/modules/${m.slug}`}
+                  <span style={{ color: tierColor, fontSize: 7 }}>●</span>
+                  Tier {tier}
+                  <span style={{ fontSize: 9, opacity: 0.6, marginLeft: 1 }}>
+                    {isOpen ? "▲" : "▼"}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div
                     style={{
-                      display: "block",
-                      padding: "10px 16px",
-                      textDecoration: "none",
-                      color: pathname === `/modules/${m.slug}` ? "var(--accent)" : "var(--text-muted)",
-                      fontSize: 13,
-                      transition: "all .15s",
+                      position: "absolute",
+                      top: "calc(100% + 4px)",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      minWidth: 280,
+                      background: "var(--surface)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 10,
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+                      zIndex: 100,
+                      overflow: "hidden",
                     }}
-                    className="nav-dropdown-item"
                   >
-                    <span
+                    <div
                       style={{
                         fontFamily: "var(--mono)",
-                        fontSize: 11,
-                        color: TIER_COLORS[tier],
-                        marginRight: 8,
+                        fontSize: 10,
+                        fontWeight: 600,
+                        letterSpacing: "1.5px",
+                        textTransform: "uppercase",
+                        color: tierColor,
+                        padding: "12px 16px 8px",
+                        borderBottom: "1px solid var(--border)",
                       }}
                     >
-                      {String(m.number).padStart(2, "0")}
-                    </span>
-                    {m.title}
-                  </Link>
-                ))}
+                      Tier {tier}: {name}
+                    </div>
+                    {tierModules.map((m) => (
+                      <Link
+                        key={m.slug}
+                        href={`/modules/${m.slug}`}
+                        style={{
+                          display: "flex",
+                          alignItems: "baseline",
+                          gap: 8,
+                          padding: "10px 16px",
+                          textDecoration: "none",
+                          color:
+                            pathname === `/modules/${m.slug}`
+                              ? "var(--accent)"
+                              : "var(--text-muted)",
+                          fontSize: 13,
+                          transition: "all .15s",
+                          background:
+                            pathname === `/modules/${m.slug}`
+                              ? "var(--surface-raised)"
+                              : "transparent",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.background =
+                            "var(--surface-raised)";
+                          (e.currentTarget as HTMLElement).style.color =
+                            "var(--text)";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.background =
+                            pathname === `/modules/${m.slug}`
+                              ? "var(--surface-raised)"
+                              : "transparent";
+                          (e.currentTarget as HTMLElement).style.color =
+                            pathname === `/modules/${m.slug}`
+                              ? "var(--accent)"
+                              : "var(--text-muted)";
+                        }}
+                      >
+                        <span
+                          style={{
+                            fontFamily: "var(--mono)",
+                            fontSize: 11,
+                            color: tierColor,
+                            flexShrink: 0,
+                          }}
+                        >
+                          {String(m.number).padStart(2, "0")}
+                        </span>
+                        {m.title}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Mobile hamburger */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMobileOpen(!mobileOpen)}
           style={{
             background: "none",
             border: "none",
@@ -174,7 +241,7 @@ export function Nav({ modules }: NavProps) {
           aria-label="Toggle menu"
         >
           <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-            {menuOpen ? (
+            {mobileOpen ? (
               <path
                 fillRule="evenodd"
                 d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -192,17 +259,19 @@ export function Nav({ modules }: NavProps) {
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
+      {mobileOpen && (
         <div
           style={{
             borderTop: "1px solid var(--border)",
             background: "var(--surface)",
             padding: "16px 24px 24px",
+            maxHeight: "80vh",
+            overflowY: "auto",
           }}
         >
           <Link
             href="/modules"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => setMobileOpen(false)}
             style={{
               display: "block",
               fontFamily: "var(--mono)",
@@ -217,7 +286,7 @@ export function Nav({ modules }: NavProps) {
             All Modules
           </Link>
           {tiers.map(({ tier, name, modules: tierModules }) => (
-            <div key={tier} style={{ marginBottom: 16 }}>
+            <div key={tier} style={{ marginBottom: 20 }}>
               <div
                 style={{
                   fontFamily: "var(--mono)",
@@ -235,16 +304,24 @@ export function Nav({ modules }: NavProps) {
                 <Link
                   key={m.slug}
                   href={`/modules/${m.slug}`}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={() => setMobileOpen(false)}
                   style={{
                     display: "block",
                     fontSize: 14,
                     color: "var(--text-muted)",
                     textDecoration: "none",
-                    padding: "7px 0",
+                    padding: "8px 0",
+                    borderBottom: "1px solid var(--border)",
                   }}
                 >
-                  <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: TIER_COLORS[tier], marginRight: 8 }}>
+                  <span
+                    style={{
+                      fontFamily: "var(--mono)",
+                      fontSize: 11,
+                      color: TIER_COLORS[tier],
+                      marginRight: 8,
+                    }}
+                  >
                     {String(m.number).padStart(2, "0")}
                   </span>
                   {m.title}
@@ -256,22 +333,6 @@ export function Nav({ modules }: NavProps) {
       )}
 
       <style>{`
-        .nav-dropdown-wrap .nav-dropdown {
-          display: none;
-          position: absolute;
-          top: calc(100% + 8px);
-          left: 50%;
-          transform: translateX(-50%);
-          min-width: 260px;
-          background: var(--surface);
-          border: 1px solid var(--border);
-          border-radius: 10px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-          z-index: 100;
-          overflow: hidden;
-        }
-        .nav-dropdown-wrap:hover .nav-dropdown { display: block; }
-        .nav-dropdown-item:hover { background: var(--surface-raised); color: var(--text) !important; }
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }

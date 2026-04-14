@@ -7,42 +7,21 @@
   "tierName": "Build Your Workflow",
   "color": "green",
   "estimatedTime": "5–6 hours",
-  "conceptCount": 8,
+  "conceptCount": 11,
   "codeRequired": false,
   "status": "complete",
   "concepts": [
-    {
-      "id": "eval-mindset",
-      "title": "The Eval Mindset"
-    },
-    {
-      "id": "binary-pass-fail",
-      "title": "Binary Pass/Fail"
-    },
-    {
-      "id": "error-analysis",
-      "title": "4-Step Error Analysis"
-    },
-    {
-      "id": "test-dataset",
-      "title": "Build Your Test Dataset"
-    },
-    {
-      "id": "open-coding",
-      "title": "Open Coding"
-    },
-    {
-      "id": "axial-coding",
-      "title": "Axial Coding"
-    },
-    {
-      "id": "fix-re-eval",
-      "title": "Fix & Re-Eval"
-    },
-    {
-      "id": "eval-harness",
-      "title": "The Eval Harness"
-    }
+    { "id": "vibe-check", "title": "The Vibe Check Trap" },
+    { "id": "eval-mindset", "title": "Eval-Driven Development" },
+    { "id": "rubrics", "title": "Writing Pass/Fail Rubrics" },
+    { "id": "test-data", "title": "Building Your Test Dataset" },
+    { "id": "error-analysis", "title": "4-Step Error Analysis" },
+    { "id": "taxonomy", "title": "Failure Taxonomies" },
+    { "id": "fix-cycle", "title": "The Fix-One-Thing Cycle" },
+    { "id": "grader-types", "title": "Grader Types" },
+    { "id": "llm-judge", "title": "LLM-as-Judge for PMs" },
+    { "id": "caching", "title": "Prompt Caching for Evals" },
+    { "id": "bridge", "title": "From Eval to Improvement" }
   ],
   "access": {
     "level": "free",

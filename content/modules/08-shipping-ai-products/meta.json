@@ -11,46 +11,16 @@
   "codeRequired": false,
   "status": "complete",
   "concepts": [
-    {
-      "id": "infinite-edge-cases",
-      "title": "Infinite Edge Cases"
-    },
-    {
-      "id": "guardrails-vs-evaluators",
-      "title": "Guardrails vs Evaluators"
-    },
-    {
-      "id": "building-user-trust",
-      "title": "Building User Trust"
-    },
-    {
-      "id": "feedback-loops-signals",
-      "title": "Feedback Loops as Signals"
-    },
-    {
-      "id": "responsible-ai",
-      "title": "Responsible AI as Product Quality"
-    },
-    {
-      "id": "autonomy-roadmap",
-      "title": "Autonomy Roadmap"
-    },
-    {
-      "id": "data-privacy",
-      "title": "Data Retention & Privacy"
-    },
-    {
-      "id": "launch-strategy",
-      "title": "Launch Strategy"
-    },
-    {
-      "id": "monitoring-observability",
-      "title": "Monitoring & Observability"
-    },
-    {
-      "id": "capstone",
-      "title": "Capstone Project"
-    }
+    { "id": "c1", "title": "The Production Gap" },
+    { "id": "c2", "title": "Guardrails vs. Evaluators" },
+    { "id": "c3", "title": "Trust UX" },
+    { "id": "c4", "title": "The AI Launch Checklist" },
+    { "id": "c5", "title": "AI Observability", "isNew": true },
+    { "id": "c6", "title": "Responsible AI as Product Quality" },
+    { "id": "c7", "title": "Feedback Loops in Production" },
+    { "id": "c8", "title": "The Autonomy Roadmap" },
+    { "id": "c9", "title": "The AI Product Operating Model", "isNew": true },
+    { "id": "c10", "title": "The Full Arc" }
   ],
   "access": {
     "level": "free",

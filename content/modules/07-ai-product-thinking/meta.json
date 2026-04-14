@@ -7,39 +7,20 @@
   "tierName": "Lead with AI",
   "color": "purple",
   "estimatedTime": "5–6 hours",
-  "conceptCount": 7,
+  "conceptCount": 10,
   "codeRequired": false,
   "status": "complete",
   "concepts": [
-    {
-      "id": "should-this-use-ai",
-      "title": "Should This Feature Use AI?"
-    },
-    {
-      "id": "ai-ux-patterns",
-      "title": "AI UX Patterns"
-    },
-    {
-      "id": "speccing-nondeterministic",
-      "title": "Speccing Non-Deterministic Features"
-    },
-    {
-      "id": "measuring-ai-features",
-      "title": "Measuring AI Features"
-    },
-    {
-      "id": "build-buy-wrap",
-      "title": "Build vs Buy vs Wrap"
-    },
-    {
-      "id": "mcp-server-strategy",
-      "title": "MCP Server Strategy",
-      "isNew": true
-    },
-    {
-      "id": "production-harness",
-      "title": "The Production Harness"
-    }
+    { "id": "c1", "title": "Should This Feature Use AI?" },
+    { "id": "c2", "title": "AI UX Patterns" },
+    { "id": "c3", "title": "The AI PRD" },
+    { "id": "c4", "title": "Measuring AI Features" },
+    { "id": "c5", "title": "The Autonomy Roadmap" },
+    { "id": "c6", "title": "Build vs. Buy vs. Wrap" },
+    { "id": "c7", "title": "Should Your Product Have an MCP Server?" },
+    { "id": "c8", "title": "MCP Apps & Generative UI", "isNew": true },
+    { "id": "c9", "title": "Designing for AI Discovery", "isNew": true },
+    { "id": "c10", "title": "AI Moats" }
   ],
   "access": {
     "level": "free",

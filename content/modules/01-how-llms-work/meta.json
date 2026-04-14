@@ -11,56 +11,18 @@
   "codeRequired": false,
   "status": "complete",
   "concepts": [
-    {
-      "id": "tokens",
-      "title": "Tokens, Not Words"
-    },
-    {
-      "id": "context-windows",
-      "title": "Context Windows"
-    },
-    {
-      "id": "temperature",
-      "title": "Temperature & Sampling"
-    },
-    {
-      "id": "few-shot",
-      "title": "Few-Shot Learning"
-    },
-    {
-      "id": "extended-thinking",
-      "title": "Extended Thinking",
-      "isNew": true
-    },
-    {
-      "id": "hallucination",
-      "title": "Hallucination"
-    },
-    {
-      "id": "structured-outputs",
-      "title": "Structured Outputs"
-    },
-    {
-      "id": "prompt-caching",
-      "title": "Prompt Caching",
-      "isNew": true
-    },
-    {
-      "id": "prompt-injection",
-      "title": "Prompt Injection"
-    },
-    {
-      "id": "knowledge-cutoffs",
-      "title": "Knowledge Cutoffs"
-    },
-    {
-      "id": "model-selection",
-      "title": "Model Selection"
-    },
-    {
-      "id": "four-levers",
-      "title": "Four Levers"
-    }
+    { "id": "tokens", "title": "Tokens, Not Words" },
+    { "id": "context", "title": "Context Windows" },
+    { "id": "cutoffs", "title": "Knowledge Cutoffs" },
+    { "id": "temperature", "title": "Temperature & Sampling" },
+    { "id": "fewshot", "title": "Few-Shot Learning" },
+    { "id": "thinking", "title": "Extended Thinking", "isNew": true },
+    { "id": "hallucination", "title": "Hallucination" },
+    { "id": "structured", "title": "Structured Outputs" },
+    { "id": "caching", "title": "Prompt Caching", "isNew": true },
+    { "id": "injection", "title": "Prompt Injection" },
+    { "id": "model-sel", "title": "Model Selection" },
+    { "id": "customization", "title": "Four Levers" }
   ],
   "access": {
     "level": "free",

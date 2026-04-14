@@ -7,70 +7,22 @@
   "tierName": "Scale Your Impact",
   "color": "orange",
   "estimatedTime": "6–7 hours",
-  "conceptCount": 14,
+  "conceptCount": 12,
   "codeRequired": true,
   "status": "complete",
   "concepts": [
-    {
-      "id": "agency-spectrum",
-      "title": "The Agency Spectrum"
-    },
-    {
-      "id": "tools-tool-use",
-      "title": "Tools & Tool Use"
-    },
-    {
-      "id": "react-pattern",
-      "title": "The ReAct Pattern"
-    },
-    {
-      "id": "when-agent-beats-skill",
-      "title": "When Agent Beats Skill"
-    },
-    {
-      "id": "claude-api-tool-use",
-      "title": "Claude API Tool Use"
-    },
-    {
-      "id": "claude-code",
-      "title": "Claude Code"
-    },
-    {
-      "id": "computer-use",
-      "title": "Computer Use",
-      "isNew": true
-    },
-    {
-      "id": "hooks",
-      "title": "Hooks",
-      "isNew": true
-    },
-    {
-      "id": "agent-harness",
-      "title": "The Agent Harness"
-    },
-    {
-      "id": "agent-teams",
-      "title": "Agent Teams",
-      "isNew": true
-    },
-    {
-      "id": "subagents",
-      "title": "Subagents",
-      "isNew": true
-    },
-    {
-      "id": "agent-evaluation",
-      "title": "Agent Evaluation"
-    },
-    {
-      "id": "agent-safety",
-      "title": "Agent Safety"
-    },
-    {
-      "id": "indirect-prompt-injection",
-      "title": "Indirect Prompt Injection"
-    }
+    { "id": "c1", "title": "The Agency Spectrum" },
+    { "id": "c2", "title": "When Agent vs. When Skill" },
+    { "id": "c3", "title": "The ReAct Pattern" },
+    { "id": "c4", "title": "Tools as the Agent's Hands" },
+    { "id": "c5", "title": "Read-Only → Write Safety Ladder" },
+    { "id": "c6", "title": "Deep Research Case Study" },
+    { "id": "c7", "title": "Claude Code", "isNew": true },
+    { "id": "c8", "title": "Subagents", "isNew": true },
+    { "id": "c9", "title": "Hooks as Guardrails", "isNew": true },
+    { "id": "c10", "title": "Agent Evaluation" },
+    { "id": "c11", "title": "Agent Safety" },
+    { "id": "c12", "title": "Agent Teams", "isNew": true }
   ],
   "access": {
     "level": "free",

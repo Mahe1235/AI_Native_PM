@@ -7,42 +7,19 @@
   "tierName": "Scale Your Impact",
   "color": "orange",
   "estimatedTime": "3–4 hours",
-  "conceptCount": 8,
+  "conceptCount": 9,
   "codeRequired": true,
   "status": "complete",
   "concepts": [
-    {
-      "id": "eval-dataset-as-asset",
-      "title": "Eval Dataset as Asset"
-    },
-    {
-      "id": "prompt-versioning",
-      "title": "Prompt Versioning"
-    },
-    {
-      "id": "skill-splitting",
-      "title": "Skill Splitting"
-    },
-    {
-      "id": "feedback-in-workflow",
-      "title": "Building Feedback In"
-    },
-    {
-      "id": "hooks-logging",
-      "title": "Hooks for Automated Logging"
-    },
-    {
-      "id": "prompt-caching-evals",
-      "title": "Prompt Caching for Evals"
-    },
-    {
-      "id": "context-compaction",
-      "title": "Context Compaction"
-    },
-    {
-      "id": "compounding-effect",
-      "title": "The Compounding Effect"
-    }
+    { "id": "c1", "title": "The Compounding Effect" },
+    { "id": "c2", "title": "Eval Dataset as Asset" },
+    { "id": "c3", "title": "Prompt Versioning" },
+    { "id": "c4", "title": "Examples > Instructions" },
+    { "id": "c5", "title": "When to Split a Skill" },
+    { "id": "c6", "title": "The Edit-as-Signal Loop" },
+    { "id": "c7", "title": "The Monthly Eval Sprint" },
+    { "id": "c8", "title": "Model Updates & Regression" },
+    { "id": "c9", "title": "Context Compaction" }
   ],
   "access": {
     "level": "free",

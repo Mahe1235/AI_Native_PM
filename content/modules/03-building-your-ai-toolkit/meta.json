@@ -11,60 +11,18 @@
   "codeRequired": false,
   "status": "complete",
   "concepts": [
-    {
-      "id": "context-engineering",
-      "title": "Context Engineering"
-    },
-    {
-      "id": "system-prompts",
-      "title": "System Prompts"
-    },
-    {
-      "id": "claude-4x-needs",
-      "title": "What Claude 4.x Needs",
-      "isNew": true
-    },
-    {
-      "id": "projects-as-skills",
-      "title": "Projects as Skills"
-    },
-    {
-      "id": "mcp-integration",
-      "title": "MCP Integration",
-      "isNew": true
-    },
-    {
-      "id": "few-shot-examples",
-      "title": "Few-Shot Examples"
-    },
-    {
-      "id": "mcp-workflows",
-      "title": "MCP Workflows",
-      "isNew": true
-    },
-    {
-      "id": "prompt-chaining",
-      "title": "Prompt Chaining"
-    },
-    {
-      "id": "claude-skills",
-      "title": "Claude Skills",
-      "isNew": true
-    },
-    {
-      "id": "mcp-apps",
-      "title": "MCP Apps",
-      "isNew": true
-    },
-    {
-      "id": "structured-outputs",
-      "title": "Structured Outputs"
-    },
-    {
-      "id": "mcp-product-thinking",
-      "title": "MCP Product Thinking",
-      "isNew": true
-    }
+    { "id": "workspaces", "title": "Context Engineering" },
+    { "id": "system-prompts", "title": "System Prompts" },
+    { "id": "claude-4x", "title": "What Claude 4.x Needs", "isNew": true },
+    { "id": "projects", "title": "Projects as Skills" },
+    { "id": "mcp-intro", "title": "MCP Integration", "isNew": true },
+    { "id": "few-shot", "title": "Few-Shot Examples" },
+    { "id": "mcp-workflows", "title": "MCP Workflows", "isNew": true },
+    { "id": "chaining", "title": "Prompt Chaining" },
+    { "id": "skills", "title": "Claude Skills", "isNew": true },
+    { "id": "mcp-apps", "title": "MCP Apps", "isNew": true },
+    { "id": "structured", "title": "Structured Outputs" },
+    { "id": "mcp-product", "title": "MCP Product Thinking", "isNew": true }
   ],
   "access": {
     "level": "free",
