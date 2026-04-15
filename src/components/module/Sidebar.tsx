@@ -3,13 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { ModuleMeta } from "@/lib/types";
-
-const TIER_COLORS: Record<string, string> = {
-  blue: "var(--blue)",
-  green: "var(--green)",
-  orange: "var(--orange)",
-  purple: "var(--purple)",
-};
+import { TIER_COLORS_BY_NAME } from "@/lib/tier";
 
 interface SidebarProps {
   module: ModuleMeta;
@@ -24,7 +18,7 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
   const desktopRef = useRef<HTMLElement>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
 
-  const tierColor = TIER_COLORS[module.color] ?? TIER_COLORS.blue;
+  const tierColor = TIER_COLORS_BY_NAME[module.color] ?? "var(--blue)";
 
   // Detect which concept IDs have no matching section in the DOM
   useEffect(() => {

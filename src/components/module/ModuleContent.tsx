@@ -7,7 +7,7 @@
  */
 interface ModuleContentProps {
   html: string;
-  tier: 1 | 2 | 3 | 4;
+  tier: number;
   slug: string;
 }
 

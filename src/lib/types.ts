@@ -1,4 +1,4 @@
-export type TierColor = "blue" | "green" | "orange" | "purple";
+export type TierColor = string;
 export type AccessLevel = "free" | "paid" | "preview";
 
 export interface ConceptMeta {
@@ -19,7 +19,7 @@ export interface ModuleMeta {
   slug: string;
   title: string;
   subtitle: string;
-  tier: 1 | 2 | 3 | 4;
+  tier: number;
   tierName: string;
   color: TierColor;
   estimatedTime: string;

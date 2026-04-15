@@ -1,26 +1,6 @@
 import Link from "next/link";
 import { getAllModules } from "@/lib/modules";
-
-const TIER_COLORS: Record<number, string> = {
-  1: "var(--blue)",
-  2: "var(--green)",
-  3: "var(--orange)",
-  4: "var(--purple)",
-};
-
-const TIER_DIMS: Record<number, string> = {
-  1: "var(--blue-dim)",
-  2: "var(--green-dim)",
-  3: "var(--orange-dim)",
-  4: "var(--purple-dim)",
-};
-
-const TIER_WEEKS: Record<number, string> = {
-  1: "Week 1",
-  2: "Week 2",
-  3: "Week 3",
-  4: "Week 4",
-};
+import { TIERS, getTierNumbers } from "@/lib/tier";
 
 export default function HomePage() {
   const modules = getAllModules();
@@ -93,7 +73,7 @@ export default function HomePage() {
             }}
           >
             Go from &ldquo;I use Claude sometimes&rdquo; to &ldquo;AI is how I
-            work.&rdquo; 8 modules. Real workflows. No fluff.
+            work.&rdquo; {modules.length} modules. Real workflows. No fluff.
           </p>
 
           {/* CTA buttons */}
@@ -151,9 +131,9 @@ export default function HomePage() {
             }}
           >
             {[
-              { value: "8", label: "Modules" },
+              { value: String(modules.length), label: "Modules" },
               { value: "~28 hrs", label: "Total time" },
-              { value: "4 tiers", label: "Progressive depth" },
+              { value: `${getTierNumbers(modules).length} tiers`, label: "Progressive depth" },
               { value: "0", label: "Prerequisites" },
             ].map(({ value, label }) => (
               <div key={label}>
@@ -203,12 +183,12 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-            {([1, 2, 3, 4] as const).map((tier) => {
+            {getTierNumbers(modules).map((tier) => {
               const tierModules = modules.filter((m) => m.tier === tier);
-              const tierColor = TIER_COLORS[tier];
-              const tierDim = TIER_DIMS[tier];
+              const tierColor = TIERS[tier].color;
+              const tierDim = TIERS[tier].dim;
               const tierName = tierModules[0]?.tierName ?? "";
-              const week = TIER_WEEKS[tier];
+              const week = TIERS[tier].week;
 
               return (
                 <div

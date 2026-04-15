@@ -4,13 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import type { ModuleMeta } from "@/lib/types";
-
-const TIER_COLORS: Record<number, string> = {
-  1: "var(--blue)",
-  2: "var(--green)",
-  3: "var(--orange)",
-  4: "var(--purple)",
-};
+import { TIERS, getTierNumbers } from "@/lib/tier";
 
 interface NavProps {
   modules: ModuleMeta[];
@@ -22,7 +16,7 @@ export function Nav({ modules }: NavProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
-  const tiers = [1, 2, 3, 4].map((t) => ({
+  const tiers = getTierNumbers(modules).map((t) => ({
     tier: t,
     name: modules.find((m) => m.tier === t)?.tierName ?? "",
     modules: modules.filter((m) => m.tier === t),
@@ -109,7 +103,7 @@ export function Nav({ modules }: NavProps) {
 
           {tiers.map(({ tier, name, modules: tierModules }) => {
             const isOpen = openTier === tier;
-            const tierColor = TIER_COLORS[tier];
+            const tierColor = TIERS[tier]?.color ?? "var(--blue)";
 
             return (
               <div key={tier} style={{ position: "relative" }}>
@@ -294,7 +288,7 @@ export function Nav({ modules }: NavProps) {
                   fontWeight: 600,
                   letterSpacing: "1.5px",
                   textTransform: "uppercase",
-                  color: TIER_COLORS[tier],
+                  color: TIERS[tier]?.color ?? "var(--blue)",
                   marginBottom: 8,
                 }}
               >
@@ -318,7 +312,7 @@ export function Nav({ modules }: NavProps) {
                     style={{
                       fontFamily: "var(--mono)",
                       fontSize: 11,
-                      color: TIER_COLORS[tier],
+                      color: TIERS[tier]?.color ?? "var(--blue)",
                       marginRight: 8,
                     }}
                   >

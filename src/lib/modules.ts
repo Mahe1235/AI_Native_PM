@@ -7,7 +7,11 @@ const INDEX_FILE = path.join(process.cwd(), "content/modules.json");
 
 function readIndex(): ModulesIndex {
   const raw = fs.readFileSync(INDEX_FILE, "utf-8");
-  return JSON.parse(raw) as ModulesIndex;
+  const data = JSON.parse(raw) as ModulesIndex;
+  for (const m of data.modules) {
+    m.conceptCount = m.concepts.length;
+  }
+  return data;
 }
 
 export function getAllModules(): ModuleMeta[] {
@@ -54,17 +58,4 @@ export function getPrevNextModules(slug: string): {
     prev: idx > 0 ? modules[idx - 1] : null,
     next: idx < modules.length - 1 ? modules[idx + 1] : null,
   };
-}
-
-export function getTierColor(tier: 1 | 2 | 3 | 4): string {
-  return { 1: "blue", 2: "green", 3: "orange", 4: "purple" }[tier];
-}
-
-export function getTierName(tier: 1 | 2 | 3 | 4): string {
-  return {
-    1: "Foundations",
-    2: "Build Your Workflow",
-    3: "Scale Your Impact",
-    4: "Lead with AI",
-  }[tier];
 }

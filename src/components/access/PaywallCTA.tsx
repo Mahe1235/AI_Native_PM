@@ -1,26 +1,13 @@
 import type { ModuleMeta } from "@/lib/types";
-
-const TIER_COLORS: Record<string, string> = {
-  blue: "var(--blue)",
-  green: "var(--green)",
-  orange: "var(--orange)",
-  purple: "var(--purple)",
-};
-
-const TIER_DIMS: Record<string, string> = {
-  blue: "var(--blue-dim)",
-  green: "var(--green-dim)",
-  orange: "var(--orange-dim)",
-  purple: "var(--purple-dim)",
-};
+import { TIER_COLORS_BY_NAME, TIER_DIMS_BY_NAME } from "@/lib/tier";
 
 interface PaywallCTAProps {
   module: ModuleMeta;
 }
 
 export function PaywallCTA({ module }: PaywallCTAProps) {
-  const tierColor = TIER_COLORS[module.color] ?? TIER_COLORS.blue;
-  const tierDim = TIER_DIMS[module.color] ?? TIER_DIMS.blue;
+  const tierColor = TIER_COLORS_BY_NAME[module.color] ?? "var(--blue)";
+  const tierDim = TIER_DIMS_BY_NAME[module.color] ?? "var(--blue-dim)";
 
   return (
     <div

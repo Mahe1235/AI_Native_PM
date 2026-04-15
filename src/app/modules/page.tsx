@@ -1,29 +1,19 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllModules } from "@/lib/modules";
+import { TIERS, getTierNumbers } from "@/lib/tier";
 
-export const metadata: Metadata = {
-  title: "Modules — The AI-Native PM",
-  description: "8 modules to take you from AI-curious to AI-native.",
-};
-
-const TIER_COLORS: Record<number, string> = {
-  1: "var(--blue)",
-  2: "var(--green)",
-  3: "var(--orange)",
-  4: "var(--purple)",
-};
-
-const TIER_DIMS: Record<number, string> = {
-  1: "var(--blue-dim)",
-  2: "var(--green-dim)",
-  3: "var(--orange-dim)",
-  4: "var(--purple-dim)",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const modules = getAllModules();
+  return {
+    title: "Modules — The AI-Native PM",
+    description: `${modules.length} modules to take you from AI-curious to AI-native.`,
+  };
+}
 
 export default function ModulesPage() {
   const modules = getAllModules();
-  const tiers = [1, 2, 3, 4] as const;
+  const tiers = getTierNumbers(modules);
 
   return (
     <div style={{ minHeight: "100vh", padding: "48px 0" }}>
@@ -52,7 +42,7 @@ export default function ModulesPage() {
               marginBottom: 16,
             }}
           >
-            8 Modules. Real Workflows.
+            {modules.length} Modules. Real Workflows.
           </h1>
           <p style={{ fontSize: 17, color: "var(--text-muted)", maxWidth: 560 }}>
             A self-paced curriculum for product managers ready to work with AI —
@@ -63,8 +53,8 @@ export default function ModulesPage() {
         {/* Modules grouped by tier */}
         {tiers.map((tier) => {
           const tierModules = modules.filter((m) => m.tier === tier);
-          const tierColor = TIER_COLORS[tier];
-          const tierDim = TIER_DIMS[tier];
+          const tierColor = TIERS[tier].color;
+          const tierDim = TIERS[tier].dim;
           const tierName = tierModules[0]?.tierName ?? "";
 
           return (

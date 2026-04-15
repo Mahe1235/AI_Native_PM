@@ -26,16 +26,19 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: "The AI-Native PM",
-  description:
-    "A self-paced curriculum to take product managers from 'I use Claude sometimes' to 'AI is how I work.'",
-  openGraph: {
+export async function generateMetadata(): Promise<Metadata> {
+  const modules = getAllModules();
+  return {
     title: "The AI-Native PM",
-    description: "8 modules. Real workflows. AI as your PM superpower.",
-    type: "website",
-  },
-};
+    description:
+      "A self-paced curriculum to take product managers from 'I use Claude sometimes' to 'AI is how I work.'",
+    openGraph: {
+      title: "The AI-Native PM",
+      description: `${modules.length} modules. Real workflows. AI as your PM superpower.`,
+      type: "website",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
@@ -53,7 +56,7 @@ export default function RootLayout({
         <AnchorScrollFix />
         <Nav modules={modules} />
         <main>{children}</main>
-        <Footer />
+        <Footer moduleCount={modules.length} />
       </body>
     </html>
   );
