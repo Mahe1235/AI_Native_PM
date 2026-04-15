@@ -73,7 +73,12 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 72px; /* sticky nav height (56px) + 16px buffer */
+  scroll-padding-top: 88px;
+}
+
+/* Offset for sticky nav when jumping to anchors */
+section[id] {
+  scroll-margin-top: 88px;
 }
 
 body {

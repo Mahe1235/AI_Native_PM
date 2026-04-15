@@ -25,9 +25,8 @@ export function AnchorScrollFix() {
 
       e.preventDefault();
 
-      const navOffset = 80; // sticky nav (56px) + buffer
-      const top = el.getBoundingClientRect().top + window.scrollY - navOffset;
-      window.scrollTo({ top, behavior: "smooth" });
+      // scrollIntoView respects the CSS scroll-margin-top on the target element
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.pushState(null, "", href);
     }
 

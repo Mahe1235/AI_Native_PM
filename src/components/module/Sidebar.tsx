@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import type { ConceptMeta, ModuleMeta } from "@/lib/types";
+import type { ModuleMeta } from "@/lib/types";
 
 const TIER_COLORS: Record<string, string> = {
   blue: "var(--blue)",
@@ -20,38 +20,69 @@ interface SidebarProps {
 export function Sidebar({ module, prev, next }: SidebarProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const desktopRef = useRef<HTMLElement>(null);
+  const mobileRef = useRef<HTMLDivElement>(null);
 
   const tierColor = TIER_COLORS[module.color] ?? TIER_COLORS.blue;
 
+  // Scroll spy: on each scroll, find the last section whose top is above
+  // the nav + a small buffer — that's the "current" concept.
   useEffect(() => {
     const ids = module.concepts.map((c) => c.id);
-    const observers: IntersectionObserver[] = [];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the topmost visible section
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-
-        if (visible.length > 0) {
-          setActiveId(visible[0].target.id);
+    function updateActive() {
+      // Threshold = nav height + 15% of viewport
+      const threshold = 80 + window.innerHeight * 0.15;
+      let active = "";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= threshold) {
+          active = id;
         }
-      },
-      {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: 0,
       }
-    );
+      setActiveId(active);
+    }
 
-    ids.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    observers.push(observer);
-    return () => observers.forEach((o) => o.disconnect());
+    updateActive(); // set on mount
+    window.addEventListener("scroll", updateActive, { passive: true });
+    return () => window.removeEventListener("scroll", updateActive);
   }, [module.concepts]);
+
+  // Attach a capture-phase click handler to both sidebar variants.
+  // Capture fires before React's synthetic events (bubble phase), which
+  // avoids Next.js scroll-restoration overriding our scrollIntoView call.
+  useEffect(() => {
+    function handleCapture(e: Event) {
+      const anchor = (e.target as HTMLElement).closest(
+        'a[href^="#"]'
+      ) as HTMLAnchorElement | null;
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+
+      const id = href.slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      e.preventDefault();
+      // scrollIntoView respects CSS scroll-margin-top on the target section
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", href);
+    }
+
+    const desktop = desktopRef.current;
+    const mobile = mobileRef.current;
+
+    desktop?.addEventListener("click", handleCapture, { capture: true });
+    mobile?.addEventListener("click", handleCapture, { capture: true });
+
+    return () => {
+      desktop?.removeEventListener("click", handleCapture, { capture: true });
+      mobile?.removeEventListener("click", handleCapture, { capture: true });
+    };
+  }, []);
 
   const ConceptList = () => (
     <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -116,8 +147,9 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
 
   return (
     <>
-      {/* Desktop sidebar — is the flex item in the module-layout */}
+      {/* Desktop sidebar */}
       <aside
+        ref={desktopRef}
         style={{
           width: 220,
           flexShrink: 0,
@@ -206,6 +238,7 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
 
       {/* Mobile sticky concept dropdown */}
       <div
+        ref={mobileRef}
         className="sidebar-mobile"
         style={{
           position: "sticky",
