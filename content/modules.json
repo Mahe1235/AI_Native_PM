@@ -68,7 +68,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "No code required"
     },
     {
       "number": 2,
@@ -120,7 +121,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "No code required"
     },
     {
       "number": 3,
@@ -194,7 +196,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "No code required"
     },
     {
       "number": 4,
@@ -258,7 +261,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "No code required"
     },
     {
       "number": 5,
@@ -330,7 +334,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "Builder track goes deepest"
     },
     {
       "number": 6,
@@ -386,7 +391,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "Concepts + Builder"
     },
     {
       "number": 7,
@@ -448,7 +454,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "Frameworks + worked examples"
     },
     {
       "number": 8,
@@ -510,7 +517,8 @@
         "level": "free",
         "previewConcepts": 3,
         "gatedFrom": null
-      }
+      },
+      "formatLabel": "Frameworks + real incidents"
     }
   ]
 }

@@ -50,7 +50,7 @@ export default async function ModulePage({ params }: PageProps) {
       {/* Module layout: sidebar + content */}
       <div className="module-layout">
         {/* Sidebar handles both desktop (sticky aside) and mobile (dropdown) internally */}
-        <Sidebar module={module} prev={prev} next={next} />
+        <Sidebar module={module} />
 
         {/* Main content column */}
         <main className="module-main">

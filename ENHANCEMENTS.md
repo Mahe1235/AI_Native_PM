@@ -4,25 +4,90 @@ Findings from a code review of the AI-Native PM Next.js project. Organized by pr
 
 ---
 
-## HIGH — Data Redundancy
+## ~~HIGH — Data Redundancy~~ RESOLVED
 
-### Duplicate module metadata (single source of truth problem)
+### ~~Duplicate module metadata (single source of truth problem)~~
 
-`content/modules.json` (516 lines) contains **100% identical data** to the 8 individual `content/modules/*/meta.json` files. The app only reads `modules.json` — the individual meta.json files are never imported.
+All 8 `meta.json` files have been deleted. `content/modules.json` is the single source of truth.
 
-**Risk:** Any metadata change must be made in two places or data will silently diverge.
+---
 
-**Fix:** Delete all 8 `meta.json` files. `modules.json` is the single source of truth. If per-module files are needed later, generate them from `modules.json` at build time — don't maintain both by hand.
+## HIGH — UI Bugs
 
-**Files to delete:**
-- `content/modules/01-how-llms-work/meta.json`
-- `content/modules/02-ai-native-mindset/meta.json`
-- `content/modules/03-building-your-ai-toolkit/meta.json`
-- `content/modules/04-evaluating-your-ai-work/meta.json`
-- `content/modules/05-from-skills-to-agents/meta.json`
-- `content/modules/06-data-and-feedback-loops/meta.json`
-- `content/modules/07-ai-product-thinking/meta.json`
-- `content/modules/08-shipping-ai-products/meta.json`
+### ModuleNav (prev/next) is completely hidden on every module page
+
+The React `<ModuleNav>` component (`src/components/module/ModuleNav.tsx`) renders `<nav className="mnav">`, but `globals.css:236` has a global rule:
+
+```css
+.mnav { display: none !important; }
+```
+
+This was intended to hide the duplicate `.mnav` inside content HTML, but it is **too broad** — it also hides the React component, which lives outside `.module-content` in `[slug]/page.tsx:59`.
+
+The scoped rule already in `[slug]/page.tsx` (`.module-content .mnav { display: none !important; }`) handles the content HTML duplicate correctly. The global rule is the one causing the bug.
+
+**Impact:** Users have no bottom prev/next navigation on any module page. The only way to move between modules is via the sidebar (desktop) or the top nav dropdown.
+
+**Fix:** In `globals.css:236`, change `.mnav { display: none !important; }` to `.module-content .mnav { display: none !important; }` — or simply remove the line, since the scoped rule in `[slug]/page.tsx` already covers it.
+
+### Breadcrumb links are dead (`href="#"`) on all 8 modules
+
+Every `content.html` has a breadcrumb (`.bc`) where both links point to `href="#"`:
+- "The AI-Native PM" → should link to `/`
+- "Tier X: ..." → should link to `/modules`
+
+These links are visible and clickable but navigate nowhere. Confirmed across all 8 modules.
+
+**Fix:** Either replace `href="#"` with actual routes in the 8 `content.html` files, or hide the content HTML breadcrumb via CSS and render a React breadcrumb component with working `<Link>` elements.
+
+---
+
+## HIGH — Redundant Information on Module Pages (Desktop)
+
+On desktop, the module detail page shows the **same information in multiple places simultaneously visible above the fold**.
+
+### Module number + tier shown 3 times
+
+1. **Breadcrumb** (`.bc`): "The AI-Native PM → Tier 1 · Foundations → Module 01"
+2. **Hero badge** (`.mod-badge`): "MODULE 01 TIER 1 · FOUNDATIONS"
+3. **Nav dropdown** highlights the current module by tier
+
+All three are visible at the same time.
+
+**Recommendation:** Remove the hero badge — the breadcrumb already establishes context. Or remove the breadcrumb (its links are dead anyway) and keep just the badge.
+
+### Time estimate + concept count shown twice
+
+1. **Sidebar meta**: "4-5 HOURS", "12 concepts"
+2. **Hero meta** (`.hero-meta`): "4-5 HOURS · NO CODE REQUIRED · 12 CONCEPTS"
+
+Only "NO CODE REQUIRED" / "INCLUDES CODE" / "BUILDER TRACK GOES DEEPEST" is unique to the hero meta. Time and concept count duplicate the sidebar.
+
+**Recommendation:** Remove time and concept count from the hero meta. Keep only the unique distinguishing badge (code required, builder track, etc.).
+
+### Two footers stacked at page bottom
+
+1. **Content HTML footer**: "The AI-Native PM · Module 01 of 08 · Updated April 2026" (inside each `content.html`)
+2. **React Footer component**: "The AI-Native PM · 8 modules · Built for product managers"
+
+Both are visible, stacked directly on top of each other on every module page.
+
+**Fix:** Strip the `<footer>` from all 8 `content.html` files. Optionally fold the unique "Module X of 08 · Updated April 2026" info into the React Footer.
+
+---
+
+## MEDIUM — Missing Hover States on CTA Buttons
+
+The primary and secondary CTA buttons on the homepage have `transition` set in inline styles but **no `:hover` pseudo-class rules**. No visual feedback on hover.
+
+**Affected elements:**
+- Homepage hero: "Start Module 01 →" (primary gold button)
+- Homepage hero: "View All Modules" (secondary outline button)
+- Homepage bottom CTA: "Start Module 01: How LLMs Actually Work →" (gold button)
+
+Module cards (`.tier-module-card`, `.module-card`) have working hover states, so the missing CTA hover is inconsistent.
+
+**Fix:** Add hover rules — e.g., `opacity: 0.9` for gold buttons, `background: var(--surface-raised)` for the outline button.
 
 ---
 
@@ -46,37 +111,9 @@ Three components in `src/components/access/` are never imported or rendered anyw
 
 ---
 
-## MEDIUM — TIER_COLORS hardcoded in 5 places
+## ~~MEDIUM — TIER_COLORS hardcoded in 5 places~~ RESOLVED
 
-The same tier color mapping is copy-pasted into:
-
-- `src/components/layout/Nav.tsx` (lines 8-12)
-- `src/components/module/Sidebar.tsx` (lines 7-12)
-- `src/app/page.tsx` (lines 4-8)
-- `src/app/modules/page.tsx` (lines 10-14)
-- `src/components/access/PaywallCTA.tsx` (lines 3-8)
-
-Some files also duplicate `TIER_DIMS` (dim color variants).
-
-**Fix:** Create `src/lib/tier.ts`:
-
-```ts
-export const TIER_COLORS: Record<string, string> = {
-  blue: "var(--blue)",
-  green: "var(--green)",
-  orange: "var(--orange)",
-  purple: "var(--purple)",
-};
-
-export const TIER_DIMS: Record<string, string> = {
-  blue: "var(--blue-dim)",
-  green: "var(--green-dim)",
-  orange: "var(--orange-dim)",
-  purple: "var(--purple-dim)",
-};
-```
-
-Import from this single file everywhere. Remove `getTierColor`/`getTierName` from `modules.ts` or consolidate into `tier.ts`.
+This was fixed in commit `728623a`. Tier metadata is now centralized in `src/lib/tier.ts` with `TIERS`, `TIER_COLORS_BY_NAME`, `TIER_DIMS_BY_NAME`, and `getTierNumbers()`. All page/component files import from `tier.ts`.
 
 ---
 
@@ -168,13 +205,19 @@ The duplicate navs (`.cnav` concept pills and `.mnav` prev/next) are hidden via 
 
 ## Summary
 
-| # | Issue | Effort | Impact |
-|---|-------|--------|--------|
-| 1 | Delete redundant meta.json files | 5 min | Eliminates data drift risk |
-| 2 | Delete unused access components | 5 min | Removes dead code confusion |
-| 3 | Centralize TIER_COLORS into `tier.ts` | 15 min | Single source of truth for colors |
-| 4 | Module 05 missing content (4 topics) | 2-4 hr | Restores curriculum completeness |
-| 5 | Extract inline styles to CSS | 1-2 hr | Cleaner JSX, cacheable styles |
-| 6 | Split Nav + Sidebar components | 1-2 hr | Easier to test and maintain |
-| 7 | Split globals.css | 30 min | Better organization |
-| 8 | Strip hidden HTML from content files | 15 min | Smaller payload |
+| # | Issue | Severity | Effort | Impact |
+|---|-------|----------|--------|--------|
+| 1 | Fix ModuleNav hidden by global `.mnav` CSS | HIGH | 5 min | Restores prev/next navigation on all modules |
+| 2 | Fix dead breadcrumb `href="#"` links | HIGH | 15 min | Breadcrumbs become functional navigation |
+| 3 | De-duplicate module number/tier (shown 3x) | HIGH | 30 min | Cleaner above-the-fold on module pages |
+| 4 | De-duplicate time/concept count (shown 2x) | HIGH | 15 min | Remove redundant sidebar ↔ hero meta |
+| 5 | Remove stacked double footer on modules | HIGH | 15 min | Eliminates double-footer at page bottom |
+| 6 | ~~Delete redundant meta.json files~~ | ~~HIGH~~ | ~~5 min~~ | RESOLVED — already deleted |
+| 7 | Add hover states to homepage CTA buttons | MEDIUM | 10 min | Consistent interactive feedback |
+| 8 | Delete unused access components | MEDIUM | 5 min | Removes dead code confusion |
+| 9 | ~~Centralize TIER_COLORS into `tier.ts`~~ | ~~MEDIUM~~ | ~~15 min~~ | RESOLVED in `728623a` |
+| 10 | Module 05 missing content (4 topics) | MEDIUM | 2-4 hr | Restores curriculum completeness |
+| 11 | Extract inline styles to CSS | MEDIUM | 1-2 hr | Cleaner JSX, cacheable styles |
+| 12 | Split Nav + Sidebar components | MEDIUM | 1-2 hr | Easier to test and maintain |
+| 13 | Strip hidden `.cnav`/`.mnav` from content HTML | LOW | 15 min | Smaller payload, less dead DOM |
+| 14 | Split globals.css | LOW | 30 min | Better organization |

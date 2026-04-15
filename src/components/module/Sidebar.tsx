@@ -1,17 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import type { ModuleMeta } from "@/lib/types";
 import { TIER_COLORS_BY_NAME } from "@/lib/tier";
 
 interface SidebarProps {
   module: ModuleMeta;
-  prev: ModuleMeta | null;
-  next: ModuleMeta | null;
 }
 
-export function Sidebar({ module, prev, next }: SidebarProps) {
+export function Sidebar({ module }: SidebarProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [missingIds, setMissingIds] = useState<Set<string>>(new Set());
@@ -178,80 +175,71 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
         }}
         className="sidebar-desktop"
       >
-        {/* Module meta */}
+        {/* Where am I */}
         <div
           style={{
-            fontFamily: "var(--mono)",
-            fontSize: 11,
-            color: "var(--text-dim)",
-            marginBottom: 20,
-            padding: "0 0 16px",
+            marginBottom: 16,
+            paddingBottom: 14,
             borderBottom: "1px solid var(--border)",
           }}
         >
-          <div style={{ marginBottom: 4 }}>
+          <p
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              color: tierColor,
+              marginBottom: 2,
+            }}
+          >
+            Module {String(module.number).padStart(2, "0")}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 10,
+              letterSpacing: "0.5px",
+              textTransform: "uppercase",
+              color: "var(--text-dim)",
+              marginBottom: 10,
+            }}
+          >
+            Tier {module.tier} · {module.tierName}
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              color: "var(--text-dim)",
+              lineHeight: 1.8,
+              marginBottom: 2,
+            }}
+          >
             <span style={{ color: tierColor }}>●</span>{" "}
             <span style={{ textTransform: "uppercase", letterSpacing: "0.5px" }}>
               {module.estimatedTime}
             </span>
-          </div>
-          <div>{module.conceptCount} concepts</div>
-          {module.codeRequired && (
-            <div style={{ color: "var(--orange)", marginTop: 4 }}>
-              Includes code
-            </div>
-          )}
+            <span style={{ color: "var(--border-accent)" }}> · </span>
+            <span>{module.conceptCount} concepts</span>
+          </p>
+          <p
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 11,
+              color: "var(--text-muted)",
+              lineHeight: 1.4,
+            }}
+          >
+            {module.formatLabel}
+          </p>
         </div>
 
         {/* Concept list with scrollspy */}
         <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {conceptItems}
         </ul>
-
-        {/* Prev/Next in sidebar */}
-        <div
-          style={{
-            marginTop: 24,
-            paddingTop: 16,
-            borderTop: "1px solid var(--border)",
-            display: "flex",
-            flexDirection: "column",
-            gap: 8,
-          }}
-        >
-          {prev && (
-            <Link
-              href={`/modules/${prev.slug}`}
-              style={{
-                fontFamily: "var(--mono)",
-                fontSize: 11,
-                color: "var(--text-dim)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              }}
-            >
-              <span>←</span> {prev.title}
-            </Link>
-          )}
-          {next && (
-            <Link
-              href={`/modules/${next.slug}`}
-              style={{
-                fontFamily: "var(--mono)",
-                fontSize: 11,
-                color: "var(--text-dim)",
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              }}
-            >
-              <span>→</span> {next.title}
-            </Link>
-          )}
-        </div>
       </aside>
 
       {/* Mobile sticky concept dropdown */}

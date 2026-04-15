@@ -25,6 +25,7 @@ export interface ModuleMeta {
   estimatedTime: string;
   conceptCount: number;
   codeRequired: boolean;
+  formatLabel: string;
   status: "complete" | "coming-soon";
   concepts: ConceptMeta[];
   access: ModuleAccess;
