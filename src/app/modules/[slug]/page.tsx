@@ -72,6 +72,11 @@ export default async function ModulePage({ params }: PageProps) {
           flex: 1;
           min-width: 0;
         }
+        /* Hide duplicate navs from content HTML — sidebar & ModuleNav handle these */
+        .module-content .cnav,
+        .module-content .mnav {
+          display: none !important;
+        }
         @media (max-width: 900px) {
           .module-layout {
             display: block;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { ModuleMeta } from "@/lib/types";
 
@@ -20,10 +20,22 @@ interface SidebarProps {
 export function Sidebar({ module, prev, next }: SidebarProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [missingIds, setMissingIds] = useState<Set<string>>(new Set());
   const desktopRef = useRef<HTMLElement>(null);
   const mobileRef = useRef<HTMLDivElement>(null);
 
   const tierColor = TIER_COLORS[module.color] ?? TIER_COLORS.blue;
+
+  // Detect which concept IDs have no matching section in the DOM
+  useEffect(() => {
+    const missing = new Set<string>();
+    for (const c of module.concepts) {
+      if (!document.getElementById(c.id)) {
+        missing.add(c.id);
+      }
+    }
+    setMissingIds(missing);
+  }, [module.concepts]);
 
   // Scroll spy: on each scroll, find the last section whose top is above
   // the nav + a small buffer — that's the "current" concept.
@@ -31,8 +43,7 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
     const ids = module.concepts.map((c) => c.id);
 
     function updateActive() {
-      // Threshold = nav height + 15% of viewport
-      const threshold = 80 + window.innerHeight * 0.15;
+      const threshold = 88 + window.innerHeight * 0.15;
       let active = "";
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -41,109 +52,120 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
           active = id;
         }
       }
-      setActiveId(active);
+      if (active !== "") setActiveId(active);
     }
 
-    updateActive(); // set on mount
+    updateActive();
     window.addEventListener("scroll", updateActive, { passive: true });
     return () => window.removeEventListener("scroll", updateActive);
   }, [module.concepts]);
 
-  // Attach a capture-phase click handler to both sidebar variants.
-  // Capture fires before React's synthetic events (bubble phase), which
-  // avoids Next.js scroll-restoration overriding our scrollIntoView call.
-  useEffect(() => {
-    function handleCapture(e: Event) {
-      const anchor = (e.target as HTMLElement).closest(
-        'a[href^="#"]'
-      ) as HTMLAnchorElement | null;
-      if (!anchor) return;
+  // Click handler for sidebar anchor links.
+  // Uses capture phase to fire before Next.js scroll-restoration and
+  // stopPropagation to prevent AnchorScrollFix from double-scrolling.
+  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
 
-      const href = anchor.getAttribute("href");
-      if (!href || href === "#") return;
+    const el = document.getElementById(id);
+    if (!el) return;
 
-      const id = href.slice(1);
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      e.preventDefault();
-      // scrollIntoView respects CSS scroll-margin-top on the target section
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      window.history.pushState(null, "", href);
-    }
-
-    const desktop = desktopRef.current;
-    const mobile = mobileRef.current;
-
-    desktop?.addEventListener("click", handleCapture, { capture: true });
-    mobile?.addEventListener("click", handleCapture, { capture: true });
-
-    return () => {
-      desktop?.removeEventListener("click", handleCapture, { capture: true });
-      mobile?.removeEventListener("click", handleCapture, { capture: true });
-    };
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", `#${id}`);
+    setActiveId(id);
+    setMobileOpen(false);
   }, []);
 
-  const ConceptList = () => (
-    <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-      {module.concepts.map((concept, i) => {
-        const isActive = activeId === concept.id;
-        return (
-          <li key={concept.id}>
-            <a
-              href={`#${concept.id}`}
-              onClick={() => setMobileOpen(false)}
+  const conceptItems = module.concepts.map((concept, i) => {
+    const isActive = activeId === concept.id;
+    const isMissing = missingIds.has(concept.id);
+
+    const color = isMissing
+      ? "var(--red)"
+      : isActive
+        ? tierColor
+        : "var(--text-muted)";
+
+    const borderColor = isMissing
+      ? "var(--red)"
+      : isActive
+        ? tierColor
+        : "transparent";
+
+    return (
+      <li key={concept.id}>
+        <a
+          href={`#${concept.id}`}
+          onClick={(e) => handleAnchorClick(e, concept.id)}
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: 8,
+            padding: "6px 0",
+            textDecoration: "none",
+            color,
+            fontSize: 13,
+            fontWeight: isActive || isMissing ? 600 : 400,
+            transition: "color .15s",
+            borderLeft: `2px solid ${borderColor}`,
+            paddingLeft: 12,
+            marginLeft: -14,
+            opacity: isMissing ? 0.85 : 1,
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 10,
+              color,
+              flexShrink: 0,
+              width: 20,
+            }}
+          >
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <span>{concept.title}</span>
+          {isMissing && (
+            <span
               style={{
-                display: "flex",
-                alignItems: "baseline",
-                gap: 8,
-                padding: "6px 0",
-                textDecoration: "none",
-                color: isActive ? tierColor : "var(--text-muted)",
-                fontSize: 13,
-                fontWeight: isActive ? 600 : 400,
-                transition: "color .15s",
-                borderLeft: `2px solid ${isActive ? tierColor : "transparent"}`,
-                paddingLeft: 12,
-                marginLeft: -14,
+                fontFamily: "var(--mono)",
+                fontSize: 9,
+                fontWeight: 600,
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "var(--red)",
+                background: "var(--red-dim)",
+                padding: "1px 5px",
+                borderRadius: 3,
+                flexShrink: 0,
               }}
             >
-              <span
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: 10,
-                  color: isActive ? tierColor : "var(--text-muted)",
-                  flexShrink: 0,
-                  width: 20,
-                }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span>{concept.title}</span>
-              {concept.isNew && (
-                <span
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: 9,
-                    fontWeight: 600,
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    color: "var(--teal)",
-                    background: "var(--teal-dim)",
-                    padding: "1px 5px",
-                    borderRadius: 3,
-                    flexShrink: 0,
-                  }}
-                >
-                  New
-                </span>
-              )}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
-  );
+              Missing
+            </span>
+          )}
+          {!isMissing && concept.isNew && (
+            <span
+              style={{
+                fontFamily: "var(--mono)",
+                fontSize: 9,
+                fontWeight: 600,
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "var(--teal)",
+                background: "var(--teal-dim)",
+                padding: "1px 5px",
+                borderRadius: 3,
+                flexShrink: 0,
+              }}
+            >
+              New
+            </span>
+          )}
+        </a>
+      </li>
+    );
+  });
 
   return (
     <>
@@ -188,7 +210,9 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
         </div>
 
         {/* Concept list with scrollspy */}
-        <ConceptList />
+        <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+          {conceptItems}
+        </ul>
 
         {/* Prev/Next in sidebar */}
         <div
@@ -280,7 +304,9 @@ export function Sidebar({ module, prev, next }: SidebarProps) {
               padding: "12px 18px",
             }}
           >
-            <ConceptList />
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {conceptItems}
+            </ul>
           </div>
         )}
       </div>

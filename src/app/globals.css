@@ -154,7 +154,8 @@ body {
 .hero-mi .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--tier-color); }
 
 /* Concept nav */
-.cnav { display: flex; gap: 6px; padding: 24px 0 56px; flex-wrap: wrap; }
+/* Concept pill nav inside content — hidden; sidebar handles this */
+.cnav { display: none !important; }
 .cp { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text-muted); font-size: 13px; font-weight: 500; text-decoration: none; transition: all .2s; }
 .cp:hover { background: var(--surface-raised); border-color: var(--border-accent); color: var(--text); }
 .cp.new { border-color: rgba(45, 212, 191, .3); color: var(--teal); }
@@ -231,7 +232,8 @@ pre code { background: none; padding: 0; color: inherit; }
 .deliv { display: inline-block; margin-top: 20px; font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--accent); background: var(--accent-glow); padding: 6px 14px; border-radius: 5px; }
 
 /* Module nav */
-.mnav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0; border-top: 1px solid var(--border); margin-top: 40px; gap: 16px; flex-wrap: wrap; }
+/* Bottom prev/next nav inside content — hidden; ModuleNav component handles this */
+.mnav { display: none !important; }
 .nbtn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; text-decoration: none; transition: all .2s; }
 .nbtn:hover { background: var(--surface-raised); border-color: var(--border-accent); }
 .nbl { font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 2px; }
@@ -249,5 +251,5 @@ footer { padding: 40px 0; text-align: center; color: var(--text-dim); font-size:
   .cs { padding: 48px 0 32px; }
   .proj { padding: 24px 18px; }
   pre { font-size: 12px; padding: 16px; }
-  .mnav { flex-direction: column; }
+  .mnav { flex-direction: column; display: none !important; }
 }

@@ -18,19 +18,23 @@
           "title": "Tokens, Not Words"
         },
         {
-          "id": "context-windows",
+          "id": "context",
           "title": "Context Windows"
+        },
+        {
+          "id": "cutoffs",
+          "title": "Knowledge Cutoffs"
         },
         {
           "id": "temperature",
           "title": "Temperature & Sampling"
         },
         {
-          "id": "few-shot",
+          "id": "fewshot",
           "title": "Few-Shot Learning"
         },
         {
-          "id": "extended-thinking",
+          "id": "thinking",
           "title": "Extended Thinking",
           "isNew": true
         },
@@ -39,28 +43,24 @@
           "title": "Hallucination"
         },
         {
-          "id": "structured-outputs",
+          "id": "structured",
           "title": "Structured Outputs"
         },
         {
-          "id": "prompt-caching",
+          "id": "caching",
           "title": "Prompt Caching",
           "isNew": true
         },
         {
-          "id": "prompt-injection",
+          "id": "injection",
           "title": "Prompt Injection"
         },
         {
-          "id": "knowledge-cutoffs",
-          "title": "Knowledge Cutoffs"
-        },
-        {
-          "id": "model-selection",
+          "id": "model-sel",
           "title": "Model Selection"
         },
         {
-          "id": "four-levers",
+          "id": "customization",
           "title": "Four Levers"
         }
       ],
@@ -84,35 +84,35 @@
       "status": "complete",
       "concepts": [
         {
-          "id": "pm-work-audit",
+          "id": "audit",
           "title": "PM Work Audit"
         },
         {
-          "id": "leverage-spectrum",
+          "id": "leverage",
           "title": "Leverage Spectrum"
         },
         {
-          "id": "ai-native-vs-assisted",
+          "id": "native-vs-assisted",
           "title": "AI-Native vs AI-Assisted"
         },
         {
-          "id": "review-over-create",
+          "id": "review",
           "title": "Review Over Create"
         },
         {
-          "id": "where-ai-fails",
+          "id": "danger",
           "title": "Where AI Fails"
         },
         {
-          "id": "roi-curve",
+          "id": "roi",
           "title": "ROI Curve"
         },
         {
-          "id": "team-adoption",
+          "id": "team",
           "title": "Team Adoption"
         },
         {
-          "id": "audit-to-action",
+          "id": "bridge",
           "title": "Audit to Action"
         }
       ],
@@ -136,7 +136,7 @@
       "status": "complete",
       "concepts": [
         {
-          "id": "context-engineering",
+          "id": "workspaces",
           "title": "Context Engineering"
         },
         {
@@ -144,21 +144,21 @@
           "title": "System Prompts"
         },
         {
-          "id": "claude-4x-needs",
+          "id": "claude-4x",
           "title": "What Claude 4.x Needs",
           "isNew": true
         },
         {
-          "id": "projects-as-skills",
+          "id": "projects",
           "title": "Projects as Skills"
         },
         {
-          "id": "mcp-integration",
+          "id": "mcp-intro",
           "title": "MCP Integration",
           "isNew": true
         },
         {
-          "id": "few-shot-examples",
+          "id": "few-shot",
           "title": "Few-Shot Examples"
         },
         {
@@ -167,11 +167,11 @@
           "isNew": true
         },
         {
-          "id": "prompt-chaining",
+          "id": "chaining",
           "title": "Prompt Chaining"
         },
         {
-          "id": "claude-skills",
+          "id": "skills",
           "title": "Claude Skills",
           "isNew": true
         },
@@ -181,11 +181,11 @@
           "isNew": true
         },
         {
-          "id": "structured-outputs",
+          "id": "structured",
           "title": "Structured Outputs"
         },
         {
-          "id": "mcp-product-thinking",
+          "id": "mcp-product",
           "title": "MCP Product Thinking",
           "isNew": true
         }
@@ -205,41 +205,53 @@
       "tierName": "Build Your Workflow",
       "color": "green",
       "estimatedTime": "5–6 hours",
-      "conceptCount": 8,
+      "conceptCount": 11,
       "codeRequired": false,
       "status": "complete",
       "concepts": [
         {
-          "id": "eval-mindset",
-          "title": "The Eval Mindset"
+          "id": "vibe-check",
+          "title": "The Vibe Check Trap"
         },
         {
-          "id": "binary-pass-fail",
-          "title": "Binary Pass/Fail"
+          "id": "eval-mindset",
+          "title": "Eval-Driven Development"
+        },
+        {
+          "id": "rubrics",
+          "title": "Writing Pass/Fail Rubrics"
+        },
+        {
+          "id": "test-data",
+          "title": "Building Your Test Dataset"
         },
         {
           "id": "error-analysis",
           "title": "4-Step Error Analysis"
         },
         {
-          "id": "test-dataset",
-          "title": "Build Your Test Dataset"
+          "id": "taxonomy",
+          "title": "Failure Taxonomies"
         },
         {
-          "id": "open-coding",
-          "title": "Open Coding"
+          "id": "fix-cycle",
+          "title": "The Fix-One-Thing Cycle"
         },
         {
-          "id": "axial-coding",
-          "title": "Axial Coding"
+          "id": "grader-types",
+          "title": "Grader Types"
         },
         {
-          "id": "fix-re-eval",
-          "title": "Fix & Re-Eval"
+          "id": "llm-judge",
+          "title": "LLM-as-Judge for PMs"
         },
         {
-          "id": "eval-harness",
-          "title": "The Eval Harness"
+          "id": "caching",
+          "title": "Prompt Caching for Evals"
+        },
+        {
+          "id": "bridge",
+          "title": "From Eval to Improvement"
         }
       ],
       "access": {
@@ -257,69 +269,61 @@
       "tierName": "Scale Your Impact",
       "color": "orange",
       "estimatedTime": "6–7 hours",
-      "conceptCount": 14,
+      "conceptCount": 12,
       "codeRequired": true,
       "status": "complete",
       "concepts": [
         {
-          "id": "agency-spectrum",
+          "id": "c1",
           "title": "The Agency Spectrum"
         },
         {
-          "id": "tools-tool-use",
-          "title": "Tools & Tool Use"
+          "id": "c2",
+          "title": "When Agent vs. When Skill"
         },
         {
-          "id": "react-pattern",
+          "id": "c3",
           "title": "The ReAct Pattern"
         },
         {
-          "id": "when-agent-beats-skill",
-          "title": "When Agent Beats Skill"
+          "id": "c4",
+          "title": "Tools as the Agent's Hands"
         },
         {
-          "id": "claude-api-tool-use",
-          "title": "Claude API Tool Use"
+          "id": "c5",
+          "title": "Read-Only → Write Safety Ladder"
         },
         {
-          "id": "claude-code",
-          "title": "Claude Code"
+          "id": "c6",
+          "title": "Deep Research Case Study"
         },
         {
-          "id": "computer-use",
-          "title": "Computer Use",
+          "id": "c7",
+          "title": "Claude Code",
           "isNew": true
         },
         {
-          "id": "hooks",
-          "title": "Hooks",
-          "isNew": true
-        },
-        {
-          "id": "agent-harness",
-          "title": "The Agent Harness"
-        },
-        {
-          "id": "agent-teams",
-          "title": "Agent Teams",
-          "isNew": true
-        },
-        {
-          "id": "subagents",
+          "id": "c8",
           "title": "Subagents",
           "isNew": true
         },
         {
-          "id": "agent-evaluation",
+          "id": "c9",
+          "title": "Hooks as Guardrails",
+          "isNew": true
+        },
+        {
+          "id": "c10",
           "title": "Agent Evaluation"
         },
         {
-          "id": "agent-safety",
+          "id": "c11",
           "title": "Agent Safety"
         },
         {
-          "id": "indirect-prompt-injection",
-          "title": "Indirect Prompt Injection"
+          "id": "c12",
+          "title": "Agent Teams",
+          "isNew": true
         }
       ],
       "access": {
@@ -337,41 +341,45 @@
       "tierName": "Scale Your Impact",
       "color": "orange",
       "estimatedTime": "3–4 hours",
-      "conceptCount": 8,
+      "conceptCount": 9,
       "codeRequired": true,
       "status": "complete",
       "concepts": [
         {
-          "id": "eval-dataset-as-asset",
+          "id": "c1",
+          "title": "The Compounding Effect"
+        },
+        {
+          "id": "c2",
           "title": "Eval Dataset as Asset"
         },
         {
-          "id": "prompt-versioning",
+          "id": "c3",
           "title": "Prompt Versioning"
         },
         {
-          "id": "skill-splitting",
-          "title": "Skill Splitting"
+          "id": "c4",
+          "title": "Examples > Instructions"
         },
         {
-          "id": "feedback-in-workflow",
-          "title": "Building Feedback In"
+          "id": "c5",
+          "title": "When to Split a Skill"
         },
         {
-          "id": "hooks-logging",
-          "title": "Hooks for Automated Logging"
+          "id": "c6",
+          "title": "The Edit-as-Signal Loop"
         },
         {
-          "id": "prompt-caching-evals",
-          "title": "Prompt Caching for Evals"
+          "id": "c7",
+          "title": "The Monthly Eval Sprint"
         },
         {
-          "id": "context-compaction",
+          "id": "c8",
+          "title": "Model Updates & Regression"
+        },
+        {
+          "id": "c9",
           "title": "Context Compaction"
-        },
-        {
-          "id": "compounding-effect",
-          "title": "The Compounding Effect"
         }
       ],
       "access": {
@@ -389,38 +397,51 @@
       "tierName": "Lead with AI",
       "color": "purple",
       "estimatedTime": "5–6 hours",
-      "conceptCount": 7,
+      "conceptCount": 10,
       "codeRequired": false,
       "status": "complete",
       "concepts": [
         {
-          "id": "should-this-use-ai",
+          "id": "c1",
           "title": "Should This Feature Use AI?"
         },
         {
-          "id": "ai-ux-patterns",
+          "id": "c2",
           "title": "AI UX Patterns"
         },
         {
-          "id": "speccing-nondeterministic",
-          "title": "Speccing Non-Deterministic Features"
+          "id": "c3",
+          "title": "The AI PRD"
         },
         {
-          "id": "measuring-ai-features",
+          "id": "c4",
           "title": "Measuring AI Features"
         },
         {
-          "id": "build-buy-wrap",
-          "title": "Build vs Buy vs Wrap"
+          "id": "c5",
+          "title": "The Autonomy Roadmap"
         },
         {
-          "id": "mcp-server-strategy",
-          "title": "MCP Server Strategy",
+          "id": "c6",
+          "title": "Build vs. Buy vs. Wrap"
+        },
+        {
+          "id": "c7",
+          "title": "Should Your Product Have an MCP Server?"
+        },
+        {
+          "id": "c8",
+          "title": "MCP Apps & Generative UI",
           "isNew": true
         },
         {
-          "id": "production-harness",
-          "title": "The Production Harness"
+          "id": "c9",
+          "title": "Designing for AI Discovery",
+          "isNew": true
+        },
+        {
+          "id": "c10",
+          "title": "AI Moats"
         }
       ],
       "access": {
@@ -443,44 +464,46 @@
       "status": "complete",
       "concepts": [
         {
-          "id": "infinite-edge-cases",
-          "title": "Infinite Edge Cases"
+          "id": "c1",
+          "title": "The Production Gap"
         },
         {
-          "id": "guardrails-vs-evaluators",
-          "title": "Guardrails vs Evaluators"
+          "id": "c2",
+          "title": "Guardrails vs. Evaluators"
         },
         {
-          "id": "building-user-trust",
-          "title": "Building User Trust"
+          "id": "c3",
+          "title": "Trust UX"
         },
         {
-          "id": "feedback-loops-signals",
-          "title": "Feedback Loops as Signals"
+          "id": "c4",
+          "title": "The AI Launch Checklist"
         },
         {
-          "id": "responsible-ai",
+          "id": "c5",
+          "title": "AI Observability",
+          "isNew": true
+        },
+        {
+          "id": "c6",
           "title": "Responsible AI as Product Quality"
         },
         {
-          "id": "autonomy-roadmap",
-          "title": "Autonomy Roadmap"
+          "id": "c7",
+          "title": "Feedback Loops in Production"
         },
         {
-          "id": "data-privacy",
-          "title": "Data Retention & Privacy"
+          "id": "c8",
+          "title": "The Autonomy Roadmap"
         },
         {
-          "id": "launch-strategy",
-          "title": "Launch Strategy"
+          "id": "c9",
+          "title": "The AI Product Operating Model",
+          "isNew": true
         },
         {
-          "id": "monitoring-observability",
-          "title": "Monitoring & Observability"
-        },
-        {
-          "id": "capstone",
-          "title": "Capstone Project"
+          "id": "c10",
+          "title": "The Full Arc"
         }
       ],
       "access": {
