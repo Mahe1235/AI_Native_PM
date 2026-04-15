@@ -3,6 +3,7 @@ import { DM_Serif_Display, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google
 import { getAllModules } from "@/lib/modules";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { AnchorScrollFix } from "@/components/layout/AnchorScrollFix";
 import "./globals.css";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -49,6 +50,7 @@ export default function RootLayout({
       className={`${dmSerifDisplay.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
     >
       <body>
+        <AnchorScrollFix />
         <Nav modules={modules} />
         <main>{children}</main>
         <Footer />
