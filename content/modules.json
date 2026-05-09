@@ -273,7 +273,7 @@
       "tierName": "Scale Your Impact",
       "color": "orange",
       "estimatedTime": "6–7 hours",
-      "conceptCount": 12,
+      "conceptCount": 14,
       "codeRequired": true,
       "status": "complete",
       "concepts": [
@@ -299,7 +299,8 @@
         },
         {
           "id": "c6",
-          "title": "Deep Research Case Study"
+          "title": "Deep Research & Cowork Case Studies",
+          "isNew": true
         },
         {
           "id": "c7",
@@ -327,6 +328,16 @@
         {
           "id": "c12",
           "title": "Agent Teams",
+          "isNew": true
+        },
+        {
+          "id": "c13",
+          "title": "Managed Agents",
+          "isNew": true
+        },
+        {
+          "id": "c14",
+          "title": "The Advisor Strategy",
           "isNew": true
         }
       ],

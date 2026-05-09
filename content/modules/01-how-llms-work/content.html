@@ -559,8 +559,8 @@
     </div>
     <div class="mcard">
       <div class="mtier lg">Large / Deep</div>
-      <div class="mname">Claude Opus · o3</div>
-      <div class="mstat"><span class="msl">TTFT</span><span class="msv">2–30s+ (with thinking)</span></div>
+      <div class="mname">Claude Opus 4.7 · o3</div>
+      <div class="mstat"><span class="msl">TTFT</span><span class="msv">2–30s+ (effort scales by turn)</span></div>
       <div class="mstat"><span class="msl">Cost</span><span class="msv">~$15–75/M tokens</span></div>
       <div class="mstat"><span class="msl">Best for</span><span class="msv">Complex reasoning only</span></div>
       <div class="muse">→ Hard prioritization, contradictory data synthesis, architecture decisions, research</div>
@@ -578,6 +578,12 @@
 
   <h3>Latency Is a UX Decision</h3>
   <p><strong>Time-to-first-token (TTFT)</strong> — the delay before the model starts outputting — scales with model size. For conversational features, a 200–300ms delay before the first word creates a "sluggish" feel that users notice. For batch processing or background jobs, latency matters far less than cost. Know which category your feature falls into before picking a model.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">What Changed in Opus 4.7</span>
+    <p><strong>Opus 4.7 introduces "effort levels" — a way to dial how hard the model reasons on a given turn.</strong> Two PM-relevant implications: (1) Opus 4.7 thinks progressively harder on later turns of a long session, which means costs scale as conversation depth increases. (2) A well-specified first turn gets you more from 4.7 than progressive clarification across many turns — the model front-loads effort on well-defined problems. Also improved: handling ambiguous inputs without back-and-forth, and stronger coherence across multi-step agentic runs.</p>
+    <p style="margin-top:8px"><strong>Counterintuitive:</strong> Bigger model + more thinking = more tokens billed, even on the same task. The upgrade isn't free — but for the reasoning tasks where you'd reach for Opus, the quality improvement is material.</p>
+  </div>
 
   <div class="callout callout-insight">
     <span class="cl">The PM Question to Ask First</span>
@@ -675,4 +681,4 @@
   </a>
 </div>
 
-<footer>The AI-Native PM · Module 01 of 08 · Updated April 2026</footer>
+<footer>The AI-Native PM · Module 01 of 08 · Updated May 2026</footer>

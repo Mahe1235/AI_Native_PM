@@ -16,7 +16,7 @@
   <div class="hero-meta">
     <span class="hero-mi"><span class="dot"></span>6–7 hours</span>
     <span class="hero-mi"><span class="dot"></span>Builder track goes deepest</span>
-    <span class="hero-mi"><span class="dot"></span>12 concepts</span>
+    <span class="hero-mi"><span class="dot"></span>14 concepts</span>
   </div>
 </div>
 
@@ -34,6 +34,8 @@
   <a href="#c10" class="cp">Agent Evaluation</a>
   <a href="#c11" class="cp">Agent Safety</a>
   <a href="#c12" class="cp new">Agent Teams</a>
+  <a href="#c13" class="cp new">Managed Agents</a>
+  <a href="#c14" class="cp new">Advisor Strategy</a>
 </div>
 
 
@@ -291,9 +293,10 @@
 <!-- ══════════ CONCEPT 06 ══════════ -->
 <section id="c6" class="cs">
   <span class="ct">Concept 06</span>
-  <h2 class="ctitle">Deep Research as Agent Case Study</h2>
-  <p class="csub">You already used a production agent in Module 02 — you just didn't know it. Deep Research is an agent, and its design choices teach you how to build your own.</p>
+  <h2 class="ctitle">Two Production Agent Case Studies</h2>
+  <p class="csub">Deep Research and Cowork are two agents from the same company, built months apart, designed for different jobs. Studying both reveals what makes agent architecture decisions consequential.</p>
 
+  <h3>Deep Research — The Read-Only Agent</h3>
   <p>In Module 02, you ran a Deep Research query on your highest-leverage analysis task. You gave it a question, it went away for potentially hours, and came back with a comprehensive report that cited its sources. That's an agent. It implements the ReAct loop: it searches, reads what it finds, decides what to search next, follows promising threads, and synthesizes everything at the end.</p>
 
   <p>What makes Deep Research instructive is the <strong>design decisions Anthropic made</strong> — decisions you can apply to your own agents:</p>
@@ -310,8 +313,56 @@
     <p><strong>Your Deep Research evaluation from Module 02 was an agent evaluation.</strong> When you assessed what came back — what was useful as-is, what judgment you needed to add, how comprehensiveness compared to manual research — you were evaluating an agent's output. The evaluation instincts you built there apply directly to evaluating your own agents in Concept 10.</p>
   </div>
 
+  <h3>Cowork — The Read-Write Agent</h3>
+  <p>Where Deep Research goes wide (reads dozens of sources across the web), Cowork goes deep (opens files in a scoped local environment, builds the deliverable, hands it back). Same company, different architecture. The contrast is instructive:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Dimension</th><th>Deep Research</th><th>Cowork</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Direction</strong></td>
+          <td>Goes wide — reads dozens of web sources</td>
+          <td>Goes deep — operates on files in a scoped local environment</td>
+        </tr>
+        <tr>
+          <td><strong>Tool access</strong></td>
+          <td>Read-only web search and browsing</td>
+          <td>Read + write within a scoped folder, isolated VM execution</td>
+        </tr>
+        <tr>
+          <td><strong>Output</strong></td>
+          <td>Structured research report with citations</td>
+          <td>A completed deliverable — a deck, a doc, a formatted artifact</td>
+        </tr>
+        <tr>
+          <td><strong>Safety model</strong></td>
+          <td>Read-only web access; no system state changes</td>
+          <td>Scoped folder access; isolated execution environment; no cross-session leakage</td>
+        </tr>
+        <tr>
+          <td><strong>Human involvement</strong></td>
+          <td>Review the report at the end</td>
+          <td>Review the deliverable at the end; agent doesn't pause mid-task</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Three design decisions in Cowork are worth studying for any PM designing an agent:</p>
+  <ul>
+    <li><strong>Scoped folder access instead of full filesystem.</strong> Cowork doesn't get access to your entire computer — only the folders you explicitly grant. This is principle-of-least-privilege applied to an agent. It limits blast radius and makes the agent's behavior auditable: you know exactly what it could have touched.</li>
+    <li><strong>Isolated VM execution.</strong> Cowork runs in a sandboxed environment. If it makes a mistake — an overwritten file, an incomplete operation — the isolation bounds the damage. Read-write agents without sandboxing are the root cause of incidents like the Replit database wipe in Concept 11.</li>
+    <li><strong>Outcome orientation over step approval.</strong> Cowork's objective is a completed deliverable, not a partial draft requiring mid-task approval. The design assumption: for output-assembly tasks, your judgment is most valuable at the end (review the deliverable), not mid-task (approve each file write). This is a deliberate UX and safety trade-off — not the right call for every agent, but the right call for Cowork's job.</li>
+  </ul>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive PM Lesson</span>
+    <p><strong>The hardest part of building a production agent isn't the AI. It's deciding what not to give it access to.</strong> Cowork was built in 10 days. The engineering challenge wasn't model capability — it was the scope model: which folders, which permissions, which operations should the agent never touch. As a PM designing your own agents, that decision determines your blast radius before you write a single line of system prompt.</p>
+  </div>
+
   <h3>Connecting Forward</h3>
-  <p>Deep Research is also a preview of the product decisions you'll make in Module 07. When you're deciding whether a feature in your product should use an agent, the design choices behind Deep Research — read-only tools, structured output, time bounds, source transparency — are the template for responsible agent design.</p>
+  <p>Deep Research and Cowork are two production agents you can study in the wild right now. When you build your own agent in this module's project — and later when you decide whether a feature in your product should use an agent — the design choices behind both are your reference: read-only vs. read-write, outcome orientation vs. step approval, full web vs. scoped environment. These aren't stylistic preferences. They're decisions with real safety and cost consequences.</p>
 </section>
 
 
@@ -573,8 +624,176 @@ Claude Code: [adds safeguards, implements the hook]</code></pre>
   </div>
 
   <div class="callout callout-context">
-    <span class="cl">Reference: Managed Agents</span>
-    <p><strong>For production deployment at scale, Anthropic launched Managed Agents in April 2026 (public beta).</strong> Managed Agents provides pre-built infrastructure for running agents in the cloud — secure sandboxed execution, session tracing, checkpointing, scoped permissions, and persistent sessions. If you're building agents that need to run reliably in production (not just in your terminal), this is the infrastructure path. It handles the orchestration, monitoring, and safety layers that the $47K incident was missing.</p>
+    <span class="cl">Up Next: Managed Agents (Concept 13)</span>
+    <p>Once you've mastered single-agent workflows, the question becomes: <strong>how do you deploy them in production without becoming a DevOps team?</strong> Concept 13 covers Managed Agents — Anthropic's April 2026 infrastructure layer that handles sandboxing, session persistence, scoped credentials, and monitoring so you don't have to build that yourself. It's the answer to the question this module leaves open.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 13 ══════════ -->
+<section id="c13" class="cs">
+  <span class="ct">Concept 13 <span class="ntag">New</span></span>
+  <h2 class="ctitle">Managed Agents — Skipping the Infrastructure Tax</h2>
+  <p class="csub">Until April 2026, building a production agent was two jobs. Job one was everything you learned in this module. Job two was infrastructure — and it had nothing to do with the agent itself.</p>
+
+  <h3>The Infrastructure Tax</h3>
+  <p>Before Managed Agents, shipping an agent to production meant building (and maintaining) the runtime yourself: sandboxed execution environments, session state management, credential scoping, context compaction for long-running sessions, error recovery, monitoring dashboards, spend tracking, and checkpointing so the agent could resume after failure. None of that was the agent. It was infrastructure to make the agent survivable in production.</p>
+
+  <p>The real cost wasn't just time — it was scope creep. "We'll build a research agent" becomes "we'll build a research agent plus a production runtime" becomes a three-to-six-month infrastructure project before the PM use case is even proved out.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">The Brain vs. Hands Separation</span>
+    <p><strong>Managed Agents productizes a distinction that makes agent infrastructure model-agnostic.</strong> The "brain" is what you define: the agent's objective, tool access, system prompt, and success criteria. The "hands" are the execution layer: sandboxing, state management, credentials, monitoring. Managed Agents provides the hands. Because the separation is clean, you can upgrade the brain — switch models, tune the prompt — without rebuilding the infrastructure. The hands survive the next model release.</p>
+  </div>
+
+  <h3>What It Does in Practice</h3>
+  <p>Four capabilities that remove the "second job" of production agent deployment:</p>
+  <ul>
+    <li><strong>Sandboxed execution.</strong> Each agent run is isolated — the agent can't accidentally affect other runs or leak state between sessions. The Replit incident from Concept 11 couldn't happen in a properly sandboxed environment.</li>
+    <li><strong>Session persistence and checkpointing.</strong> Long-running agents can pause, resume, and survive failures without losing progress. A research agent that runs overnight can pick up where it left off if a tool call fails.</li>
+    <li><strong>Scoped credentials.</strong> You define exactly which tools each agent can access — and at what permission level. Least privilege is enforced at the infrastructure layer, not just in the system prompt.</li>
+    <li><strong>Session tracing.</strong> Every tool call, model response, and observation is logged. The same step-level trace data you'd build for evaluation (Concept 10) — built in.</li>
+  </ul>
+
+  <h3>Real Production Deployments</h3>
+  <p>Three customer patterns from the April 2026 launch that illustrate what production agents actually look like:</p>
+  <ul>
+    <li><strong>Notion — "Delegate open-ended, complex tasks."</strong> Their framing: agents as AI Teammates. Not "run this script" but "handle this task area." Session persistence is what makes this possible — the agent has context about the project across runs, not just within a single session.</li>
+    <li><strong>Asana — AI Teammates with workflow context.</strong> Same principle: agents that know the project, the team, and the task history. Managed Agents' scoped credentials ensure the agent can only touch what it's authorized to touch.</li>
+    <li><strong>Sentry — Autonomous bug-to-PR.</strong> An agent takes a bug report, reads the codebase, writes a fix, and submits a PR. Multi-step, write tools, persistent state, production-grade. This is what the "second job" infrastructure unlocks — not by making the agent smarter, but by making the runtime reliable.</li>
+  </ul>
+
+  <h3>The May 2026 Capability Layer</h3>
+  <p>At Code w/ Claude 2026 (May 6), Anthropic announced three new features that raise the ceiling significantly:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Feature</th><th>What It Does</th><th>PM-Relevant Lesson</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Multi-agent orchestration</strong><br><small>Public beta</small></td>
+          <td>Fleets of specialized agents coordinating on complex tasks. Demo at the event: a Commander, Detector, and Navigator agent coordinating a drone landing.</td>
+          <td>Not every task needs a single super-agent. Specialization scales — a Researcher, Analyst, and Synthesizer often outperform one generalist agent trying to do all three.</td>
+        </tr>
+        <tr>
+          <td><strong>Outcomes</strong><br><small>Public beta</small></td>
+          <td>Declarative success criteria. You describe what "done" looks like; the agent iterates until it gets there.</td>
+          <td>Outcome-based briefs work better than step-by-step instructions for capable agents. You don't specify the path, only the destination — this is the ReAct pattern working at full strength.</td>
+        </tr>
+        <tr>
+          <td><strong>Dreaming</strong><br><small>Research preview</small></td>
+          <td>Claude inspects its past sessions and consolidates learnings into durable memory while idle. In the keynote demo, an overnight dreaming run produced a <code>descent-playbook.md</code> file the agent used on the next run.</td>
+          <td>Agent improvement can compound without your active involvement. An agent that reflects on its own sessions is, in a limited sense, improving from experience — without retraining.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>When to Use Managed Agents vs. Your Other Options</h3>
+  <div class="dtable">
+    <div class="dt-row hdr">
+      <span>You want to…</span>
+      <span>Right tool</span>
+      <span>Why</span>
+    </div>
+    <div class="dt-row">
+      <span class="dt-signal"><strong>Experiment with an agent in your terminal</strong></span>
+      <span class="dt-verdict dt-skill">Claude Code</span>
+      <span class="dt-signal">Fastest iteration. No infrastructure setup. Right for building and testing.</span>
+    </div>
+    <div class="dt-row">
+      <span class="dt-signal"><strong>Delegate a complex multi-step task on your desktop</strong></span>
+      <span class="dt-verdict dt-agent">Cowork</span>
+      <span class="dt-signal">Consumer-facing, no setup. Opens your files, builds the deliverable. Not a deployment platform.</span>
+    </div>
+    <div class="dt-row">
+      <span class="dt-signal"><strong>Deploy an agent for other people to use reliably</strong></span>
+      <span class="dt-verdict dt-agent">Managed Agents</span>
+      <span class="dt-signal">Production infrastructure. Handles session state, sandboxing, credentials, tracing. This is the platform others build on top of.</span>
+    </div>
+    <div class="dt-row">
+      <span class="dt-signal"><strong>Build a custom runtime with full control</strong></span>
+      <span class="dt-verdict dt-skill">Agent SDK</span>
+      <span class="dt-signal">Maximum flexibility. You own the infrastructure. Right when Managed Agents' scope doesn't fit your constraints.</span>
+    </div>
+  </div>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive PM Lesson</span>
+    <p><strong>The build-vs-buy calculus for "should we build an agent?" just changed.</strong> Before Managed Agents, "building an agent" implicitly included building the runtime — months of infrastructure work before you proved the use case. Now the cost of proving an agent in production has dropped by three to six months. The question shifts from "can we afford to build this?" to "is the agent design right?" That is a much better problem to have.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 14 ══════════ -->
+<section id="c14" class="cs">
+  <span class="ct">Concept 14 <span class="ntag">New</span></span>
+  <h2 class="ctitle">The Advisor Strategy — Selective Intelligence Escalation</h2>
+  <p class="csub">Module 01 taught you to pick the right model for each task. The Advisor Strategy applies that same logic within a single agent's run — paying for frontier reasoning only when you actually need it.</p>
+
+  <p>Most agent turns are mechanical. The agent searches, reads a result, formats what it found, decides the next search query — routine steps that don't require a frontier model. But occasionally the agent hits a genuine decision point: a planning question it can't reasonably resolve, an architectural call, a judgment moment where the next action changes the entire direction of the task.</p>
+
+  <p>The Advisor Strategy separates these two modes. A fast, cheap executor model (Sonnet or Haiku) handles every turn. When it encounters a decision it can't resolve at its capability level, it makes a single tool call to a more capable Advisor model (Opus). The Advisor reads the shared context, returns a plan or correction, and the executor continues.</p>
+
+  <div class="callout callout-counter">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>The reason this works isn't the smarter model. It's that 80% of an agent's turns are mechanical.</strong> You were paying frontier prices for routine work. The Advisor Strategy doesn't change what the agent can do — it changes what you pay for at each step.</p>
+  </div>
+
+  <h3>The Published Numbers</h3>
+  <p>From Anthropic's Advisor Strategy benchmarks — all figures are directly from Anthropic's documentation:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Configuration</th><th>Benchmark</th><th>Quality vs. executor solo</th><th>Cost vs. Sonnet solo</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Sonnet executor + Opus Advisor</strong></td>
+          <td>SWE-bench Multilingual</td>
+          <td>+2.7 points</td>
+          <td>–11.9% cheaper</td>
+        </tr>
+        <tr>
+          <td><strong>Haiku executor + Opus Advisor</strong></td>
+          <td>BrowseComp</td>
+          <td>19.7% → 41.2% (more than double)</td>
+          <td>85% cheaper than Sonnet solo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The Haiku + Opus result is the more striking data point: not just cost reduction, but a quality improvement that Haiku alone couldn't achieve. On hard tasks, escalating to a smarter model for the decision moments changes the outcome — not just the invoice.</p>
+
+  <h3>Where It's a Strong Fit — and Where It Isn't</h3>
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Strong fit</th><th>Weaker fit</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Long-running agents where most turns are retrieval or formatting steps</td>
+          <td>Short agents where every turn requires careful reasoning (executor and advisor costs converge)</td>
+        </tr>
+        <tr>
+          <td>Tasks with identifiable "decision points" the executor can recognize and escalate</td>
+          <td>Tasks where it's unclear when to escalate — escalation frequency becomes hard to predict and control</td>
+        </tr>
+        <tr>
+          <td>High-volume pipelines where consistent cost reduction matters at scale</td>
+          <td>One-off runs where designing the escalation logic costs more than the savings return</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-tip">
+    <span class="cl">PM Design Pattern</span>
+    <p><strong>Think of the Advisor as a consultant your executor can call.</strong> You don't call a consultant for every meeting — only when the decision is hard enough to warrant it. The design question is: "When should my agent know it's hit a problem it can't solve at its capability level, and ask for help?" That escalation trigger — not the models themselves — is what you're designing.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 01 Connection</span>
+    <p>Module 01's Model Selection concept taught you to pick the right model for each task type. The Advisor Strategy applies that same framework inside a single agent run. If Module 01 gave you a model selection matrix at the feature level, the Advisor Strategy is your model selection matrix at the step level.</p>
   </div>
 </section>
 
@@ -620,4 +839,4 @@ Claude Code: [adds safeguards, implements the hook]</code></pre>
   </a>
 </div>
 
-<footer>The AI-Native PM · Module 05 of 08 · Updated April 2026</footer>
+<footer>The AI-Native PM · Module 05 of 08 · Updated May 2026</footer>
