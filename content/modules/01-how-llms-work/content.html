@@ -137,11 +137,17 @@
     <li><strong>Be surgical about what you include.</strong> One relevant section of a competitor's product page beats pasting the whole site. Skim first; paste only what genuinely matters.</li>
     <li><strong>Long conversations degrade.</strong> After 20+ turns on a complex document, start a fresh session. Accumulated history crowds out your original instructions.</li>
     <li><strong>Use 1M tokens for genuine breadth, not padding.</strong> Synthesizing a year of user feedback, comparing 15 competitor changelogs, analyzing a large codebase — these warrant large contexts. "Just in case" doesn't.</li>
+    <li><strong>Large contexts cost more and respond slower.</strong> At 200K+ tokens, expect higher input costs and noticeably longer time-to-first-token. For synchronous, user-facing features, keep prompts lean. Reserve large context for background tasks and offline synthesis.</li>
   </ul>
 
   <div class="callout callout-watch">
     <span class="cl">Watch Out</span>
     <p><strong>More context doesn't mean better output.</strong> A focused 500-token prompt with the right content often outperforms a 50,000-token dump. The 1M window is a capability ceiling, not a prompting strategy. Precision beats volume — every time.</p>
+  </div>
+
+  <div class="callout callout-insight">
+    <span class="cl">When 1M Changes the Game</span>
+    <p>The 1M window is a category shift for breadth tasks — not a marginal upgrade. Tasks that were previously impossible because you couldn't fit all the data at once: synthesizing a year of NPS verbatims, comparing every competitor's changelog across 12 months, reviewing an entire codebase before generating a migration plan. The shift isn't "now I can write better prompts" — it's "tasks I was chunking or skipping entirely now fit in one pass." That's where the 1M context creates real leverage. For everything else, your existing context habits are fine.</p>
   </div>
 </section>
 
@@ -188,7 +194,7 @@
     <li><strong>Paste in the current context.</strong> If you need Claude to reason about a recent announcement, product update, or market report — paste it in. Claude working with grounded text in the context window is reliable. Claude recalling from training about recent events is not.</li>
     <li><strong>Use web search for time-sensitive queries.</strong> Claude.ai's web search tool (and deep research mode) retrieves live information. For anything where recency matters, use search rather than relying on base knowledge.</li>
     <li><strong>Tell Claude the current date when it matters.</strong> When asking Claude to reason about whether something is "current" or "recent," giving it today's date helps it calibrate its uncertainty correctly.</li>
-    <li><strong>Know your model's cutoff.</strong> As of early 2026: Claude 4.6 Sonnet reliable cutoff ≈ August 2025. GPT-4o (still widely embedded in enterprise tools via older integrations) ≈ October 2023. The model you're using shapes what it reliably knows.</li>
+    <li><strong>Know your model's cutoff.</strong> As of May 2026: Claude 4.7 Opus reliable cutoff ≈ early 2026; Claude 4.6 Sonnet ≈ August 2025; GPT-4o (still embedded in many enterprise tools via older integrations) ≈ October 2023. Model cutoffs shift with new releases — check <a href="https://anthropic.com/claude" target="_blank" rel="noopener">anthropic.com/claude</a> or the model card for the current date rather than relying on any static reference. The model you're using shapes what it reliably knows.</li>
   </ul>
 
   <div class="callout callout-insight">

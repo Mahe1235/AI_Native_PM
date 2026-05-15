@@ -254,6 +254,17 @@
     <span class="cl">Building on Claude: Character as a Design Input <span class="ntag">New</span></span>
     <p><strong>When your feature is built on Claude specifically, the model's character is a design constraint — not just a capability list.</strong> Anthropic's model spec describes Claude as intellectually curious, transparent about uncertainty, and genuinely care-oriented. These aren't marketing claims; they're behavioral tendencies that show up in outputs. This has a practical implication for pattern selection: copilot and generated-content patterns align naturally with how Claude presents work — as thoughtful drafts that benefit from human judgment, with visible reasoning the user can engage with. Autonomous agent patterns require more deliberate trust design on your end, because they reduce the visibility that Claude's transparency character is built around. Before finalizing a UX pattern on a Claude-backed feature, read Anthropic's published usage policies and model spec. You'll find constraints and inclinations that inform your pattern choice in ways that pure capability benchmarks don't surface.</p>
   </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Market Signal · Building for India</span>
+    <p><strong>India is now the world's second-largest AI user base by volume, and the product assumptions that work in the US often break here.</strong> A few things every PM should know before building for India or planning expansion:</p>
+    <ul>
+      <li><strong>WhatsApp is the OS.</strong> With 500M+ Indian users, WhatsApp is the dominant distribution channel for non-English-speaking India. An embedded AI pattern running inside WhatsApp can reach more users than a native app on the Play Store.</li>
+      <li><strong>Voice-first for vernacular users.</strong> India has 22 official languages. Products targeting Tier 2/3 cities need voice or regional-language support to be usable. Startups like Sarvam AI are building India-specific voice and language models — this is the infrastructure layer to watch.</li>
+      <li><strong>Tokenization costs scale fast.</strong> As covered in Module 01, Hindi, Tamil, Telugu, and other Indian scripts tokenize at 3–5× the cost of English. If you're pricing an AI feature on token economics and planning India expansion, model this multiplier before you commit to a pricing tier.</li>
+      <li><strong>Regulatory: the DPDP Act.</strong> India's Digital Personal Data Protection Act (2023, operationalizing in 2025–2026) governs how user data can be stored and processed. Any feature that sends Indian user data to US-hosted AI APIs needs a data handling review before launch.</li>
+    </ul>
+  </div>
 </section>
 
 
