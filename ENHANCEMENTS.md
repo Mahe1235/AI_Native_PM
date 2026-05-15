@@ -149,29 +149,22 @@ Handles scrollspy, missing section detection, desktop sticky sidebar, mobile dro
 
 ---
 
-## MEDIUM — Module 05 missing content (was 14 topics, now 12)
+## ~~MEDIUM — Module 05 missing content (was 14 topics, now 12)~~ PARTIALLY RESOLVED
 
-An earlier version of Module 05 "From Skills to Agents" had **14 concepts**. The current version has 12. Four topics from the original were dropped during restructuring and their content was **not merged** into the remaining sections.
+**Resolved (May 2026, Wave 1):** Module 05 is back to **14 concepts**. Two new concepts were added via the curriculum enhancement plan:
+- **C13 — Managed Agents:** Infrastructure tax framing, brain/hands separation, Notion/Asana/Sentry production deployments, May 2026 orchestration/Outcomes/Dreaming capability layer, when-to-use decision table.
+- **C14 — The Advisor Strategy:** Executor/advisor pattern, Anthropic benchmark numbers (Haiku + Opus = 2× quality at 85% cheaper than Sonnet solo), fit/not-fit table, escalation trigger as the core design decision.
 
-### Completely missing (zero mentions in current content)
+**Still open:** The four topics from the original build plan remain unaddressed. These were a different set of gaps than what Wave 1 filled.
 
-| Old Topic | Build Plan Reference | What it should cover |
-|-----------|---------------------|----------------------|
-| **Computer Use** | Line 217, 373 | Claude navigating apps, filling forms, taking screenshots. A distinct interaction model from API tool use — the model controls a visual interface. |
-| **Indirect Prompt Injection** | Line 231 | Escalation of Module 01's injection concept: in agentic contexts, an injected instruction can trigger real-world actions (send email, modify data, delete records). Higher stakes than single-turn chat. Should also cover RAG poisoning in agent knowledge bases. |
+| Old Topic | Status | What's still missing |
+|-----------|--------|----------------------|
+| **Computer Use** | ❌ Not covered | Claude navigating apps, filling forms, taking screenshots. Distinct interaction model from API tool use. |
+| **Indirect Prompt Injection** | ❌ Not covered | In agentic contexts, injected instructions trigger real-world actions — higher stakes than single-turn chat. RAG poisoning in agent knowledge bases. |
+| **Claude API Tool Use** | ⚠️ Partial | C4 covers MCP/tool schemas but not full API mechanics: define tools, make tool_use calls, parse results, return tool_result. |
+| **The Agent Harness** | ⚠️ Partial | C3 covers ReAct loop but not the full harness pattern: max_iterations ceiling, error handling, trace logger, harness arc M04→M05→M07-08. |
 
-### Partially covered (concept exists but key content missing)
-
-| Old Topic | Current Location | What's missing |
-|-----------|-----------------|----------------|
-| **Claude API Tool Use** | C4 "Tools as the Agent's Hands" | Covers MCP/tool schemas but not the full API mechanics: define tools, make tool_use calls, parse results, return tool_result. The hands-on "how it actually works in code" is absent. |
-| **The Agent Harness** | C3 "The ReAct Pattern" | Covers the think/act/observe loop but not the full harness pattern from the build plan: max_iterations ceiling, error handling, trace logger, and the harness arc that connects eval harness (M04) → agent harness (M05) → production harness (M07-08). |
-
-### Recommended fix
-
-**Option A — Restore to 14 concepts:** Add Computer Use and Indirect Prompt Injection as new sections (c13, c14). Expand C4 and C3 to cover the missing API mechanics and harness pattern. Update `modules.json`, `content.html`, and the hero meta badge from "12 concepts" to "14 concepts".
-
-**Option B — Fold into existing sections:** Add Computer Use content to C7 "Claude Code" (related builder tool). Add Indirect Prompt Injection to C11 "Agent Safety" (natural home for agentic security risks). Expand C4 and C3 as above. Keep 12 concepts.
+These remain candidates for a future editing pass, separate from the Wave 2/3 curriculum enhancements.
 
 ---
 
@@ -216,7 +209,7 @@ The duplicate navs (`.cnav` concept pills and `.mnav` prev/next) are hidden via 
 | 7 | Add hover states to homepage CTA buttons | MEDIUM | 10 min | Consistent interactive feedback |
 | 8 | Delete unused access components | MEDIUM | 5 min | Removes dead code confusion |
 | 9 | ~~Centralize TIER_COLORS into `tier.ts`~~ | ~~MEDIUM~~ | ~~15 min~~ | RESOLVED in `728623a` |
-| 10 | Module 05 missing content (4 topics) | MEDIUM | 2-4 hr | Restores curriculum completeness |
+| 10 | ~~Module 05 missing content (was 12 concepts)~~ → 14 concepts restored (Wave 1), 4 original topics still open | MEDIUM | — | See detail above |
 | 11 | Extract inline styles to CSS | MEDIUM | 1-2 hr | Cleaner JSX, cacheable styles |
 | 12 | Split Nav + Sidebar components | MEDIUM | 1-2 hr | Easier to test and maintain |
 | 13 | Strip hidden `.cnav`/`.mnav` from content HTML | LOW | 15 min | Smaller payload, less dead DOM |
