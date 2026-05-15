@@ -357,7 +357,7 @@
       "tierName": "Scale Your Impact",
       "color": "orange",
       "estimatedTime": "3–4 hours",
-      "conceptCount": 9,
+      "conceptCount": 10,
       "codeRequired": true,
       "status": "complete",
       "concepts": [
@@ -396,6 +396,11 @@
         {
           "id": "c9",
           "title": "Context Compaction"
+        },
+        {
+          "id": "c10",
+          "title": "Claude Code Routines",
+          "isNew": true
         }
       ],
       "access": {

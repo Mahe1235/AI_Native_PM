@@ -249,6 +249,11 @@
     <span class="cl">Module 05 Connection</span>
     <p><strong>The UX pattern determines the agent architecture.</strong> A copilot pattern maps to a single-step tool call. An autonomous agent pattern maps to a ReAct loop with multi-step tool use. A generative UI pattern requires tools that return rendered components, not text. Your Module 05 experience building agents informs which patterns are architecturally feasible for your team.</p>
   </div>
+
+  <div class="callout callout-insight">
+    <span class="cl">Building on Claude: Character as a Design Input <span class="ntag">New</span></span>
+    <p><strong>When your feature is built on Claude specifically, the model's character is a design constraint — not just a capability list.</strong> Anthropic's model spec describes Claude as intellectually curious, transparent about uncertainty, and genuinely care-oriented. These aren't marketing claims; they're behavioral tendencies that show up in outputs. This has a practical implication for pattern selection: copilot and generated-content patterns align naturally with how Claude presents work — as thoughtful drafts that benefit from human judgment, with visible reasoning the user can engage with. Autonomous agent patterns require more deliberate trust design on your end, because they reduce the visibility that Claude's transparency character is built around. Before finalizing a UX pattern on a Claude-backed feature, read Anthropic's published usage policies and model spec. You'll find constraints and inclinations that inform your pattern choice in ways that pure capability benchmarks don't surface.</p>
+  </div>
 </section>
 
 

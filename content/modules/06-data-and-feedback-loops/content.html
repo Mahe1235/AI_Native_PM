@@ -31,6 +31,7 @@
   <a href="#c7" class="cp">Monthly Eval Sprint</a>
   <a href="#c8" class="cp new">Model Updates &amp; Regressions</a>
   <a href="#c9" class="cp">Context Compaction</a>
+  <a href="#c10" class="cp new">Claude Code Routines</a>
 </div>
 
 
@@ -535,6 +536,76 @@
   <div class="callout callout-tip">
     <span class="cl">Practical Rule of Thumb</span>
     <p><strong>If your conversation is longer than ~50 turns or your agent has made 10+ tool calls, assume quality is degrading.</strong> Create a checkpoint summary and continue in a fresh context. The 2 minutes spent compacting will save you from editing degraded outputs for the remainder of the session.</p>
+  </div>
+</section>
+
+
+<!-- ══════════ CONCEPT 10 ══════════ -->
+<section id="c10" class="cs">
+  <span class="ct">Concept 10 <span class="ntag">New</span></span>
+  <h2 class="ctitle">Claude Code Routines — Automating the Compounding Loop</h2>
+  <p class="csub">The monthly eval sprint is powerful. A scheduled Claude Code routine that runs it for you — automatically, weekly, without a calendar reminder — is a different category of leverage.</p>
+
+  <p>Concept 07 described the monthly eval sprint as a ritual. The discipline is the point — improvement without a recurring cadence rarely happens. But there's a next level beyond discipline: <strong>automation.</strong> Claude Code's scheduled routines turn your improvement loop from a recurring commitment into a running system.</p>
+
+  <p>A routine is a Claude Code session that runs on a schedule — daily, weekly, on a custom cron — without manual triggering. You define what to do once, and the system executes it on cadence. For PM workflows, this changes what's realistic:</p>
+
+  <div class="ba-grid">
+    <div class="ba-card before">
+      <span class="ba-label">Without Routines</span>
+      <div class="ba-task">Monthly eval sprint</div>
+      <div class="ba-desc">Depends on your calendar, your energy, and your discipline. Powerful when you actually run it. The bottleneck is you showing up every month, opening the spreadsheet, and starting the process — which slips when things get busy.</div>
+    </div>
+    <div class="ba-card after">
+      <span class="ba-label">With Routines</span>
+      <div class="ba-task">Automated weekly canary check</div>
+      <div class="ba-desc">A scheduled agent runs your 5 canary test cases against your highest-frequency skill every Monday. You receive a short summary: pass rate, any regressions, recommended action if quality dropped. 5 minutes reviewing instead of 2 hours running.</div>
+    </div>
+  </div>
+
+  <h3>Three Routine Templates for PMs</h3>
+
+  <p>Each maps to a workflow from earlier in this module:</p>
+
+  <div class="tw-wrap">
+    <table>
+      <thead><tr><th>Routine</th><th>Schedule</th><th>What It Does</th><th>Your Time</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Canary Monitor</strong></td>
+          <td>Weekly (Mon 8am)</td>
+          <td>Runs your 5 canary test cases through your primary skill. Compares pass rates to the previous week. Reports degradation with the specific failing cases highlighted.</td>
+          <td>5 min review</td>
+        </tr>
+        <tr>
+          <td><strong>Edit Signal Digest</strong></td>
+          <td>Weekly (Fri 5pm)</td>
+          <td>Scans your annotations from the week (the edit-as-signal habit from Concept 06). Categorizes failure types, counts by category, flags the top pattern. Pre-analyzes the input for next month's eval sprint.</td>
+          <td>10 min review</td>
+        </tr>
+        <tr>
+          <td><strong>Model Update Alert</strong></td>
+          <td>On trigger</td>
+          <td>Detects a model version change. Automatically runs your full eval dataset. Sends a before/after pass rate comparison. You decide whether to run a full sprint or accept the update.</td>
+          <td>Decision only</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How to Set Up a Routine</h3>
+  <p>Claude Code provides a <code>/schedule</code> skill that creates recurring agents. You describe what you want the agent to do, set the cadence, and connect it to the relevant outputs — your eval spreadsheet, your failure log, your Slack channel. The routine runs in the background; you interact with the results, not the process.</p>
+
+  <p>The key design principle: <strong>routines should produce actionable summaries, not raw data.</strong> A routine that dumps 50 eval results into your inbox every week creates work. A routine that says "pass rate dropped 8% this week, the top 2 failures are audience-adaptation misses, here are the two inputs that failed" — that saves work. Design the output format as carefully as you design the task itself.</p>
+
+  <div class="callout callout-insight">
+    <span class="cl">Counterintuitive</span>
+    <p><strong>Automating the sprint doesn't remove the judgment layer — it concentrates it.</strong> When a routine runs the eval and surfaces the top failure, your 2-hour sprint compresses to a 15-minute decision: is this failure worth a fix this week, or does it go into next month's sprint? You're doing less process work, but the work you're doing is higher leverage. The automation handles the running; you handle the deciding.</p>
+  </div>
+
+  <div class="callout callout-context">
+    <span class="cl">Module 05 Connection</span>
+    <p><strong>This is Claude Code's hooks pattern applied to your own workflow.</strong> In Module 05, you learned that hooks let agents trigger actions on specific events — PostToolUse, Stop, SubagentStop. Scheduled routines are the temporal equivalent: trigger on a time event rather than an agent event. If you built hooks for your agents in Module 05, you already understand the mental model. The only difference is the trigger type.</p>
   </div>
 </section>
 
